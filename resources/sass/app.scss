@@ -1,0 +1,17 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import 'LoginAreas/Login.scss';
+@import 'LoginAreas/Register.scss';
+@import 'StudentOrgDashboard/OrgDashboard.scss';
+@import 'StudentOrgDashboard/OrgHeader.scss';
+@import 'StudentOrgDashboard/OrgSidebar.scss';
+@import 'StudentOrgDashboard/SubmitForm.scss';
+@import 'StudentOrgDashboard/Dashboard.scss';

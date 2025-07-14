@@ -1,0 +1,358 @@
+// Login Page Styles
+.login-container {
+    min-height: 100vh;
+    background-color: #0036AF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('/images/loginpage.svg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding-bottom: 50px; // Add padding to the bottom to shift content up
+    
+    // Color overlay
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 54, 175, 0.75); // #0036AF with 75% opacity
+        z-index: 0;
+    }
+}
+
+// Login Content Layout
+.login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+    margin-top: -80px; // Move content up more
+    position: relative;
+    z-index: 1; // Ensure content is above the overlay
+}
+
+// Logo Section
+.logo-section {
+    text-align: center;
+    margin-bottom: 40px; // Increased space between logo section and login form
+    color: white;
+
+    .university-logo {
+        width: 178px; // Logo size
+        height: 178px;
+        margin-bottom: 5px; // Reduced space between logo and text
+        // Removed the filter that was making the logo white
+    }
+
+    .university-name {
+        font-size: 32px;
+        font-weight: 700; // Bold weight for university name
+        margin: 0 0 5px 0; // Reduced top margin to move text closer to logo
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        white-space: nowrap; // Prevent text from wrapping
+    }
+
+    .university-full-name {
+        font-size: 16px;
+        margin: 0;
+        opacity: 0.9;
+        font-weight: 300;
+    }
+}
+
+// Login Form Container
+.login-form-container {
+    background-color: white;
+    padding: 20px; // Reduced padding to 20px
+    border-radius: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 398px; // Specific width as requested
+    box-sizing: border-box;
+
+    .form-title {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 400;
+        color: #0036AF;
+        margin: 0 0 25px 0; // Increased bottom margin from 20px to 25px
+    }
+}
+
+// Form Styles
+.login-form {
+    .error-message {
+        color: #e74c3c;
+        background-color: rgba(231, 76, 60, 0.1);
+        border-left: 3px solid #e74c3c;
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        border-radius: 0;
+    }
+
+    .input-group {
+        margin-bottom: 20px; // Increased from 15px to 20px for more space between inputs
+        position: relative;
+
+        &.password-group {
+            .form-input {
+                padding-right: 45px;
+            }
+        }
+
+        .input-label {
+            position: absolute;
+            left: 12px;
+            top: 14px; // Adjusted for taller input
+            font-size: 12px;
+            color: #999;
+            font-weight: 400;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            background-color: white;
+            padding: 0 5px;
+            transform-origin: left top;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px; // Slightly more horizontal padding
+            height: 46px; // Fixed height
+            border: 1px solid #000; // Black border
+            border-radius: 0; // Square corners
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400; // Regular weight
+            color: #333;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: #0036AF;
+                box-shadow: 0 0 0 1px rgba(0, 54, 175, 0.1);
+            }
+
+            &:focus + .input-label,
+            &:not(:placeholder-shown) + .input-label {
+                transform: translateY(-24px) scale(0.85); // Adjusted for taller input
+                color: #0036AF;
+            }
+
+            // Hide the placeholder when focused or with content
+            &:focus::placeholder,
+            &:not(:placeholder-shown)::placeholder {
+                opacity: 0;
+            }
+
+            &::placeholder {
+                color: transparent; // Hide the placeholder text
+            }
+        }
+    }
+
+    .password-toggle {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #666;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+
+        svg {
+            stroke-width: 1.5px;
+        }
+
+        &:hover {
+            color: #0036AF;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .login-button {
+        width: 100%;
+        background-color: #0036AF;
+        color: white;
+        border: none;
+        height: 46px; // Fixed height matching inputs
+        border-radius: 20px; // Added corner radius
+        font-size: 16px;
+        font-weight: 400; // Regular weight
+        font-family: 'Roboto', sans-serif;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 0; // Removed bottom margin to make container thinner
+
+        &:hover {
+            background-color: #002580;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 54, 175, 0.3);
+        }
+    }
+
+    .forgot-password {
+        text-align: right;
+        margin-bottom: 15px; // Reduced margin to make container thinner
+
+        a {
+            color: #0036AF;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 400; // Regular weight
+            font-family: 'Roboto', sans-serif;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.dev-login {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.auto-login-button {
+  background-color: #e0e0e0;
+  color: #666;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: #d0d0d0;
+  }
+}
+
+// Enhanced Responsive Design
+@media (max-width: 992px) {
+    .login-content {
+        max-width: 600px;
+    }
+    
+    .logo-section {
+        .university-name {
+            font-size: 28px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .login-content {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    
+    .logo-section {
+        .university-name {
+            font-size: 24px;
+        }
+        
+        .university-full-name {
+            font-size: 14px;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .login-container {
+        padding: 15px;
+        padding-bottom: 30px;
+    }
+    
+    .login-content {
+        margin-top: -30px;
+    }
+    
+    .logo-section {
+        margin-bottom: 15px;
+        
+        .university-logo {
+            width: 150px;
+            height: 150px;
+        }
+        
+        .university-name {
+            font-size: 20px;
+            white-space: normal; // Allow text to wrap on very small screens
+            line-height: 1.2;
+        }
+        
+        .university-full-name {
+            font-size: 12px;
+        }
+    }
+    
+    .login-form-container {
+        padding: 20px 15px;
+    }
+}
+
+@media (max-height: 700px) {
+    .login-container {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .login-content {
+        margin-top: -20px;
+    }
+    
+    .logo-section {
+        .university-logo {
+            width: 130px;
+            height: 130px;
+            margin-bottom: 3px;
+        }
+    }
+}
+
+// Override any default button styles
+button {
+    &::-moz-focus-inner {
+        border: 0;
+    }
+}
+
+// Ensure inputs don't have browser default styling
+input {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &[type=number] {
+        -moz-appearance: textfield;
+    }
+}

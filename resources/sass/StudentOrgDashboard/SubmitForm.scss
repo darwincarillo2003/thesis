@@ -1,0 +1,472 @@
+// SubmitForm.scss
+@import '../variables';
+
+// Print styles
+@media print {
+  .org-sidebar, .org-header, .submit-form__header, .form-actions, .btn-add, .btn-remove {
+    display: none !important;
+  }
+  
+  .org-dashboard__wrapper {
+    margin-left: 0 !important;
+  }
+  
+  .org-dashboard__content {
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: white !important;
+  }
+  
+  .submit-form {
+    padding: 0 !important;
+  }
+  
+  .cash-flow-form {
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+  input, select {
+    border: none !important;
+    background: transparent !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+  
+  .signatory-line {
+    border-bottom: 1px solid #000 !important;
+  }
+}
+
+.submit-form {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+  
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0036AF;
+  }
+  
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  &__actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  &__action-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background-color: #0036AF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    
+    &:hover {
+      background-color: darken(#0036AF, 10%);
+    }
+    
+    svg {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.cash-flow-form {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  
+  .form-header {
+    text-align: center;
+    margin-bottom: 30px;
+    
+    &__university {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+      color: #0036AF;
+    }
+    
+    &__office {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 5px 0 20px;
+    }
+    
+    &__details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 15px;
+      
+      .form-group {
+        flex: 1;
+        min-width: 200px;
+      }
+    }
+  }
+  
+  .form-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0036AF;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      
+      &:focus {
+        outline: none;
+        border-color: #0036AF;
+        box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.2);
+      }
+    }
+    
+    .input-group {
+      display: flex;
+      gap: 10px;
+      
+      select {
+        flex: 1;
+      }
+      
+      input {
+        flex: 1;
+      }
+    }
+  }
+  
+  .total-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+    
+    label {
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+    
+    .total-value {
+      font-weight: 600;
+      color: #0036AF;
+      font-size: 16px;
+    }
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    
+    th {
+      background-color: #f5f5f5;
+      padding: 10px;
+      text-align: left;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+    }
+    
+    td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #e0e0e0;
+      
+      input {
+        width: 100%;
+        padding: 6px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        
+        &:focus {
+          outline: none;
+          border-color: #0036AF;
+          box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.2);
+        }
+      }
+    }
+    
+    .no-data {
+      text-align: center;
+      color: #888;
+      font-style: italic;
+      padding: 15px;
+    }
+    
+    .total-label {
+      text-align: right;
+      font-weight: 600;
+      padding-right: 15px;
+    }
+    
+    .total-amount {
+      font-weight: 600;
+      color: #0036AF;
+    }
+    
+    tfoot {
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+    }
+  }
+  
+  .btn-add, .btn-remove {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-add {
+    background-color: #0036AF;
+    color: white;
+    
+    &:hover {
+      background-color: darken(#0036AF, 10%);
+    }
+  }
+  
+  .btn-remove {
+    background-color: #f44336;
+    color: white;
+    
+    &:hover {
+      background-color: darken(#f44336, 10%);
+    }
+    
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+  
+  .notes-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    
+    .note-table {
+      h4 {
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+    }
+  }
+  
+  .signatories {
+    margin-top: 30px;
+    
+    .signatory-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 30px;
+      
+      .signatory {
+        flex: 1;
+        min-width: 200px;
+        text-align: center;
+        
+        input {
+          text-align: center;
+          border: none;
+          border-radius: 0;
+          padding: 5px;
+          font-weight: 500;
+          
+          &:focus {
+            outline: none;
+            box-shadow: none;
+          }
+        }
+        
+        .signatory-line {
+          height: 1px;
+          background-color: #000;
+          margin: 5px auto 10px;
+          width: 80%;
+        }
+        
+        .signatory-title {
+          font-size: 14px;
+          font-weight: 500;
+          color: #333;
+        }
+      }
+    }
+  }
+  
+  .form-actions {
+    margin-top: 30px;
+    text-align: center;
+    
+    .btn-submit {
+      padding: 10px 24px;
+      background-color: #0036AF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: darken(#0036AF, 10%);
+      }
+    }
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .submit-form {
+    padding: 15px 0;
+    
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    
+    &__actions {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+  
+  .cash-flow-form {
+    padding: 20px 15px;
+    
+    .form-header {
+      &__university {
+        font-size: 20px;
+      }
+      
+      &__office {
+        font-size: 16px;
+      }
+    }
+    
+    .form-group {
+      .input-group {
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+    
+    .data-table {
+      display: block;
+      overflow-x: auto;
+      
+      th, td {
+        min-width: 120px;
+      }
+    }
+    
+    .notes-section {
+      gap: 20px;
+    }
+    
+    .signatories {
+      .signatory-group {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .submit-form {
+    &__title {
+      font-size: 20px;
+    }
+    
+    &__action-btn {
+      padding: 6px 10px;
+      font-size: 13px;
+      
+      span {
+        display: none;
+      }
+    }
+  }
+  
+  .cash-flow-form {
+    padding: 15px 10px;
+    
+    .form-header {
+      &__university {
+        font-size: 18px;
+      }
+      
+      &__office {
+        font-size: 14px;
+      }
+    }
+    
+    .section-title {
+      font-size: 16px;
+    }
+    
+    .form-group {
+      label {
+        font-size: 14px;
+      }
+    }
+  }
+}
