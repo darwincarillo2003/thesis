@@ -1,19 +1,19 @@
 // Login Page Styles
 .login-container {
     min-height: 100vh;
-    background-color: #0036AF;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
     font-family: 'Roboto', sans-serif;
-    background-image: url('/images/loginpage.svg');
+    background-image: url('/images/newbackground.jpg');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     position: relative;
     padding-bottom: 50px; // Add padding to the bottom to shift content up
     
-    // Color overlay
+    // Dark overlay to ensure text is readable
     &::before {
         content: '';
         position: absolute;
@@ -21,8 +21,62 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 54, 175, 0.75); // #0036AF with 75% opacity
+        background-color: rgba(0, 0, 0, 0.5); // Black with 50% opacity
         z-index: 0;
+    }
+}
+
+// Loader Animation
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+.spinner-loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 54, 175, 0.2);
+    border-radius: 50%;
+    border-top-color: #0036AF;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 18px;
+    color: #0036AF;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+// Logo Animation
+@keyframes logoFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -31,7 +85,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 800px;
+    max-width: 900px; // Increased from 800px to make it wider
     width: 100%;
     margin-top: -80px; // Move content up more
     position: relative;
@@ -43,12 +97,18 @@
     text-align: center;
     margin-bottom: 40px; // Increased space between logo section and login form
     color: white;
+    animation: logoFadeIn 1.2s ease-out forwards;
 
     .university-logo {
         width: 178px; // Logo size
         height: 178px;
         margin-bottom: 5px; // Reduced space between logo and text
-        // Removed the filter that was making the logo white
+        transition: transform 0.3s ease;
+        opacity: 0; // Start with opacity 0
+        
+        &.logo-loaded {
+            animation: logoPulse 1.5s ease-in-out forwards;
+        }
     }
 
     .university-name {
@@ -68,6 +128,21 @@
     }
 }
 
+@keyframes logoPulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 // Login Form Container
 .login-form-container {
     background-color: white;
@@ -75,8 +150,10 @@
     border-radius: 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 398px; // Specific width as requested
+    max-width: 398px; // Specific width as requested - keeping this the same
     box-sizing: border-box;
+    animation: fadeIn 1s ease-out 0.3s forwards;
+    opacity: 0;
 
     .form-title {
         text-align: center;
@@ -84,6 +161,17 @@
         font-weight: 400;
         color: #0036AF;
         margin: 0 0 25px 0; // Increased bottom margin from 20px to 25px
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -98,16 +186,39 @@
         font-size: 14px;
         border-radius: 0;
     }
+    
+    .success-message {
+        color: #2ecc71;
+        background-color: rgba(46, 204, 113, 0.1);
+        border-left: 3px solid #2ecc71;
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        border-radius: 0;
+    }
 
     .input-group {
         margin-bottom: 20px; // Increased from 15px to 20px for more space between inputs
         position: relative;
-
-        &.password-group {
-            .form-input {
-                padding-right: 45px;
-            }
+        display: flex;
+        flex-direction: column;
+        
+        .field-error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: left;
+            font-weight: 400;
+            padding-left: 2px;
         }
+
+        .input-control {
+            position: relative;
+            display: flex;
+            align-items: center; // ensures button aligns with input middle
+        }
+
+        &.password-group .form-input { padding-right: 45px; }
 
         .input-label {
             position: absolute;
@@ -137,7 +248,12 @@
             color: #333;
             background-color: #fff;
             box-sizing: border-box;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+            
+            &.error-input {
+                border-color: #e74c3c; // Red border for error
+                background-color: rgba(231, 76, 60, 0.03); // Very subtle red background
+            }
 
             &:focus {
                 outline: none;
@@ -163,7 +279,7 @@
         }
     }
 
-    .password-toggle {
+        .password-toggle {
         position: absolute;
         right: 15px;
         top: 50%;
@@ -234,30 +350,10 @@
     }
 }
 
-.dev-login {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.auto-login-button {
-  background-color: #e0e0e0;
-  color: #666;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  
-  &:hover {
-    background-color: #d0d0d0;
-  }
-}
-
 // Enhanced Responsive Design
 @media (max-width: 992px) {
     .login-content {
-        max-width: 600px;
+        max-width: 700px; // Increased from 600px
     }
     
     .logo-section {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  LayoutDashboard,
+  Home,
   FilePlus,
   FileText,
   LogOut
@@ -39,8 +39,7 @@ const OrgSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
     <div className={`org-sidebar ${isOpen ? 'open' : 'closed'}`}>
       <nav className="org-sidebar__nav">
         <div className="org-sidebar__logo">
-          <img src="/images/logourios.svg" alt="FSUU Logo" className="org-sidebar__logo-image" />
-          <div className="org-sidebar__logo-text">FSUU</div>
+          <img src="/images/urioslogo.svg" alt="Father Saturnino Urios University" className="org-sidebar__logo-image" />
         </div>
         <ul className="org-sidebar__list">
           <li className="org-sidebar__item">
@@ -48,7 +47,7 @@ const OrgSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
               className={`org-sidebar__link ${activeItem === 'dashboard' ? 'active' : ''}`} 
               onClick={() => handleItemClick('dashboard')}
             >
-              <LayoutDashboard size={20} className="org-sidebar__icon" />
+              <Home size={20} className="org-sidebar__icon" />
               <span className="org-sidebar__label">Dashboard</span>
             </div>
           </li>

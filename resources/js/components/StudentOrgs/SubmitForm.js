@@ -5,7 +5,7 @@ import '../../../sass/StudentOrgDashboard/SubmitForm.scss';
 const SubmitForm = () => {
   const currentYear = new Date().getFullYear();
   const nextYear = currentYear + 1;
-  const academicYear = `${currentYear}–${nextYear}`;
+  const [academicYear, setAcademicYear] = useState(`${currentYear}-${nextYear}`);
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -14,6 +14,7 @@ const SubmitForm = () => {
   const [formData, setFormData] = useState({
     organizationName: '',
     month: '',
+    academicYear: `${currentYear}-${nextYear}`,
     cashInflows: {
       beginningCashInBank: { month: '', amount: '' },
       beginningCashOnHand: { month: '', amount: '' },
@@ -77,6 +78,16 @@ const SubmitForm = () => {
       
       return newState;
     });
+  };
+
+  // Handle academic year change
+  const handleAcademicYearChange = (e) => {
+    const value = e.target.value;
+    setAcademicYear(value);
+    setFormData(prevState => ({
+      ...prevState,
+      academicYear: value
+    }));
   };
 
   // Add new row to a table
@@ -181,8 +192,34 @@ const SubmitForm = () => {
       <form className="cash-flow-form" onSubmit={handleSubmit}>
         {/* Form Header */}
         <div className="form-header">
-          <h2 className="form-header__university">Father Saturnino Urios University</h2>
-          <h3 className="form-header__office">Office of the Supreme Student Government</h3>
+          <div className="form-header__logos">
+            <img src="/images/ssglogo.svg" alt="SSG Logo" className="form-header__logo form-header__logo-left" />
+            <div className="form-header__text">
+              <h2 className="form-header__university">Father Saturnino Urios University</h2>
+              <p className="form-header__address">San Francisco Street, Butuan City, Caraga, Philippines, 8600</p>
+              <h3 className="form-header__office">Office of the Supreme Student Government</h3>
+              <div className="form-header__org-input">
+                <input
+                  type="text"
+                  value={formData.organizationName}
+                  onChange={(e) => handleInputChange('organizationName', null, e.target.value)}
+                  placeholder="Organization Name"
+                  className="form-header__org-field"
+                />
+              </div>
+              <div className="form-header__year-input">
+                <label htmlFor="academicYear">A.Y.</label>
+                <input
+                  type="text"
+                  id="academicYear"
+                  value={academicYear}
+                  onChange={handleAcademicYearChange}
+                  className="form-header__year-field"
+                />
+              </div>
+            </div>
+            <img src="/images/coalogo.svg" alt="COA Logo" className="form-header__logo form-header__logo-right" />
+          </div>
           
           <div className="form-header__details">
             <div className="form-group">
@@ -198,7 +235,14 @@ const SubmitForm = () => {
             </div>
             
             <div className="form-group">
-              <label>A.Y. {academicYear}</label>
+              <label htmlFor="academicYearField">Academic Year:</label>
+              <input
+                type="text"
+                id="academicYearField"
+                value={academicYear}
+                onChange={handleAcademicYearChange}
+                placeholder="YYYY-YYYY"
+              />
             </div>
             
             <div className="form-group">
@@ -699,3 +743,4 @@ const SubmitForm = () => {
 };
 
 export default SubmitForm;
+

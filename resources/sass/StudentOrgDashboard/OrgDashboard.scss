@@ -1,3 +1,147 @@
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.spinner-loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(0, 54, 175, 0.2);
+  border-radius: 50%;
+  border-top-color: #0036AF;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+  
+  &.small {
+    width: 30px;
+    height: 30px;
+    border-width: 3px;
+  }
+  
+  &.mini {
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 18px;
+  color: #0036AF;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  text-align: center;
+  
+  .error-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #e74c3c;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 500px;
+  }
+  
+  .retry-button, .logout-button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .retry-button {
+    background-color: #0036AF;
+    color: white;
+    border: none;
+    
+    &:hover {
+      background-color: #002580;
+    }
+  }
+  
+  .logout-button {
+    background-color: transparent;
+    color: #555;
+    border: 1px solid #ccc;
+    
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+}
+
+.content-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  
+  p {
+    margin-top: 15px;
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+.content-refreshing {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  
+  span {
+    font-size: 14px;
+    color: #555;
+  }
+}
+
 .org-dashboard {
   display: flex;
   min-height: 100vh;

@@ -4,8 +4,23 @@
   left: 0;
   width: 220px;
   height: 100vh;
-  background-color: #0036AF; // Blue background color
+  background-image: url('/images/backgroundcolor.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-right: 1px solid #0036AF;
+  
+  // Add overlay to ensure text is readable
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 54, 175, 0.7); // Semi-transparent overlay
+    z-index: -1;
+  }
   font-family: 'Roboto', sans-serif;
   z-index: 100;
   transition: transform 0.3s ease;
@@ -38,16 +53,8 @@
   }
 
   &__logo-image {
-    height: 120px;
+    height: 55px;
     width: auto;
-  }
-  
-  &__logo-text {
-    color: #FFFFFF;
-    font-size: 34px;
-    font-weight: 700;
-    margin-top: 10px;
-    text-align: center;
   }
 
   &__list {
@@ -76,16 +83,17 @@
     margin: 2px 0;
 
     .org-sidebar__icon {
-      color: #A1BEFF; // Light blue icon color
+      color: #FFFFFF; // White icon color
       transition: color 0.3s ease;
+      stroke-width: 2.5px; // Make icons bolder
     }
 
     &:hover {
-      background-color: #A1BEFF; // Light blue background on hover
-      color: #0036AF; // Dark blue text on hover
+      background-color: rgba(255, 255, 255, 0.2); // Semi-transparent white background on hover
+      color: #FFFFFF; // White text on hover
       
       .org-sidebar__icon {
-        color: #0036AF; // Dark blue icon on hover
+        color: #FFFFFF; // White icon on hover
       }
     }
 
@@ -95,12 +103,12 @@
     }
     
     &.active {
-      background-color: #A1BEFF;
-      color: #0036AF;
+      background-color: rgba(255, 255, 255, 0.3);
+      color: #FFFFFF;
       font-weight: 500;
       
       .org-sidebar__icon {
-        color: #0036AF;
+        color: #FFFFFF;
       }
     }
   }
@@ -140,8 +148,9 @@
     }
     
     .org-sidebar__icon {
-      color: #A1BEFF;
+      color: #FFFFFF;
       margin-right: 10px;
+      stroke-width: 2.5px; // Make icons bolder
     }
   }
 }
@@ -155,11 +164,7 @@
     }
 
     &__logo-image {
-      height: 80px;
-    }
-    
-    &__logo-text {
-      font-size: 28px;
+      height: 45px;
     }
 
     &__link {
@@ -185,11 +190,7 @@
     }
 
     &__logo-image {
-      height: 60px;
-    }
-    
-    &__logo-text {
-      font-size: 24px;
+      height: 40px;
     }
 
     &__link {

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Bell, ChevronDown, LogOut, User, Settings } from 'lucide-react';
 
-const OrgHeader = ({ toggleSidebar, onLogout }) => {
+const OrgHeader = ({ toggleSidebar, onLogout, userData }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -30,7 +30,7 @@ const OrgHeader = ({ toggleSidebar, onLogout }) => {
   return (
     <header className="org-header">
       <div className="org-header__hamburger" onClick={toggleSidebar}>
-        <Menu size={24} />
+        <Menu size={24} color="#0036AF" strokeWidth={2} />
       </div>
 
       <div className="org-header__actions">
@@ -41,10 +41,12 @@ const OrgHeader = ({ toggleSidebar, onLogout }) => {
         <div className="org-header__profile" onClick={toggleDropdown} ref={dropdownRef}>
           <img
             src="/images/csp.png"
-            alt="CSP Treasurer"
+            alt={userData?.profile?.first_name || "User"}
             className="org-header__profile-picture"
           />
-          <span className="org-header__user-name">CSP Treasurer</span>
+          <span className="org-header__user-name">
+            {userData ? `${userData.profile?.first_name || ''} ${userData.profile?.last_name || ''}` : 'Loading...'}
+          </span>
           <ChevronDown
             className={`org-header__dropdown-arrow ${isDropdownOpen ? 'open' : ''}`}
             size={16}

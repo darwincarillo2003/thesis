@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { FileText, Clock, CheckCircle, AlertTriangle, Eye, Search } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { FileText, Clock, CheckCircle, AlertTriangle, Search, Edit, Trash2, ChevronUp, ChevronDown, LogOut } from 'lucide-react';
+import axios from 'axios';
 
-const Dashboard = () => {
+const Dashboard = ({ onLogout, role = 'auditor' }) => {
   // Sample data - would come from API in real application
   const stats = {
     totalReports: 24,
@@ -50,6 +51,19 @@ const Dashboard = () => {
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+  const [sortField, setSortField] = useState('date');
+  const [sortDirection, setSortDirection] = useState('desc');
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    // Get user data from localStorage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUserData(JSON.parse(storedUser));
+    }
+  }, []);
 
   // Function to format date
   const formatDate = (dateString) => {
@@ -71,16 +85,94 @@ const Dashboard = () => {
     }
   };
 
+  // Handle select all checkbox
+  const handleSelectAll = (e) => {
+    setSelectAll(e.target.checked);
+    if (e.target.checked) {
+      setSelectedItems(filteredReports.map(report => report.id));
+    } else {
+      setSelectedItems([]);
+    }
+  };
+
+  // Handle individual checkbox selection
+  const handleSelectItem = (id) => {
+    if (selectedItems.includes(id)) {
+      setSelectedItems(selectedItems.filter(item => item !== id));
+      setSelectAll(false);
+    } else {
+      setSelectedItems([...selectedItems, id]);
+      if (selectedItems.length + 1 === filteredReports.length) {
+        setSelectAll(true);
+      }
+    }
+  };
+
+  // Handle sorting
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('asc');
+    }
+  };
+
   // Filter reports based on search term
-  const filteredReports = reportsData.filter(report => 
-    report.organization.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    report.submittedBy.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    report.status.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredReports = reportsData
+    .filter(report => 
+      report.organization.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      report.submittedBy.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      report.status.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortField === 'date') {
+        return sortDirection === 'asc' 
+          ? new Date(a.date) - new Date(b.date)
+          : new Date(b.date) - new Date(a.date);
+      } else {
+        const aValue = a[sortField]?.toLowerCase() || '';
+        const bValue = b[sortField]?.toLowerCase() || '';
+        
+        return sortDirection === 'asc'
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
+    });
+
+  // Render sort icon for column headers
+  const renderSortIcon = (field) => {
+    return (
+      <div className="sort-icon">
+        <ChevronUp 
+          size={14} 
+          className={`sort-icon-up ${sortField === field && sortDirection === 'asc' ? 'active' : ''}`}
+        />
+        <ChevronDown 
+          size={14} 
+          className={`sort-icon-down ${sortField === field && sortDirection === 'desc' ? 'active' : ''}`}
+        />
+      </div>
+    );
+  };
+
+  // Get dashboard title based on role
+  const getDashboardTitle = () => {
+    switch(role) {
+      case 'coa':
+        return 'COA Dashboard';
+      case 'auditor':
+        return 'Auditor Dashboard';
+      default:
+        return 'Dashboard';
+    }
+  };
 
   return (
     <div className="dashboard">
-      <h1 className="dashboard__title">Dashboard</h1>
+      <div className="dashboard__header">
+        <h1 className="dashboard__title">{getDashboardTitle()}</h1>
+      </div>
       
       <div className="dashboard__stats">
         <div className="dashboard__stat-card total">
@@ -138,26 +230,71 @@ const Dashboard = () => {
       </div>
       
       <div className="dashboard__table-container">
-        <h2 className="dashboard__section-title">Reports</h2>
+        <h2 className="dashboard__section-title">Liquidation Reports</h2>
         <div className="dashboard__table-wrapper">
           <table className="dashboard__table">
             <thead>
               <tr>
+                <th>
+                  <input 
+                    type="checkbox" 
+                    className="dashboard__select-all" 
+                    checked={selectAll}
+                    onChange={handleSelectAll}
+                  />
+                </th>
                 <th>Actions</th>
-                <th>Organization Name</th>
-                <th>Submitted By</th>
-                <th>Date</th>
-                <th>Status</th>
+                <th 
+                  className={`sortable ${sortField === 'organization' ? `active-sort sort-${sortDirection}` : ''}`}
+                  onClick={() => handleSort('organization')}
+                >
+                  Organization Name
+                  {renderSortIcon('organization')}
+                </th>
+                <th 
+                  className={`sortable ${sortField === 'submittedBy' ? `active-sort sort-${sortDirection}` : ''}`}
+                  onClick={() => handleSort('submittedBy')}
+                >
+                  Submitted By
+                  {renderSortIcon('submittedBy')}
+                </th>
+                <th 
+                  className={`sortable ${sortField === 'date' ? `active-sort sort-${sortDirection}` : ''}`}
+                  onClick={() => handleSort('date')}
+                >
+                  Date Submitted
+                  {renderSortIcon('date')}
+                </th>
+                <th 
+                  className={`sortable ${sortField === 'status' ? `active-sort sort-${sortDirection}` : ''}`}
+                  onClick={() => handleSort('status')}
+                >
+                  Status
+                  {renderSortIcon('status')}
+                </th>
               </tr>
             </thead>
             <tbody>
               {filteredReports.length > 0 ? (
                 filteredReports.map(report => (
                   <tr key={report.id}>
+                    <td className="dashboard__checkbox-cell">
+                      <input 
+                        type="checkbox" 
+                        className="dashboard__select-row" 
+                        checked={selectedItems.includes(report.id)}
+                        onChange={() => handleSelectItem(report.id)}
+                      />
+                    </td>
                     <td className="dashboard__table-actions">
-                      <button className="dashboard__view-btn">
-                        <Eye size={16} /> View
-                      </button>
+                      <div className="dashboard__action-buttons">
+                        <button className="dashboard__action-btn dashboard__edit-btn" title="Edit">
+                          <Edit size={16} />
+                        </button>
+                        <button className="dashboard__action-btn dashboard__delete-btn" title="Delete">
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
                     </td>
                     <td>{report.organization}</td>
                     <td>{report.submittedBy}</td>
@@ -171,11 +308,21 @@ const Dashboard = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="dashboard__no-results">No reports found</td>
+                  <td colSpan="6" className="dashboard__no-results">No reports found</td>
                 </tr>
               )}
             </tbody>
           </table>
+          
+          <div className="dashboard__pagination">
+            <div className="dashboard__page-info">
+              Page 1 of 100
+            </div>
+            <div className="dashboard__page-buttons">
+              <button className="dashboard__page-button" disabled>Previous</button>
+              <button className="dashboard__page-button">Next</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

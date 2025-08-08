@@ -98,6 +98,32 @@
     text-align: center;
     margin-bottom: 30px;
     
+    &__logos {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    &__logo {
+      width: 100px;
+      height: auto;
+      
+      &-left {
+        margin-right: 10px;
+      }
+      
+      &-right {
+        margin-left: 10px;
+      }
+    }
+    
+    &__text {
+      flex: 1;
+      text-align: center;
+    }
+    
     &__university {
       font-size: 22px;
       font-weight: 700;
@@ -105,10 +131,67 @@
       color: #0036AF;
     }
     
+    &__address {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+    
     &__office {
       font-size: 18px;
       font-weight: 500;
-      margin: 5px 0 20px;
+      margin: 5px 0;
+    }
+    
+    &__org-input {
+      margin: 5px 0;
+    }
+    
+    &__org-field {
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+      border: none;
+      border-bottom: 1px dotted #999;
+      padding: 3px 5px;
+      width: 80%;
+      margin: 0 auto;
+      
+      &:focus {
+        outline: none;
+        border-color: #0036AF;
+      }
+      
+      &::placeholder {
+        opacity: 0.7;
+      }
+    }
+    
+    &__year-input {
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      
+      label {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+    
+    &__year-field {
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      border: none;
+      border-bottom: 1px dotted #999;
+      padding: 3px 5px;
+      width: 100px;
+      
+      &:focus {
+        outline: none;
+        border-color: #0036AF;
+      }
     }
     
     &__details {
@@ -392,12 +475,39 @@
     padding: 20px 15px;
     
     .form-header {
+      &__logos {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      &__logo {
+        width: 80px;
+        
+        &-left, &-right {
+          margin: 0;
+        }
+      }
+      
       &__university {
         font-size: 20px;
       }
       
+      &__address {
+        font-size: 12px;
+      }
+      
       &__office {
         font-size: 16px;
+      }
+      
+      &__org-field {
+        width: 100%;
+        font-size: 14px;
+      }
+      
+      &__year-field {
+        width: 80px;
+        font-size: 13px;
       }
     }
     
@@ -457,6 +567,19 @@
       &__office {
         font-size: 14px;
       }
+      
+      &__address {
+        font-size: 11px;
+      }
+      
+      &__org-field {
+        font-size: 13px;
+      }
+      
+      &__year-field {
+        width: 70px;
+        font-size: 12px;
+      }
     }
     
     .section-title {
@@ -470,3 +593,4 @@
     }
   }
 }
+

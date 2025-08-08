@@ -1,0 +1,207 @@
+.coa-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background-image: url('/images/coaback.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-right: 1px solid #ffffff;
+  
+  // No overlay, just the background image
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  font-family: 'Roboto', sans-serif;
+  z-index: 100;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  &.closed {
+    transform: translateX(-100%);
+  }
+
+  &__nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__logo {
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 15px;
+  }
+
+  &__logo-image {
+    height: 55px;
+    width: auto;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__item {
+    margin-bottom: 2px;
+    padding: 0 8px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #FFFFFF; // White text
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    margin: 2px 0;
+
+    .coa-sidebar__icon {
+      color: #FFFFFF; // White icon color
+      transition: color 0.3s ease;
+      stroke-width: 2.5px; // Make icons bolder
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2); // Semi-transparent white background on hover
+      color: #FFFFFF; // White text on hover
+      
+      .coa-sidebar__icon {
+        color: #FFFFFF; // White icon on hover
+      }
+    }
+
+    &:focus {
+      outline: 2px solid #FFFFFF;
+      outline-offset: -2px;
+    }
+    
+    &.active {
+      background-color: rgba(255, 255, 255, 0.3);
+      color: #FFFFFF;
+      font-weight: 500;
+      
+      .coa-sidebar__icon {
+        color: #FFFFFF;
+      }
+    }
+  }
+
+  &__icon {
+    margin-right: 12px;
+    transition: color 0.3s ease;
+  }
+
+  &__label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  &__footer {
+    padding: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  &__logout-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .coa-sidebar__icon {
+      color: #FFFFFF;
+      margin-right: 10px;
+      stroke-width: 2.5px; // Make icons bolder
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .coa-sidebar {
+    width: 200px;
+
+    &__logo {
+      padding: 12px;
+    }
+
+    &__logo-image {
+      height: 45px;
+    }
+
+    &__link {
+      padding: 8px 10px;
+    }
+
+    &__icon {
+      margin-right: 10px;
+    }
+
+    &__label {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .coa-sidebar {
+    width: 180px;
+
+    &__logo {
+      padding: 10px;
+    }
+
+    &__logo-image {
+      height: 40px;
+    }
+
+    &__link {
+      padding: 7px 8px;
+    }
+
+    &__icon {
+      margin-right: 8px;
+    }
+
+    &__label {
+      font-size: 12px;
+    }
+  }
+}
