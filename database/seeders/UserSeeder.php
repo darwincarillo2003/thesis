@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         // Get role IDs
+        $adminRole = Role::where('role_name', 'admin')->first();
         $coaRole = Role::where('role_name', 'coa')->first();
         $treasurerRole = Role::where('role_name', 'treasurer')->first();
         $auditorRole = Role::where('role_name', 'auditor')->first();
@@ -26,9 +27,22 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'user' => [
+                    'email' => 'admin@example.com',
+                    'password' => Hash::make('password'),
+                    'role_id' => $adminRole ? $adminRole->role_id : null,
+                ],
+                'profile' => [
+                    'first_name' => 'Admin',
+                    'middle_name' => '',
+                    'last_name' => 'User',
+                    'suffix' => '',
+                ]
+            ],
+            [
+                'user' => [
                     'email' => 'coa@example.com',
                     'password' => Hash::make('password'),
-                    'role_id' => $coaRole->role_id,
+                    'role_id' => $coaRole ? $coaRole->role_id : null,
                 ],
                 'profile' => [
                     'first_name' => 'COA',
@@ -41,7 +55,7 @@ class UserSeeder extends Seeder
                 'user' => [
                     'email' => 'treasurer@example.com',
                     'password' => Hash::make('password'),
-                    'role_id' => $treasurerRole->role_id,
+                    'role_id' => $treasurerRole ? $treasurerRole->role_id : null,
                 ],
                 'profile' => [
                     'first_name' => 'Treasurer',
@@ -54,7 +68,7 @@ class UserSeeder extends Seeder
                 'user' => [
                     'email' => 'auditor@example.com',
                     'password' => Hash::make('password'),
-                    'role_id' => $auditorRole->role_id,
+                    'role_id' => $auditorRole ? $auditorRole->role_id : null,
                 ],
                 'profile' => [
                     'first_name' => 'Auditor',
@@ -66,11 +80,24 @@ class UserSeeder extends Seeder
         ];
         
         foreach ($users as $userData) {
-            $user = User::create($userData['user']);
-            
-            // Create profile for the user
-            $userData['profile']['user_id'] = $user->user_id;
-            Profile::create($userData['profile']);
+            $user = User::updateOrCreate(
+                ['email' => $userData['user']['email']],
+                [
+                    'password' => $userData['user']['password'],
+                    'role_id' => $userData['user']['role_id'],
+                ]
+            );
+
+            // Create or update profile for the user
+            Profile::updateOrCreate(
+                ['user_id' => $user->user_id],
+                [
+                    'first_name' => $userData['profile']['first_name'],
+                    'middle_name' => $userData['profile']['middle_name'],
+                    'last_name' => $userData['profile']['last_name'],
+                    'suffix' => $userData['profile']['suffix'],
+                ]
+            );
         }
     }
 }

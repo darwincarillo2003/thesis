@@ -14,8 +14,12 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        // Create default roles
+        // Create default roles (idempotent)
         $roles = [
+            [
+                'role_name' => 'admin',
+                'description' => 'Administrator - Full system access to manage users, roles, and forms.'
+            ],
             [
                 'role_name' => 'coa',
                 'description' => 'Commission on Audit - Responsible for auditing financial transactions and ensuring compliance with financial regulations.'
@@ -31,7 +35,10 @@ class RoleSeeder extends Seeder
         ];
 
         foreach ($roles as $role) {
-            Role::create($role);
+            Role::updateOrCreate(
+                ['role_name' => $role['role_name']],
+                ['description' => $role['description']]
+            );
         }
     }
 }

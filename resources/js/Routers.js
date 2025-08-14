@@ -6,6 +6,7 @@ import Login from "./components/LoginArea/Login";
 import OrgDashboard from "./components/StudentOrgs/OrgDashboard";
 import Dashboard from "./components/StudentOrgs/Dashboard";
 import CoaDashboard from "./components/StudentCOA/CoaDashboard";
+import AdminDashboard from "./components/AdminArea/AdminDashboard";
 
 const App = () => {
   // Initialize login state based on both isLoggedIn flag and token presence
@@ -96,6 +97,8 @@ const App = () => {
         return <CoaDashboard onLogout={handleLogout} />;
       case 'auditor':
         return <Dashboard onLogout={handleLogout} role={userRole} />;
+      case 'admin':
+        return <AdminDashboard onLogout={handleLogout} />;
       default:
         // Unknown role: show login without performing side-effects during render
         return <Login onLogin={handleLogin} />;

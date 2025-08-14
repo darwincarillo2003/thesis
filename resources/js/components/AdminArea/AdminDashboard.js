@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import CoaSidebar from './CoaSidebar';
-import CoaHeader from './CoaHeader';
-import CoaDashboardMain from './CoaDashboardMain';
-import '../../../sass/StudentCoaMain/CoaDashboard.scss';
-import '../../../sass/StudentCoaMain/CoaSidebar.scss';
-import '../../../sass/StudentCoaMain/CoaHeader.scss';
-import '../../../sass/StudentCoaMain/CoaDashboardMain.scss';
+import AdminSidebar from './AdminSidebar';
+import AdminHeader from './AdminHeader';
+import AdminDashboardMain from './AdminDashboardMain';
+import UserMng from './UserMng';
+import '../../../sass/AdminAreas/AdminDashboard.scss';
+import '../../../sass/AdminAreas/AdminSidebar.scss';
+import '../../../sass/AdminAreas/AdminHeader.scss';
+import '../../../sass/AdminAreas/AdminDashboardMain.scss';
 
-const CoaDashboard = ({ onLogout }) => {
+const AdminDashboard = ({ onLogout }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeSection, setActiveSection] = useState('dashboard');
   const [userData, setUserData] = useState(null);
@@ -16,48 +17,36 @@ const CoaDashboard = ({ onLogout }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Split the useEffects to optimize rendering
-  // First useEffect for immediate UI display from localStorage
   useEffect(() => {
-    // Get user data from localStorage for immediate display
     const storedUser = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     const tokenType = localStorage.getItem('token_type');
-    
+
     if (storedUser) {
       setUserData(JSON.parse(storedUser));
-      // Set loading to false immediately if we have cached data
       setIsLoading(false);
     }
 
-    // Set up axios authorization header
     if (token && tokenType) {
       axios.defaults.headers.common['Authorization'] = `${tokenType} ${token}`;
     }
   }, []);
-  
-  // Second useEffect for API data fetch - runs only once on component mount
+
   useEffect(() => {
-    // Fetch fresh user data from the API
     const fetchUserData = async () => {
       try {
-        // Only show loading if we don't already have user data from localStorage
         if (!userData) {
           setIsLoading(true);
         }
-        
         const response = await axios.get('/api/user');
-        
-        if (response.data.success) {
+        if (response.data?.success) {
           setUserData(response.data.data.user);
-          // Update localStorage with fresh data
           localStorage.setItem('user', JSON.stringify(response.data.data.user));
         } else {
           setError('Failed to fetch user data');
         }
       } catch (err) {
         console.error('Error fetching user data:', err);
-        // Only show error if we don't have cached data
         if (!userData) {
           setError('Error fetching user data. Please try logging in again.');
         }
@@ -68,8 +57,7 @@ const CoaDashboard = ({ onLogout }) => {
 
     fetchUserData();
   }, []);
-  
-  // Third useEffect for mobile sidebar handling
+
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
     if (isMobile && isSidebarOpen) {
@@ -86,61 +74,50 @@ const CoaDashboard = ({ onLogout }) => {
   const handleNavigation = (section) => {
     setActiveSection(section);
   };
-  
-  // Handle logout with API call
+
   const handleLogout = async () => {
     try {
-      // Get token from localStorage
       const token = localStorage.getItem('token');
       const tokenType = localStorage.getItem('token_type');
-      
       if (token && tokenType) {
-        // Set authorization header
         axios.defaults.headers.common['Authorization'] = `${tokenType} ${token}`;
-        
-        // Call logout API
         await axios.post('/api/logout');
       }
-    } catch (error) {
-      console.error('Logout error:', error);
+    } catch (err) {
+      console.error('Logout error:', err);
     } finally {
-      // Clear localStorage and call onLogout regardless of API success/failure
       localStorage.removeItem('user');
       localStorage.removeItem('token');
       localStorage.removeItem('token_type');
       localStorage.removeItem('userRole');
-      
       if (typeof onLogout === 'function') {
         onLogout();
       }
     }
   };
 
-  // Dashboard content
   const renderContent = () => {
     switch (activeSection) {
       case 'dashboard':
-        return <CoaDashboardMain onLogout={onLogout} role="coa" />;
-      case 'review-reports':
-        return <div>Review Reports Page (Coming Soon)</div>;
-      case 'approved-reports':
-        return <div>Approved Reports Page (Coming Soon)</div>;
+        return <AdminDashboardMain />;
+      case 'user-management':
+        return <UserMng />;
+      case 'form-management':
+        return <div className="admin-dashboard__placeholder">Form Management (Coming Soon)</div>;
       default:
-        return <CoaDashboardMain onLogout={onLogout} role="coa" />;
+        return <AdminDashboardMain />;
     }
   };
 
-  // Only show full-screen loading if we have no cached data
   if (isLoading && !userData) {
     return (
       <div className="loader-container">
         <div className="spinner-loader"></div>
-        <p className="loading-text">Loading your dashboard...</p>
+        <p className="loading-text">Loading admin dashboard...</p>
       </div>
     );
   }
 
-  // Show error state
   if (error && !userData) {
     return (
       <div className="error-container">
@@ -158,22 +135,21 @@ const CoaDashboard = ({ onLogout }) => {
   }
 
   return (
-    <div className="coa-dashboard">
-      <CoaSidebar 
-        isOpen={isSidebarOpen} 
-        toggleSidebar={toggleSidebar} 
+    <div className="admin-dashboard">
+      <AdminSidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={toggleSidebar}
         onNavigate={handleNavigation}
         onLogout={handleLogout}
-        userData={userData}
       />
-      <div className={`coa-dashboard__wrapper ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
-        <CoaHeader 
-          toggleSidebar={toggleSidebar} 
-          isOpen={isSidebarOpen} 
+      <div className={`admin-dashboard__wrapper ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
+        <AdminHeader
+          toggleSidebar={toggleSidebar}
+          isOpen={isSidebarOpen}
           onLogout={handleLogout}
           userData={userData}
         />
-        <main className="coa-dashboard__content">
+        <main className="admin-dashboard__content">
           {renderContent()}
           {isLoading && userData && (
             <div className="content-refreshing">
@@ -187,12 +163,6 @@ const CoaDashboard = ({ onLogout }) => {
   );
 };
 
-export default CoaDashboard;
-
-
-
-
-
-
+export default AdminDashboard;
 
 

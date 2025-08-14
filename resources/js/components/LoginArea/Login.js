@@ -13,24 +13,15 @@ const Login = ({ onLogin }) => {
     const [fieldErrors, setFieldErrors] = useState({});
     const [success, setSuccess] = useState('');
     const [logoLoaded, setLogoLoaded] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
-        // Set logo as loaded after a small delay to ensure animation plays
         const timer = setTimeout(() => {
             setLogoLoaded(true);
         }, 100);
-        
-        // Simulate loading time for the loader animation
-        const loaderTimer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1500);
-        
         return () => {
             clearTimeout(timer);
-            clearTimeout(loaderTimer);
-        }
+        };
     }, []);
 
     const handleInputChange = (e) => {
@@ -163,14 +154,7 @@ const Login = ({ onLogin }) => {
         setShowPassword(!showPassword);
     };
 
-    if (isLoading) {
-        return (
-            <div className="loader-container">
-                <div className="spinner-loader"></div>
-                <p className="loading-text">Loading</p>
-            </div>
-        );
-    }
+    
 
     return (
         <div className="login-container">
