@@ -4,11 +4,15 @@ import OrgSidebar from './OrgSidebar';
 import OrgHeader from './OrgHeader';
 import Dashboard from './Dashboard';
 import SubmitForm from './SubmitForm';
+import MyProfile from './MyProfile';
+import Settings from './Settings';
 import '../../../sass/StudentOrgDashboard/OrgDashboard.scss';
 import '../../../sass/StudentOrgDashboard/OrgSidebar.scss';
 import '../../../sass/StudentOrgDashboard/OrgHeader.scss';
 import '../../../sass/StudentOrgDashboard/Dashboard.scss';
 import '../../../sass/StudentOrgDashboard/SubmitForm.scss';
+import '../../../sass/StudentOrgDashboard/MyProfile.scss';
+import '../../../sass/StudentOrgDashboard/Settings.scss';
 
 const OrgDashboard = ({ onLogout }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -127,6 +131,10 @@ const OrgDashboard = ({ onLogout }) => {
         return <SubmitForm userData={userData} />;
       case 'my-reports':
         return <div>My Reports Page (Coming Soon)</div>;
+      case 'my-profile':
+        return <MyProfile />;
+      case 'settings':
+        return <Settings />;
       default:
         return <Dashboard onLogout={onLogout} role="treasurer" />;
     }
@@ -166,7 +174,7 @@ const OrgDashboard = ({ onLogout }) => {
         toggleSidebar={toggleSidebar} 
         onNavigate={handleNavigation}
         onLogout={handleLogout}
-        userData={userData}
+        activeSection={activeSection}
       />
       <div className={`org-dashboard__wrapper ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
         <OrgHeader 
@@ -174,6 +182,7 @@ const OrgDashboard = ({ onLogout }) => {
           isOpen={isSidebarOpen} 
           onLogout={handleLogout}
           userData={userData}
+          onNavigate={handleNavigation}
         />
         <main className="org-dashboard__content">
           {renderContent()}

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Bell, ChevronDown, LogOut, User, Settings } from 'lucide-react';
 
-const AdminHeader = ({ toggleSidebar, onLogout, userData }) => {
+const AdminHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -26,6 +26,20 @@ const AdminHeader = ({ toggleSidebar, onLogout, userData }) => {
     }
   };
 
+  const handleProfileClick = () => {
+    if (typeof onNavigate === 'function') {
+      onNavigate('my-profile');
+    }
+    setIsDropdownOpen(false);
+  };
+
+  const handleSettingsClick = () => {
+    if (typeof onNavigate === 'function') {
+      onNavigate('settings');
+    }
+    setIsDropdownOpen(false);
+  };
+
   return (
     <header className="admin-header">
       <div className="admin-header__hamburger" onClick={toggleSidebar}>
@@ -39,9 +53,17 @@ const AdminHeader = ({ toggleSidebar, onLogout, userData }) => {
 
         <div className="admin-header__profile" onClick={toggleDropdown} ref={dropdownRef}>
           <img
-            src="/images/csp.png"
+            src={
+              userData?.profile?.profile_pic 
+                ? `/storage/${userData.profile.profile_pic}` 
+                : "/images/csp.png"
+            }
             alt={userData?.profile?.first_name || 'Admin'}
             className="admin-header__profile-picture"
+            onError={(e) => {
+              // If the profile picture fails to load, use the default
+              e.target.src = "/images/csp.png";
+            }}
           />
           <span className="admin-header__user-name">
             {userData ? `${userData.profile?.first_name || ''} ${userData.profile?.last_name || ''}` : 'Loading...'}
@@ -52,12 +74,12 @@ const AdminHeader = ({ toggleSidebar, onLogout, userData }) => {
           />
           {isDropdownOpen && (
             <div className="admin-header__dropdown-menu">
-              <div className="admin-header__dropdown-item">
+              <button className="admin-header__dropdown-item" onClick={handleProfileClick}>
                 <User size={16} /> Profile
-              </div>
-              <div className="admin-header__dropdown-item">
+              </button>
+              <button className="admin-header__dropdown-item" onClick={handleSettingsClick}>
                 <Settings size={16} /> Settings
-              </div>
+              </button>
               <div className="admin-header__dropdown-separator"></div>
               <button className="admin-header__dropdown-item" onClick={handleLogout}>
                 <LogOut size={16} /> Logout
@@ -71,6 +93,7 @@ const AdminHeader = ({ toggleSidebar, onLogout, userData }) => {
 };
 
 export default AdminHeader;
+
 
 
 

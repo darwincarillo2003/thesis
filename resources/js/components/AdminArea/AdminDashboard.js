@@ -4,6 +4,9 @@ import AdminSidebar from './AdminSidebar';
 import AdminHeader from './AdminHeader';
 import AdminDashboardMain from './AdminDashboardMain';
 import UserMng from './UserMng';
+import FormMng from './FormMng';
+import MyProfile from './MyProfile';
+import Settings from './Settings';
 import '../../../sass/AdminAreas/AdminDashboard.scss';
 import '../../../sass/AdminAreas/AdminSidebar.scss';
 import '../../../sass/AdminAreas/AdminHeader.scss';
@@ -103,7 +106,11 @@ const AdminDashboard = ({ onLogout }) => {
       case 'user-management':
         return <UserMng />;
       case 'form-management':
-        return <div className="admin-dashboard__placeholder">Form Management (Coming Soon)</div>;
+        return <FormMng />;
+      case 'my-profile':
+        return <MyProfile />;
+      case 'settings':
+        return <Settings />;
       default:
         return <AdminDashboardMain />;
     }
@@ -141,6 +148,7 @@ const AdminDashboard = ({ onLogout }) => {
         toggleSidebar={toggleSidebar}
         onNavigate={handleNavigation}
         onLogout={handleLogout}
+        activeSection={activeSection}
       />
       <div className={`admin-dashboard__wrapper ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
         <AdminHeader
@@ -148,6 +156,7 @@ const AdminDashboard = ({ onLogout }) => {
           isOpen={isSidebarOpen}
           onLogout={handleLogout}
           userData={userData}
+          onNavigate={handleNavigation}
         />
         <main className="admin-dashboard__content">
           {renderContent()}

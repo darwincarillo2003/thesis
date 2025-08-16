@@ -1,0 +1,248 @@
+.settings {
+  padding: 0;
+
+  &__header {
+    margin-bottom: 25px;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #0036AF;
+    display: inline-block;
+  }
+
+  &__tab-wrapper {
+    display: flex;
+    margin-bottom: 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  &__tab {
+    padding: 15px 25px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-bottom: none;
+    color: #6c757d;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+    margin-right: 2px;
+
+    &:hover {
+      background: #e9ecef;
+      color: #495057;
+    }
+
+    &--active {
+      background: white;
+      color: #0036AF;
+      border-color: #e9ecef;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: white;
+      }
+    }
+  }
+
+  &__content {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-top: none;
+    min-height: 400px;
+  }
+
+  &__container {
+    padding: 25px;
+  }
+
+  &__section {
+    margin-bottom: 30px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    svg {
+      color: #0036AF;
+    }
+  }
+
+  &__form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+
+    &.settings__checkbox-group {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  &__input {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #0036AF;
+      box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);
+    }
+  }
+
+  &__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 0;
+  }
+
+  &__checkbox {
+    display: none;
+
+    &:checked + .settings__checkbox-custom {
+      background-color: #0036AF;
+      border-color: #0036AF;
+
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+
+  &__checkbox-custom {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ddd;
+    border-radius: 3px;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 4px;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) scale(0);
+      opacity: 0;
+      transition: all 0.2s ease;
+    }
+  }
+
+  &__actions {
+    padding: 25px;
+    border-top: 1px solid #e9ecef;
+    background: #f8f9fa;
+    display: flex;
+    gap: 12px;
+  }
+
+  &__btn {
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+
+    &--primary {
+      background-color: #0036AF;
+      color: white;
+      border: 1px solid #0036AF;
+
+      &:hover {
+        background-color: #002d91;
+        border-color: #002d91;
+      }
+    }
+
+    &--secondary {
+      background-color: white;
+      color: #6c757d;
+      border: 1px solid #ddd;
+
+      &:hover {
+        background-color: #f8f9fa;
+        border-color: #adb5bd;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .settings {
+    &__tab-wrapper {
+      flex-direction: column;
+    }
+
+    &__tab {
+      border-radius: 0;
+      margin-right: 0;
+      margin-bottom: 1px;
+
+      &--active::after {
+        display: none;
+      }
+    }
+
+    &__form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__actions {
+      flex-direction: column;
+    }
+  }
+}

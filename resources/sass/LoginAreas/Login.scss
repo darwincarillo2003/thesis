@@ -141,6 +141,11 @@
     }
 }
 
+@keyframes loginButtonSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 // Form Styles
 .login-form {
     .error-message {
@@ -287,6 +292,10 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
         margin-bottom: 0; // Removed bottom margin to make container thinner
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
             background-color: #002580;
@@ -295,6 +304,37 @@
         &:focus {
             outline: none;
             box-shadow: 0 0 0 3px rgba(0, 54, 175, 0.3);
+        }
+
+        &:disabled {
+            background-color: #4a6ba8;
+            cursor: not-allowed;
+        }
+
+        .button-text {
+            transition: opacity 0.2s ease;
+        }
+
+        .loading-spinner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: loginButtonSpin 1s linear infinite;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        &.loading {
+            .button-text {
+                opacity: 0;
+            }
+
+            .loading-spinner {
+                opacity: 1;
+            }
         }
     }
 

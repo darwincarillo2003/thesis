@@ -250,37 +250,38 @@
 
     th {
       font-weight: 500;
-      color: white;
+      color: #333;
       font-size: 14px;
-      background-color: #0036AF;
+      background-color: #f8f9fa;
       padding: 14px 15px;
       position: relative;
       cursor: pointer;
       user-select: none;
+      border-bottom: 2px solid #e9ecef;
 
       &:first-child, &:nth-child(2) {
         cursor: default;
         &:hover {
-          background-color: #0036AF;
+          background-color: #f8f9fa;
         }
       }
 
       &:hover {
-        background-color: #002d91;
+        background-color: #e9ecef;
       }
     }
 
     th.user-mng__sortable {
       padding-right: 30px;
       &:hover {
-        background-color: #002d91;
+        background-color: #e9ecef;
       }
     }
 
     th:first-child, th:nth-child(2) {
       cursor: default;
       &:hover {
-        background-color: #0036AF;
+        background-color: #f8f9fa;
       }
     }
 
@@ -317,11 +318,11 @@
   }
 
   &__select-all, &__select-row {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
     accent-color: #0036AF;
-    border-radius: 3px;
+    border-radius: 2px;
   }
 
   // Sort icon styles matching AdminDashboard
@@ -391,7 +392,7 @@
     width: 32px;
     height: 32px;
     border: none;
-    background-color: #f0f0f0;
+    background-color: transparent;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -399,7 +400,7 @@
 
     &:hover {
       transform: scale(1.05);
-      background-color: #e0e0e0;
+      background-color: rgba(0, 0, 0, 0.05);
     }
 
     svg {
@@ -421,6 +422,53 @@
     padding: 30px 0;
     color: #666;
     font-style: italic;
+  }
+
+  // Role badge styling
+  &__role-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid;
+    min-width: 60px;
+
+    // Admin role - blue
+    &--admin {
+      background-color: #e3f2fd;
+      color: #1976d2;
+      border-color: #bbdefb;
+    }
+
+    // Student role - green
+    &--student {
+      background-color: #e8f5e8;
+      color: #2e7d32;
+      border-color: #c8e6c9;
+    }
+
+    // COA role - orange
+    &--coa {
+      background-color: #fff3e0;
+      color: #f57c00;
+      border-color: #ffcc02;
+    }
+
+    // Faculty role - purple
+    &--faculty {
+      background-color: #f3e5f5;
+      color: #7b1fa2;
+      border-color: #ce93d8;
+    }
+
+    // Default role - gray
+    &--default {
+      background-color: #f5f5f5;
+      color: #666;
+      border-color: #ddd;
+    }
   }
 
   // Pagination matching AdminDashboard style

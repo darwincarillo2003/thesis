@@ -1,0 +1,578 @@
+.my-profile {
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  background-color: transparent;
+
+  &__loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 16px;
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #0036AF;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    p {
+      color: #666;
+      font-size: 16px;
+    }
+  }
+
+  &__error {
+    text-align: center;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    color: #dc3545;
+  }
+
+  &__retry-btn {
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #0036AF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #002d91;
+    }
+  }
+
+  // Header matching User Management
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.3);
+  }
+
+  // Tab wrapper matching User Management folder style
+  &__tab-wrapper {
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: -1px;
+    z-index: 2;
+    display: flex;
+    gap: 4px;
+  }
+
+  &__tab {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    padding: 12px 20px;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 3;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      background-color: #e9ecef;
+    }
+
+    &--active {
+      background-color: white;
+      border-color: #e0e0e0;
+      z-index: 4;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: white;
+        z-index: 5;
+      }
+    }
+  }
+
+  &__alert {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+
+    &--error {
+      background-color: #fee;
+      color: #c53030;
+      border: 1px solid #feb2b2;
+    }
+
+    &--success {
+      background-color: #f0fff4;
+      color: #38a169;
+      border: 1px solid #9ae6b4;
+    }
+  }
+
+  &__content {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+  }
+
+  // Container for tab content matching User Management table container
+  &__container {
+    padding: 20px;
+  }
+
+  &__section {
+    margin-bottom: 32px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #0036AF;
+  }
+
+  // Action buttons at bottom of tabs
+  &__tab-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+  }
+
+  // Profile Picture Section
+  &__picture-container {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  &__picture-preview {
+    flex-shrink: 0;
+  }
+
+  &__picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #e9ecef;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  &__picture-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    max-width: 300px;
+  }
+
+  &__file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background-color: #0036AF;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    text-align: center;
+    border: none;
+
+    &:hover {
+      background-color: #002d91;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__file-input {
+    display: none;
+  }
+
+  // Form Elements
+  &__form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__password-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 400px;
+  }
+
+  &__password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+
+    svg {
+      stroke-width: 1.5px;
+    }
+
+    &:hover {
+      color: #0036AF;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+
+    &--full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    .required {
+      color: #dc2626;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+      color: #666;
+    }
+  }
+
+  &__input {
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border-color: #0036AF;
+      box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);
+    }
+
+    &:disabled {
+      background-color: #f8f9fa;
+      color: #666;
+      cursor: not-allowed;
+    }
+
+    &--error {
+      border-color: #e74c3c;
+      background-color: rgba(231, 76, 60, 0.03);
+    }
+
+    &::placeholder {
+      color: #aaa;
+    }
+
+    // Add right padding for password inputs with toggle button
+    .my-profile__password-input-wrapper & {
+      padding-right: 45px;
+    }
+  }
+
+  &__value {
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    color: #333;
+    font-size: 14px;
+
+    &--readonly {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__readonly-note {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+  }
+
+  &__field-error {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  // Account Information
+  &__info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  &__info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__info-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__info-value {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+  }
+
+  &__role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background-color: #0036AF;
+    color: white;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+  }
+
+  // Buttons
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &--primary {
+      background-color: #0036AF;
+      color: white;
+      border-color: #0036AF;
+
+      &:hover:not(:disabled) {
+        background-color: #002d91;
+        border-color: #002d91;
+      }
+    }
+
+    &--secondary {
+      background-color: white;
+      color: #4a5568;
+      border-color: #e2e8f0;
+
+      &:hover:not(:disabled) {
+        background-color: #f7fafc;
+        border-color: #cbd5e0;
+      }
+    }
+
+    &--danger {
+      background-color: #dc3545;
+      color: white;
+      border-color: #dc3545;
+
+      &:hover:not(:disabled) {
+        background-color: #c82333;
+        border-color: #bd2130;
+      }
+    }
+
+    &--small {
+      padding: 6px 12px;
+      font-size: 12px;
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .my-profile {
+    padding: 16px;
+
+    &__header {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+
+    &__actions {
+      align-self: stretch;
+    }
+
+    &__edit-actions {
+      width: 100%;
+
+      .my-profile__btn {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
+    &__section {
+      padding: 20px;
+    }
+
+    &__picture-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    &__picture-actions {
+      width: 100%;
+      max-width: none;
+      align-items: center;
+    }
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__subtitle {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .my-profile {
+    padding: 12px;
+
+    &__section {
+      padding: 16px;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+
+    &__info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__edit-actions {
+      flex-direction: column;
+    }
+  }
+}

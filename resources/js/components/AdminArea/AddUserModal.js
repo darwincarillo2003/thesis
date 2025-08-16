@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, User, Mail, Lock, UserCheck } from 'lucide-react';
+import { X, User, Mail, Lock, UserCheck, Camera } from 'lucide-react';
 import '../../../sass/AdminAreas/AddUserModal.scss';
 
 const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
@@ -11,9 +11,11 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
     email: '',
     password: '',
     password_confirmation: '',
-    role_id: ''
+    role_id: '',
+    profile_pic: null
   });
 
+  const [profilePicPreview, setProfilePicPreview] = useState(null);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -39,6 +41,55 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
         [name]: ''
       }));
     }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (!file.type.startsWith('image/')) {
+        setErrors(prev => ({
+          ...prev,
+          profile_pic: 'Please select a valid image file'
+        }));
+        return;
+      }
+      
+      if (file.size > 2048 * 1024) { // 2MB limit
+        setErrors(prev => ({
+          ...prev,
+          profile_pic: 'Image size must be less than 2MB'
+        }));
+        return;
+      }
+
+      setFormData(prev => ({
+        ...prev,
+        profile_pic: file
+      }));
+
+      // Create preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfilePicPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+      
+      // Clear any previous errors
+      if (errors.profile_pic) {
+        setErrors(prev => ({
+          ...prev,
+          profile_pic: ''
+        }));
+      }
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setFormData(prev => ({
+      ...prev,
+      profile_pic: null
+    }));
+    setProfilePicPreview(null);
   };
 
   const validateForm = () => {
@@ -86,18 +137,51 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/register', {
+      // First, create the user
+      const userResponse = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `${localStorage.getItem('token_type')} ${localStorage.getItem('token')}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          first_name: formData.first_name,
+          middle_name: formData.middle_name,
+          last_name: formData.last_name,
+          suffix: formData.suffix,
+          email: formData.email,
+          password: formData.password,
+          password_confirmation: formData.password_confirmation,
+          role_id: formData.role_id
+        }),
       });
 
-      const data = await response.json();
+      const userData = await userResponse.json();
 
-      if (data.success) {
+      if (userData.success) {
+        // If profile picture was selected, upload it
+        if (formData.profile_pic && userData.data && userData.data.user && userData.data.user.profile) {
+          try {
+            const formDataFile = new FormData();
+            formDataFile.append('profile_picture', formData.profile_pic);
+
+            const uploadResponse = await fetch(`/api/profiles/${userData.data.user.profile.profile_id}/upload-picture`, {
+              method: 'POST',
+              headers: {
+                'Authorization': `${localStorage.getItem('token_type')} ${localStorage.getItem('token')}`,
+              },
+              body: formDataFile,
+            });
+
+            const uploadData = await uploadResponse.json();
+            if (!uploadData.success) {
+              console.warn('Profile picture upload failed:', uploadData.message);
+            }
+          } catch (uploadError) {
+            console.warn('Profile picture upload error:', uploadError);
+          }
+        }
+
         // Reset form
         setFormData({
           first_name: '',
@@ -107,8 +191,10 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
           email: '',
           password: '',
           password_confirmation: '',
-          role_id: ''
+          role_id: '',
+          profile_pic: null
         });
+        setProfilePicPreview(null);
         
         // Notify parent component
         if (onUserAdded) {
@@ -126,10 +212,10 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
         }, 300);
       } else {
         // Handle validation errors from server
-        if (data.errors) {
-          setErrors(data.errors);
+        if (userData.errors) {
+          setErrors(userData.errors);
         } else {
-          setErrors({ general: data.message || 'Failed to create user' });
+          setErrors({ general: userData.message || 'Failed to create user' });
         }
       }
     } catch (error) {
@@ -150,8 +236,10 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
         email: '',
         password: '',
         password_confirmation: '',
-        role_id: ''
+        role_id: '',
+        profile_pic: null
       });
+      setProfilePicPreview(null);
       setErrors({});
       onClose();
     }
@@ -184,6 +272,47 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
               {errors.general}
             </div>
           )}
+
+          {/* Profile Picture Section */}
+          <div className="add-user-modal__section">
+            <h3 className="add-user-modal__section-title">Profile Picture (Optional)</h3>
+            <div className="add-user-modal__profile-pic-container">
+              <div className="add-user-modal__profile-pic-preview">
+                <img
+                  src={profilePicPreview || '/images/csp.png'}
+                  alt="Profile preview"
+                  className="add-user-modal__profile-pic"
+                />
+              </div>
+              <div className="add-user-modal__profile-pic-actions">
+                <label className="add-user-modal__file-label">
+                  <Camera size={16} />
+                  Choose Profile Picture
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="add-user-modal__file-input"
+                    disabled={isSubmitting}
+                  />
+                </label>
+                {formData.profile_pic && (
+                  <button
+                    type="button"
+                    onClick={handleRemoveImage}
+                    className="add-user-modal__button add-user-modal__button--secondary add-user-modal__button--small"
+                    disabled={isSubmitting}
+                  >
+                    <X size={16} />
+                    Remove
+                  </button>
+                )}
+                {errors.profile_pic && (
+                  <span className="add-user-modal__error">{errors.profile_pic}</span>
+                )}
+              </div>
+            </div>
+          </div>
 
           <div className="add-user-modal__form-grid">
             <div className="add-user-modal__form-group">

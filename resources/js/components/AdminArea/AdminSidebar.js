@@ -3,12 +3,14 @@ import {
   Home,
   Users,
   FileText,
+  User,
+  Settings,
   LogOut
 } from 'lucide-react';
 
-const AdminSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
+const AdminSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout, activeSection }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [activeItem, setActiveItem] = useState('dashboard');
+  const [activeItem, setActiveItem] = useState(activeSection || 'dashboard');
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,6 +20,12 @@ const AdminSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (activeSection) {
+      setActiveItem(activeSection);
+    }
+  }, [activeSection]);
 
   const handleItemClick = (section) => {
     setActiveItem(section);
@@ -69,6 +77,28 @@ const AdminSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
               <span className="admin-sidebar__label">Form Management</span>
             </div>
           </li>
+          
+          {/* Separator */}
+          <li className="admin-sidebar__separator"></li>
+          
+          <li className="admin-sidebar__item">
+            <div
+              className={`admin-sidebar__link ${activeItem === 'my-profile' ? 'active' : ''}`}
+              onClick={() => handleItemClick('my-profile')}
+            >
+              <User size={20} className="admin-sidebar__icon" />
+              <span className="admin-sidebar__label">My Profile</span>
+            </div>
+          </li>
+          <li className="admin-sidebar__item">
+            <div
+              className={`admin-sidebar__link ${activeItem === 'settings' ? 'active' : ''}`}
+              onClick={() => handleItemClick('settings')}
+            >
+              <Settings size={20} className="admin-sidebar__icon" />
+              <span className="admin-sidebar__label">Settings</span>
+            </div>
+          </li>
         </ul>
       </nav>
       <div className="admin-sidebar__footer">
@@ -82,6 +112,7 @@ const AdminSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
 };
 
 export default AdminSidebar;
+
 
 
 

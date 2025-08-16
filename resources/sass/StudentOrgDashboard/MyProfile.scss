@@ -1,0 +1,275 @@
+.my-profile {
+  padding: 0;
+
+  &__header {
+    margin-bottom: 25px;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #0036AF;
+    display: inline-block;
+  }
+
+  &__tab-wrapper {
+    display: flex;
+    margin-bottom: 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  &__tab {
+    padding: 15px 25px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-bottom: none;
+    color: #6c757d;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+    margin-right: 2px;
+
+    &:hover {
+      background: #e9ecef;
+      color: #495057;
+    }
+
+    &--active {
+      background: white;
+      color: #0036AF;
+      border-color: #e9ecef;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: white;
+      }
+    }
+  }
+
+  &__content {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-top: none;
+    min-height: 400px;
+  }
+
+  &__container {
+    padding: 25px;
+  }
+
+  &__section {
+    margin-bottom: 30px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  &__profile-pic-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e9ecef;
+  }
+
+  &__profile-pic-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  &__input {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #0036AF;
+      box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);
+    }
+
+    &[readonly] {
+      background-color: #f8f9fa;
+      color: #6c757d;
+      cursor: default;
+      border-color: #e9ecef;
+
+      &:focus {
+        border-color: #e9ecef;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__password-input-wrapper {
+    position: relative;
+
+    .my-profile__input {
+      padding-right: 45px;
+    }
+  }
+
+  &__password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #0036AF;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__tab-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    gap: 12px;
+  }
+
+  &__btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+
+    &--primary {
+      background-color: #0036AF;
+      color: white;
+      border: 1px solid #0036AF;
+
+      &:hover {
+        background-color: #002d91;
+        border-color: #002d91;
+      }
+    }
+
+    &--secondary {
+      background-color: white;
+      color: #6c757d;
+      border: 1px solid #ddd;
+
+      &:hover {
+        background-color: #f8f9fa;
+        border-color: #adb5bd;
+      }
+    }
+
+    &--small {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: initial;
+        border-color: initial;
+      }
+    }
+  }
+
+  .required {
+    color: #dc2626;
+  }
+}
+
+@media (max-width: 768px) {
+  .my-profile {
+    &__tab-wrapper {
+      flex-direction: column;
+    }
+
+    &__tab {
+      border-radius: 0;
+      margin-right: 0;
+      margin-bottom: 1px;
+
+      &--active::after {
+        display: none;
+      }
+    }
+
+    &__form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__profile-pic-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__tab-actions {
+      flex-direction: column;
+    }
+  }
+}

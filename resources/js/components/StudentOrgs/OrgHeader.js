@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Bell, ChevronDown, LogOut, User, Settings } from 'lucide-react';
 
-const OrgHeader = ({ toggleSidebar, onLogout, userData }) => {
+const OrgHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -27,6 +27,20 @@ const OrgHeader = ({ toggleSidebar, onLogout, userData }) => {
     }
   };
 
+  const handleProfileClick = () => {
+    if (typeof onNavigate === 'function') {
+      onNavigate('my-profile');
+    }
+    setIsDropdownOpen(false);
+  };
+
+  const handleSettingsClick = () => {
+    if (typeof onNavigate === 'function') {
+      onNavigate('settings');
+    }
+    setIsDropdownOpen(false);
+  };
+
   return (
     <header className="org-header">
       <div className="org-header__hamburger" onClick={toggleSidebar}>
@@ -40,9 +54,16 @@ const OrgHeader = ({ toggleSidebar, onLogout, userData }) => {
 
         <div className="org-header__profile" onClick={toggleDropdown} ref={dropdownRef}>
           <img
-            src="/images/csp.png"
+            src={
+              userData?.profile?.profile_pic 
+                ? `/storage/${userData.profile.profile_pic}` 
+                : "/images/csp.png"
+            }
             alt={userData?.profile?.first_name || "User"}
             className="org-header__profile-picture"
+            onError={(e) => {
+              e.target.src = "/images/csp.png";
+            }}
           />
           <span className="org-header__user-name">
             {userData ? `${userData.profile?.first_name || ''} ${userData.profile?.last_name || ''}` : 'Loading...'}
@@ -53,12 +74,12 @@ const OrgHeader = ({ toggleSidebar, onLogout, userData }) => {
           />
           {isDropdownOpen && (
             <div className="org-header__dropdown-menu">
-              <div className="org-header__dropdown-item">
+              <button className="org-header__dropdown-item" onClick={handleProfileClick}>
                 <User size={16} /> Profile
-              </div>
-              <div className="org-header__dropdown-item">
+              </button>
+              <button className="org-header__dropdown-item" onClick={handleSettingsClick}>
                 <Settings size={16} /> Settings
-              </div>
+              </button>
               <div className="org-header__dropdown-separator"></div>
               <button className="org-header__dropdown-item" onClick={handleLogout}>
                 <LogOut size={16} /> Logout

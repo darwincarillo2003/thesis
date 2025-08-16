@@ -3,12 +3,14 @@ import {
   Home,
   FilePlus,
   FileText,
+  User,
+  Settings,
   LogOut
 } from 'lucide-react';
 
-const OrgSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
+const OrgSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout, activeSection }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [activeItem, setActiveItem] = useState('dashboard');
+  const [activeItem, setActiveItem] = useState(activeSection || 'dashboard');
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,6 +20,12 @@ const OrgSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (activeSection) {
+      setActiveItem(activeSection);
+    }
+  }, [activeSection]);
 
   const handleItemClick = (section) => {
     setActiveItem(section);
@@ -67,6 +75,28 @@ const OrgSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
             >
               <FileText size={20} className="org-sidebar__icon" />
               <span className="org-sidebar__label">My Reports</span>
+            </div>
+          </li>
+          
+          {/* Separator */}
+          <li className="org-sidebar__separator"></li>
+          
+          <li className="org-sidebar__item">
+            <div
+              className={`org-sidebar__link ${activeItem === 'my-profile' ? 'active' : ''}`}
+              onClick={() => handleItemClick('my-profile')}
+            >
+              <User size={20} className="org-sidebar__icon" />
+              <span className="org-sidebar__label">My Profile</span>
+            </div>
+          </li>
+          <li className="org-sidebar__item">
+            <div
+              className={`org-sidebar__link ${activeItem === 'settings' ? 'active' : ''}`}
+              onClick={() => handleItemClick('settings')}
+            >
+              <Settings size={20} className="org-sidebar__icon" />
+              <span className="org-sidebar__label">Settings</span>
             </div>
           </li>
         </ul>

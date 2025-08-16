@@ -41,9 +41,9 @@
   &__table {
     width: 100%; border-collapse: collapse;
     th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #f0f0f0; }
-    th { font-weight: 500; color: white; font-size: 14px; background-color: #0036AF; padding: 14px 15px; position: relative; cursor: pointer; user-select: none; }
-    th.sortable { padding-right: 30px; &:hover { background-color: #002d91; } }
-    th:first-child, th:nth-child(2) { cursor: default; &:hover { background-color: #0036AF; } }
+    th { font-weight: 500; color: #333; font-size: 14px; background-color: #f8f9fa; padding: 14px 15px; position: relative; cursor: pointer; user-select: none; border-bottom: 2px solid #e9ecef; }
+    th.sortable { padding-right: 30px; &:hover { background-color: #e9ecef; } }
+    th:first-child, th:nth-child(2) { cursor: default; &:hover { background-color: #f8f9fa; } }
     .sort-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); display: inline-flex; flex-direction: column; height: 16px; width: 16px; align-items: center; justify-content: center; 
       svg { height: 14px; width: 14px; opacity: 0.7; transition: opacity 0.2s ease; }
     }
@@ -54,10 +54,10 @@
 
   &__table-actions { white-space: nowrap; }
   &__checkbox-cell { text-align: center; width: 40px; }
-  &__select-all, &__select-row { width: 18px; height: 18px; cursor: pointer; accent-color: #0036AF; border-radius: 3px; }
+  &__select-all, &__select-row { width: 14px; height: 14px; cursor: pointer; accent-color: #0036AF; border-radius: 2px; }
   &__action-buttons { display: flex; gap: 8px; }
-  &__action-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: none; background-color: #f0f0f0; border-radius: 4px; cursor: pointer; transition: all 0.2s ease; padding: 0; 
-    &:hover { transform: scale(1.05); background-color: #e0e0e0; }
+  &__action-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: none; background-color: transparent; border-radius: 4px; cursor: pointer; transition: all 0.2s ease; padding: 0; 
+    &:hover { transform: scale(1.05); background-color: rgba(0, 0, 0, 0.05); }
     svg { width: 16px; height: 16px; }
   }
   &__edit-btn { color: #0036AF; }
@@ -106,6 +106,7 @@
     &__table { th, td { padding: 8px 6px; } th { font-size: 12px; } td { font-size: 12px; } }
   }
 }
+
 
 
 

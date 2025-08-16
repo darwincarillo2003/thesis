@@ -57,6 +57,10 @@ const Login = ({ onLogin }) => {
         
         setIsSubmitting(true);
         
+        // Record the start time for minimum loading duration
+        const startTime = Date.now();
+        const minimumLoadingTime = 5000; // 5 seconds
+        
         try {
             // Enable console logging for network requests
             console.log('Sending login request...');
@@ -74,6 +78,16 @@ const Login = ({ onLogin }) => {
                 data: response.data,
                 headers: response.headers
             });
+            
+            // Calculate remaining time to reach minimum loading duration
+            const elapsedTime = Date.now() - startTime;
+            const remainingTime = Math.max(0, minimumLoadingTime - elapsedTime);
+            
+            // Wait for the remaining time if needed
+            if (remainingTime > 0) {
+                console.log(`Waiting additional ${remainingTime}ms to reach minimum loading time of ${minimumLoadingTime}ms`);
+                await new Promise(resolve => setTimeout(resolve, remainingTime));
+            }
             
             if (response.data.success) {
                 // Show success message but don't wait for it to be displayed
@@ -102,10 +116,9 @@ const Login = ({ onLogin }) => {
                 axios.defaults.headers.common['Authorization'] = `${response.data.data.token_type} ${response.data.data.access_token}`;
                 
                 // Log user role for debugging
-                console.log(`User role: ${userRole}. Redirecting immediately...`);
+                console.log(`User role: ${userRole}. Redirecting after minimum loading time...`);
                 
-                // Call the onLogin function immediately to prevent redirection issues
-                // No timeout to ensure the state changes right away
+                // Call the onLogin function after ensuring minimum loading time
                 onLogin(userRole);
             } else {
                 setError('Login failed. Please try again.');
@@ -114,6 +127,16 @@ const Login = ({ onLogin }) => {
             }
         } catch (err) {
             console.error('Login error:', err);
+            
+            // Calculate remaining time to reach minimum loading duration
+            const elapsedTime = Date.now() - startTime;
+            const remainingTime = Math.max(0, minimumLoadingTime - elapsedTime);
+            
+            // Wait for the remaining time if needed, even for errors
+            if (remainingTime > 0) {
+                console.log(`Waiting additional ${remainingTime}ms to reach minimum loading time of ${minimumLoadingTime}ms (error case)`);
+                await new Promise(resolve => setTimeout(resolve, remainingTime));
+            }
             
             // Enhanced error logging
             if (err.response) {
@@ -225,10 +248,11 @@ const Login = ({ onLogin }) => {
                         
                         <button 
                             type="submit" 
-                            className="login-button"
+                            className={`login-button ${isSubmitting ? 'loading' : ''}`}
                             disabled={isSubmitting}
                         >
-                            {isSubmitting ? 'Logging in...' : 'Log In'}
+                            <span className="button-text">Log In</span>
+                            <div className="loading-spinner"></div>
                         </button>
                     </form>
                 </div>
