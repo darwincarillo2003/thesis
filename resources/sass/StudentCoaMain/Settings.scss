@@ -1,7 +1,6 @@
 .my-profile {
-  padding: 20px;
+  padding: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: transparent;
 
   &__loading {
     display: flex;
@@ -49,65 +48,50 @@
     }
   }
 
-  // Header matching User Management
   &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   &__title {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
     color: #333;
     margin: 0;
-    padding-bottom: 10px;
-    border-bottom: 2px solid rgba(128, 128, 128, 0.3);
+    padding-bottom: 15px;
+    border-bottom: 3px solid #0036AF;
+    display: inline-block;
   }
 
-  // Tab wrapper matching User Management folder style
   &__tab-wrapper {
-    position: relative;
-    width: 100%;
-    border-bottom: 1px solid #e0e0e0;
-    margin-bottom: -1px;
-    z-index: 2;
     display: flex;
-    gap: 4px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #e9ecef;
   }
 
   &__tab {
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    background-color: #f8f9fa;
-    border: 1px solid #e0e0e0;
+    padding: 15px 25px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
     border-bottom: none;
-    border-radius: 8px 8px 0 0;
-    padding: 12px 20px;
-    margin: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    position: relative;
-    z-index: 3;
+    color: #6c757d;
     cursor: pointer;
-    transition: all 0.2s ease;
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+    margin-right: 2px;
 
     &:hover {
-      background-color: #e9ecef;
+      background: #e9ecef;
+      color: #495057;
     }
 
     &--active {
-      background-color: white;
-      border-color: #e0e0e0;
-      z-index: 4;
+      background: white;
+      color: #0036AF;
+      border-color: #e9ecef;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
 
       &::after {
         content: '';
@@ -115,9 +99,8 @@
         bottom: -1px;
         left: 0;
         right: 0;
-        height: 1px;
-        background-color: white;
-        z-index: 5;
+        height: 2px;
+        background: white;
       }
     }
   }
@@ -143,19 +126,18 @@
   }
 
   &__content {
-    background-color: white;
-    border: 1px solid #e0e0e0;
+    background: white;
+    border: 1px solid #e9ecef;
     border-top: none;
-    border-radius: 0 0 8px 8px;
+    min-height: 400px;
   }
 
-  // Container for tab content matching User Management table container
   &__container {
-    padding: 20px;
+    padding: 25px;
   }
 
   &__section {
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 
     &:last-child {
       margin-bottom: 0;
@@ -166,47 +148,37 @@
     font-size: 18px;
     font-weight: 600;
     color: #333;
-    margin: 0 0 20px 0;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #0036AF;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e9ecef;
   }
 
-  // Action buttons at bottom of tabs
-  &__tab-actions {
+  &__profile-pic-section {
     display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    margin-top: 32px;
-    padding-top: 20px;
-    border-top: 1px solid #e9ecef;
+    align-items: center;
+    gap: 20px;
   }
 
-  // Profile Picture Section
-  &__picture-container {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-  }
-
-  &__picture-preview {
-    flex-shrink: 0;
-  }
-
-  &__picture {
-    width: 120px;
-    height: 120px;
+  &__profile-pic {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid #e9ecef;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 3px solid #e9ecef;
   }
 
-  &__picture-actions {
+  &__profile-pic-actions {
     display: flex;
     flex-direction: column;
+    gap: 8px;
+  }
+
+  &__tab-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
     gap: 12px;
-    flex: 1;
-    max-width: 300px;
   }
 
   &__file-label {
@@ -238,15 +210,10 @@
     display: none;
   }
 
-  // Form Elements
   &__form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-    }
   }
 
   &__password-form {
@@ -260,27 +227,26 @@
     position: relative;
     display: flex;
     align-items: center;
+
+    .my-profile__input {
+      padding-right: 45px;
+      width: 100%;
+    }
   }
 
   &__password-toggle {
     position: absolute;
-    right: 15px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: #666;
+    color: #6c757d;
     cursor: pointer;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
-
-    svg {
-      stroke-width: 1.5px;
-    }
 
     &:hover {
       color: #0036AF;
@@ -289,50 +255,26 @@
     &:focus {
       outline: none;
     }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
   }
 
   &__form-group {
     display: flex;
     flex-direction: column;
-
-    &--full {
-      grid-column: 1 / -1;
-    }
   }
 
   &__label {
-    font-size: 14px;
     font-weight: 500;
     color: #333;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    .required {
-      color: #dc2626;
-    }
-
-    svg {
-      width: 16px;
-      height: 16px;
-      color: #666;
-    }
+    margin-bottom: 8px;
+    font-size: 14px;
   }
 
   &__input {
-    padding: 12px 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     font-size: 14px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    background-color: white;
-    width: 100%;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 
     &:focus {
       outline: none;
@@ -340,24 +282,21 @@
       box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);
     }
 
-    &:disabled {
+    &[readonly] {
       background-color: #f8f9fa;
-      color: #666;
-      cursor: not-allowed;
+      color: #6c757d;
+      cursor: default;
+      border-color: #e9ecef;
+
+      &:focus {
+        border-color: #e9ecef;
+        box-shadow: none;
+      }
     }
 
     &--error {
       border-color: #e74c3c;
       background-color: rgba(231, 76, 60, 0.03);
-    }
-
-    &::placeholder {
-      color: #aaa;
-    }
-
-    // Add right padding for password inputs with toggle button
-    .my-profile__password-input-wrapper & {
-      padding-right: 45px;
     }
   }
 
@@ -430,36 +369,23 @@
     width: fit-content;
   }
 
-  // Buttons
   &__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
     padding: 10px 20px;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    font-size: 14px;
+    border-radius: 4px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
-    text-decoration: none;
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
 
     &--primary {
       background-color: #0036AF;
       color: white;
-      border-color: #0036AF;
+      border: 1px solid #0036AF;
 
-      &:hover:not(:disabled) {
+      &:hover {
         background-color: #002d91;
         border-color: #002d91;
       }
@@ -467,21 +393,21 @@
 
     &--secondary {
       background-color: white;
-      color: #4a5568;
-      border-color: #e2e8f0;
+      color: #6c757d;
+      border: 1px solid #ddd;
 
-      &:hover:not(:disabled) {
-        background-color: #f7fafc;
-        border-color: #cbd5e0;
+      &:hover {
+        background-color: #f8f9fa;
+        border-color: #adb5bd;
       }
     }
 
     &--danger {
       background-color: #dc3545;
       color: white;
-      border-color: #dc3545;
+      border: 1px solid #dc3545;
 
-      &:hover:not(:disabled) {
+      &:hover {
         background-color: #c82333;
         border-color: #bd2130;
       }
@@ -490,12 +416,21 @@
     &--small {
       padding: 6px 12px;
       font-size: 12px;
+    }
 
-      svg {
-        width: 14px;
-        height: 14px;
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: initial;
+        border-color: initial;
       }
     }
+  }
+
+  .required {
+    color: #dc2626;
   }
 }
 
@@ -505,73 +440,32 @@
   100% { transform: rotate(360deg); }
 }
 
-// Responsive Design
 @media (max-width: 768px) {
   .my-profile {
-    padding: 16px;
-
-    &__header {
+    &__tab-wrapper {
       flex-direction: column;
-      align-items: stretch;
-      gap: 16px;
     }
 
-    &__actions {
-      align-self: stretch;
-    }
+    &__tab {
+      border-radius: 0;
+      margin-right: 0;
+      margin-bottom: 1px;
 
-    &__edit-actions {
-      width: 100%;
-
-      .my-profile__btn {
-        flex: 1;
-        justify-content: center;
+      &--active::after {
+        display: none;
       }
     }
 
-    &__section {
-      padding: 20px;
-    }
-
-    &__picture-container {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    &__picture-actions {
-      width: 100%;
-      max-width: none;
-      align-items: center;
-    }
-
-    &__title {
-      font-size: 24px;
-    }
-
-    &__subtitle {
-      font-size: 14px;
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .my-profile {
-    padding: 12px;
-
-    &__section {
-      padding: 16px;
-    }
-
-    &__title {
-      font-size: 20px;
-    }
-
-    &__info-grid {
+    &__form-grid {
       grid-template-columns: 1fr;
     }
 
-    &__edit-actions {
+    &__profile-pic-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__tab-actions {
       flex-direction: column;
     }
   }

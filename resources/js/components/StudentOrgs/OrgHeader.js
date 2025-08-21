@@ -29,7 +29,7 @@ const OrgHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
 
   const handleProfileClick = () => {
     if (typeof onNavigate === 'function') {
-      onNavigate('my-profile');
+      onNavigate('settings');
     }
     setIsDropdownOpen(false);
   };
@@ -48,8 +48,8 @@ const OrgHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
       </div>
 
       <div className="org-header__actions">
-        <div className="org-header__notification">
-          <Bell size={20} />
+        <div className="org-header__notification" title="Notifications">
+          <Bell />
         </div>
 
         <div className="org-header__profile" onClick={toggleDropdown} ref={dropdownRef}>

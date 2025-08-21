@@ -77,19 +77,6 @@ const AdminSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout, activeSecti
               <span className="admin-sidebar__label">Form Management</span>
             </div>
           </li>
-          
-          {/* Separator */}
-          <li className="admin-sidebar__separator"></li>
-          
-          <li className="admin-sidebar__item">
-            <div
-              className={`admin-sidebar__link ${activeItem === 'my-profile' ? 'active' : ''}`}
-              onClick={() => handleItemClick('my-profile')}
-            >
-              <User size={20} className="admin-sidebar__icon" />
-              <span className="admin-sidebar__label">My Profile</span>
-            </div>
-          </li>
           <li className="admin-sidebar__item">
             <div
               className={`admin-sidebar__link ${activeItem === 'settings' ? 'active' : ''}`}
@@ -101,12 +88,6 @@ const AdminSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout, activeSecti
           </li>
         </ul>
       </nav>
-      <div className="admin-sidebar__footer">
-        <button className="admin-sidebar__logout-btn" onClick={handleLogout}>
-          <LogOut size={18} className="admin-sidebar__icon" />
-          Logout
-        </button>
-      </div>
     </div>
   );
 };

@@ -40,32 +40,36 @@
     }
   }
 
-  &__actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  &__profile {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  &__actions { display: flex; align-items: center; gap: 6px; }
+  &__profile { position: relative; display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: background-color 0.2s ease; }
+  &__profile:hover { background-color: #f8f9fa; }
+  &__profile-picture { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0; transition: border-color 0.2s ease; }
+  &__profile:hover &__profile-picture { border-color: #0036AF; }
+  &__user-name { font-size: 16px; font-weight: 500; color: #333; }
+  
+  &__notification {
     cursor: pointer;
-  }
-
-  &__profile-picture {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #e0e0e0;
-  }
-
-  &__user-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+      color: #666;
+      transition: color 0.2s ease;
+    }
+    
+    &:hover {
+      background-color: #f8f9fa;
+      
+      svg {
+        color: #0036AF;
+      }
+    }
   }
 
   &__dropdown-arrow {
@@ -169,7 +173,7 @@
 
 @media (max-width: 768px) {
   .org-header {
-    height: 50px;
+    height: 55px;
     padding: 0 15px;
 
     .sidebar-open & {
@@ -180,17 +184,18 @@
       left: 0;
     }
 
-    &__actions {
-      gap: 15px;
-    }
-
-    &__profile-picture {
-      width: 28px;
-      height: 28px;
-    }
-
-    &__user-name {
-      font-size: 13px;
+    &__actions { gap: 5px; }
+    &__profile { gap: 10px; padding: 3px 6px; }
+    &__profile-picture { width: 40px; height: 40px; }
+    &__user-name { font-size: 14px; }
+    
+    &__notification {
+      padding: 6px;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+      }
     }
 
     &__dropdown-menu {
@@ -206,7 +211,7 @@
 
 @media (max-width: 480px) {
   .org-header {
-    height: 46px;
+    height: 50px;
     padding: 0 10px;
 
     .sidebar-open & {
@@ -217,17 +222,18 @@
       left: 0;
     }
 
-    &__actions {
-      gap: 10px;
-    }
-
-    &__profile-picture {
-      width: 26px;
-      height: 26px;
-    }
-
-    &__user-name {
-      font-size: 12px;
+    &__actions { gap: 4px; }
+    &__profile { gap: 8px; padding: 2px 4px; }
+    &__profile-picture { width: 36px; height: 36px; }
+    &__user-name { font-size: 13px; }
+    
+    &__notification {
+      padding: 5px;
+      
+      svg {
+        width: 18px;
+        height: 18px;
+      }
     }
 
     &__dropdown-menu {

@@ -1,0 +1,427 @@
+.my-reports {
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  background-color: transparent;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.3);
+  }
+
+  &__section-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    padding: 12px 20px;
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    z-index: 3;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: white;
+      z-index: 4;
+    }
+  }
+
+  // Controls section inside table container
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 20px 20px 0 20px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 15px;
+  }
+
+  &__left-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__right-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__search-bar {
+    position: relative;
+    width: 250px;
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    z-index: 1;
+  }
+
+  &__search-input {
+    width: 100%;
+    padding: 8px 35px 8px 35px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #0036AF;
+      box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);
+    }
+
+    &::placeholder {
+      color: #aaa;
+    }
+  }
+
+  &__sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #666;
+    }
+  }
+
+  &__sort-select {
+    padding: 6px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: #0036AF;
+      box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);
+    }
+  }
+
+  // Table styles with folder tab design
+  &__table-container {
+    margin-bottom: 30px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0 8px 8px 8px;
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    border-top: none;
+  }
+
+  &__table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px;
+    padding-top: 0;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    th {
+      font-weight: 500;
+      color: #333;
+      font-size: 14px;
+      background-color: #f8f9fa;
+      padding: 14px 15px;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 2px solid #e9ecef;
+
+      &:first-child {
+        cursor: default;
+        &:hover {
+          background-color: #f8f9fa;
+        }
+      }
+
+      &:hover {
+        background-color: #e9ecef;
+      }
+    }
+
+    th.my-reports__sortable {
+      padding-right: 30px;
+      &:hover {
+        background-color: #e9ecef;
+      }
+    }
+
+    th:first-child {
+      cursor: default;
+      text-align: center;
+      width: 80px;
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+
+    td {
+      font-size: 14px;
+      color: #333;
+    }
+
+    tbody tr {
+      &:hover {
+        background-color: #f5f9ff;
+      }
+      &:nth-child(even) {
+        background-color: #f8f9fc;
+      }
+    }
+  }
+
+  &__actions {
+    text-align: center;
+    width: 80px;
+  }
+
+  &__action-buttons {
+    display: inline-flex;
+    gap: 6px;
+    justify-content: center;
+  }
+
+  &__action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+
+    &:hover {
+      transform: scale(1.05);
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__view-btn {
+    color: #0036AF;
+  }
+
+  &__download-btn {
+    color: #28a745;
+  }
+
+  &__organization-name {
+    min-width: 200px;
+  }
+
+  &__org-info {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__org-name {
+    font-weight: 500;
+    color: #333;
+    line-height: 1.3;
+  }
+
+  &__form-type {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.2;
+  }
+
+  &__no-results {
+    text-align: center;
+    padding: 30px 0;
+    color: #666;
+    font-style: italic;
+  }
+
+  // Sort icon styles matching UserMng
+  &__sort-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    flex-direction: column;
+    height: 16px;
+    width: 16px;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      height: 12px;
+      width: 12px;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+
+      &.active {
+        opacity: 1;
+        color: #0036AF;
+      }
+    }
+  }
+
+  // Status badge styling
+  &__status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid;
+    min-width: 70px;
+
+    &--approved {
+      background-color: #e8f5e8;
+      color: #2e7d32;
+      border-color: #c8e6c9;
+    }
+
+    &--pending {
+      background-color: #fff3cd;
+      color: #856404;
+      border-color: #ffeaa7;
+    }
+
+    &--review {
+      background-color: #e3f2fd;
+      color: #1976d2;
+      border-color: #bbdefb;
+    }
+
+    &--rejected {
+      background-color: #ffebee;
+      color: #c62828;
+      border-color: #ffcdd2;
+    }
+
+    &--default {
+      background-color: #f5f5f5;
+      color: #666;
+      border-color: #ddd;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .my-reports {
+    padding: 15px;
+
+    &__controls {
+      flex-direction: column;
+      gap: 15px;
+      align-items: stretch;
+    }
+
+    &__left-controls,
+    &__right-controls {
+      justify-content: flex-start;
+    }
+
+    &__search-bar {
+      width: 100%;
+      max-width: none;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+
+    &__table {
+      th, td {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+    }
+
+    &__organization-name {
+      min-width: 150px;
+    }
+
+    &__org-name {
+      font-size: 13px;
+    }
+
+    &__form-type {
+      font-size: 11px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .my-reports {
+    &__table {
+      th, td {
+        padding: 6px 8px;
+        font-size: 12px;
+      }
+    }
+
+    &__action-btn {
+      width: 28px;
+      height: 28px;
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    &__sort-controls {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+  }
+}

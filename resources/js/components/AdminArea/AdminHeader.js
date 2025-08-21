@@ -28,7 +28,7 @@ const AdminHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
 
   const handleProfileClick = () => {
     if (typeof onNavigate === 'function') {
-      onNavigate('my-profile');
+      onNavigate('settings');
     }
     setIsDropdownOpen(false);
   };
@@ -48,7 +48,7 @@ const AdminHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
 
       <div className="admin-header__actions">
         <div className="admin-header__notification" title="Notifications">
-          <Bell size={20} />
+          <Bell />
         </div>
 
         <div className="admin-header__profile" onClick={toggleDropdown} ref={dropdownRef}>

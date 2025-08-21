@@ -24,9 +24,11 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/change-password', [AuthController::class, 'changePassword']);
     Route::get('/profiles', [ProfileController::class, 'index']);
     Route::post('/profiles/{id}/upload-picture', [ProfileController::class, 'uploadProfilePicture']);
     Route::delete('/profiles/{id}/delete-picture', [ProfileController::class, 'deleteProfilePicture']);
+    Route::put('/profiles/{id}', [ProfileController::class, 'updateProfile']);
     
     // Form Management Routes
     Route::prefix('forms')->group(function () {

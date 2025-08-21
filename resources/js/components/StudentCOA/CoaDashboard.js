@@ -3,10 +3,14 @@ import axios from 'axios';
 import CoaSidebar from './CoaSidebar';
 import CoaHeader from './CoaHeader';
 import CoaDashboardMain from './CoaDashboardMain';
+import ReviewReports from './ReviewReports';
+import Settings from './Settings';
 import '../../../sass/StudentCoaMain/CoaDashboard.scss';
 import '../../../sass/StudentCoaMain/CoaSidebar.scss';
 import '../../../sass/StudentCoaMain/CoaHeader.scss';
 import '../../../sass/StudentCoaMain/CoaDashboardMain.scss';
+import '../../../sass/StudentCoaMain/Settings.scss';
+import '../../../sass/StudentCoaMain/ReviewReports.scss';
 
 const CoaDashboard = ({ onLogout }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -86,6 +90,12 @@ const CoaDashboard = ({ onLogout }) => {
   const handleNavigation = (section) => {
     setActiveSection(section);
   };
+
+  // Handle profile updates from Settings component
+  const handleProfileUpdate = (updatedUserData) => {
+    setUserData(updatedUserData);
+    localStorage.setItem('user', JSON.stringify(updatedUserData));
+  };
   
   // Handle logout with API call
   const handleLogout = async () => {
@@ -122,9 +132,9 @@ const CoaDashboard = ({ onLogout }) => {
       case 'dashboard':
         return <CoaDashboardMain onLogout={onLogout} role="coa" />;
       case 'review-reports':
-        return <div>Review Reports Page (Coming Soon)</div>;
-      case 'approved-reports':
-        return <div>Approved Reports Page (Coming Soon)</div>;
+        return <ReviewReports />;
+      case 'settings':
+        return <Settings userData={userData} onProfileUpdate={handleProfileUpdate} />;
       default:
         return <CoaDashboardMain onLogout={onLogout} role="coa" />;
     }
@@ -172,6 +182,7 @@ const CoaDashboard = ({ onLogout }) => {
           isOpen={isSidebarOpen} 
           onLogout={handleLogout}
           userData={userData}
+          onNavigate={handleNavigation}
         />
         <main className="coa-dashboard__content">
           {renderContent()}
@@ -188,6 +199,7 @@ const CoaDashboard = ({ onLogout }) => {
 };
 
 export default CoaDashboard;
+
 
 
 

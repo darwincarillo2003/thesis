@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { User, Mail, Phone, MapPin, Camera, Edit, Save, X, Eye, EyeOff, Lock } from 'lucide-react';
-import '../../../sass/AdminAreas/MyProfile.scss';
+import '../../../sass/StudentCoaMain/Settings.scss';
 
-const MyProfile = () => {
-  const [userData, setUserData] = useState(null);
+const Settings = ({ userData: propUserData, onProfileUpdate }) => {
+  const [userData, setUserData] = useState(propUserData);
   const [isEditing, setIsEditing] = useState(false);
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState('');
@@ -31,8 +32,30 @@ const MyProfile = () => {
   const [fieldErrors, setFieldErrors] = useState({});
 
   useEffect(() => {
-    fetchUserData();
-  }, []);
+    if (propUserData) {
+      setUserData(propUserData);
+      setFormData({
+        first_name: propUserData.profile?.first_name || '',
+        middle_name: propUserData.profile?.middle_name || '',
+        last_name: propUserData.profile?.last_name || '',
+        suffix: propUserData.profile?.suffix || '',
+        email: propUserData.email || '',
+        current_password: '',
+        new_password: '',
+        new_password_confirmation: '',
+        profile_pic: null
+      });
+      
+      // Set profile picture preview
+      if (propUserData.profile?.profile_pic) {
+        setProfilePicPreview(`/storage/${propUserData.profile.profile_pic}`);
+      }
+      
+      setIsLoading(false);
+    } else {
+      fetchUserData();
+    }
+  }, [propUserData]);
 
   const fetchUserData = async () => {
     try {
@@ -57,6 +80,7 @@ const MyProfile = () => {
         if (user.profile?.profile_pic) {
           setProfilePicPreview(`/storage/${user.profile.profile_pic}`);
         }
+        return user; // Return the updated user data
       } else {
         setError('Failed to fetch user data');
       }
@@ -66,6 +90,7 @@ const MyProfile = () => {
     } finally {
       setIsLoading(false);
     }
+    return null;
   };
 
   const handleInputChange = (e) => {
@@ -184,32 +209,67 @@ const MyProfile = () => {
         }
       }
 
-      // Update profile information (this would need a proper API endpoint)
-      // For now, we'll just show success
-      setSuccess('Profile updated successfully');
-      setIsEditing(false);
-      
-      // Reset form
-      setFormData(prev => ({
-        ...prev,
-        profile_pic: null,
-        current_password: '',
-        new_password: '',
-        new_password_confirmation: ''
-      }));
+      if (activeTab === 'profile') {
+        // Update profile information
+        const profileUpdateResponse = await axios.put(`/api/profiles/${userData.profile.profile_id}`, {
+          first_name: formData.first_name,
+          middle_name: formData.middle_name,
+          last_name: formData.last_name,
+          suffix: formData.suffix
+        });
 
-      // Refresh user data
-      await fetchUserData();
+        if (!profileUpdateResponse.data.success) {
+          throw new Error('Failed to update profile information');
+        }
+
+        setSuccess('Profile updated successfully');
+        setIsEditing(false);
+        
+        // Reset form
+        setFormData(prev => ({
+          ...prev,
+          profile_pic: null
+        }));
+
+        // Refresh user data
+        const updatedUser = await fetchUserData();
+        if (updatedUser && onProfileUpdate) {
+          onProfileUpdate(updatedUser);
+        }
+
+      } else if (activeTab === 'password') {
+        // Handle password change
+        const passwordResponse = await axios.post('/api/change-password', {
+          current_password: formData.current_password,
+          new_password: formData.new_password,
+          new_password_confirmation: formData.new_password_confirmation
+        });
+
+        if (!passwordResponse.data.success) {
+          throw new Error('Failed to update password');
+        }
+
+        setSuccess('Password updated successfully');
+        setIsChangingPassword(false);
+        
+        // Reset password fields
+        setFormData(prev => ({
+          ...prev,
+          current_password: '',
+          new_password: '',
+          new_password_confirmation: ''
+        }));
+      }
 
     } catch (err) {
-      console.error('Error updating profile:', err);
+      console.error('Error updating:', err);
       
       if (err.response && err.response.data && err.response.data.errors) {
         setFieldErrors(err.response.data.errors);
       } else if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
       } else {
-        setError('Failed to update profile');
+        setError(activeTab === 'profile' ? 'Failed to update profile' : 'Failed to update password');
       }
     } finally {
       setIsSaving(false);
@@ -228,8 +288,47 @@ const MyProfile = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const handleCancel = () => {
+  const handleTabChange = (tabName) => {
+    setActiveTab(tabName);
+    setError('');
+    setSuccess('');
+    setFieldErrors({});
     setIsEditing(false);
+    setIsChangingPassword(false);
+    setShowCurrentPassword(false);
+    setShowNewPassword(false);
+    setShowConfirmPassword(false);
+    
+    // Reset form to original data
+    if (userData) {
+      setFormData({
+        first_name: userData.profile?.first_name || '',
+        middle_name: userData.profile?.middle_name || '',
+        last_name: userData.profile?.last_name || '',
+        suffix: userData.profile?.suffix || '',
+        email: userData.email || '',
+        current_password: '',
+        new_password: '',
+        new_password_confirmation: '',
+        profile_pic: null
+      });
+
+      // Reset profile picture preview
+      if (userData.profile?.profile_pic) {
+        setProfilePicPreview(`/storage/${userData.profile.profile_pic}`);
+      } else {
+        setProfilePicPreview(null);
+      }
+    }
+  };
+
+  const handleCancel = () => {
+    if (activeTab === 'profile') {
+      setIsEditing(false);
+    } else if (activeTab === 'password') {
+      setIsChangingPassword(false);
+    }
+    
     setError('');
     setSuccess('');
     setFieldErrors({});
@@ -260,6 +359,8 @@ const MyProfile = () => {
     }
   };
 
+
+
   if (isLoading) {
     return (
       <div className="my-profile__loading">
@@ -285,26 +386,24 @@ const MyProfile = () => {
       {/* Profile Picture Section */}
       <div className="my-profile__section">
         <h3 className="my-profile__section-title">Profile Picture</h3>
-        <div className="my-profile__picture-container">
-          <div className="my-profile__picture-preview">
-            <img
-              src={profilePicPreview || '/images/csp.png'}
-              alt="Profile picture"
-              className="my-profile__picture"
-            />
-          </div>
-          
+        <div className="my-profile__profile-pic-section">
+          <img 
+            src={profilePicPreview || '/images/csp.png'} 
+            alt="Profile" 
+            className="my-profile__profile-pic" 
+          />
           {isEditing && (
-            <div className="my-profile__picture-actions">
-              <label className="my-profile__file-label">
+            <div className="my-profile__profile-pic-actions">
+              <label className="my-profile__btn my-profile__btn--secondary my-profile__btn--small">
                 <Camera size={16} />
-                Change Picture
+                Change Photo
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleFileChange}
                   className="my-profile__file-input"
                   disabled={isSaving}
+                  style={{ display: 'none' }}
                 />
               </label>
               
@@ -343,18 +442,15 @@ const MyProfile = () => {
             <label className="my-profile__label">
               First Name <span className="required">*</span>
             </label>
-            {isEditing ? (
-              <input
-                type="text"
-                name="first_name"
-                value={formData.first_name}
-                onChange={handleInputChange}
-                className={`my-profile__input ${fieldErrors.first_name ? 'my-profile__input--error' : ''}`}
-                disabled={isSaving}
-              />
-            ) : (
-              <div className="my-profile__value">{userData.profile?.first_name || 'Not set'}</div>
-            )}
+            <input 
+              type="text" 
+              className={`my-profile__input ${fieldErrors.first_name ? 'my-profile__input--error' : ''}`}
+              name="first_name"
+              value={formData.first_name}
+              onChange={handleInputChange}
+              readOnly={!isEditing}
+              disabled={isSaving}
+            />
             {fieldErrors.first_name && (
               <span className="my-profile__field-error">{fieldErrors.first_name[0]}</span>
             )}
@@ -362,36 +458,30 @@ const MyProfile = () => {
 
           <div className="my-profile__form-group">
             <label className="my-profile__label">Middle Name</label>
-            {isEditing ? (
-              <input
-                type="text"
-                name="middle_name"
-                value={formData.middle_name}
-                onChange={handleInputChange}
-                className="my-profile__input"
-                disabled={isSaving}
-              />
-            ) : (
-              <div className="my-profile__value">{userData.profile?.middle_name || 'Not set'}</div>
-            )}
+            <input 
+              type="text" 
+              className="my-profile__input"
+              name="middle_name"
+              value={formData.middle_name}
+              onChange={handleInputChange}
+              readOnly={!isEditing}
+              disabled={isSaving}
+            />
           </div>
 
           <div className="my-profile__form-group">
             <label className="my-profile__label">
               Last Name <span className="required">*</span>
             </label>
-            {isEditing ? (
-              <input
-                type="text"
-                name="last_name"
-                value={formData.last_name}
-                onChange={handleInputChange}
-                className={`my-profile__input ${fieldErrors.last_name ? 'my-profile__input--error' : ''}`}
-                disabled={isSaving}
-              />
-            ) : (
-              <div className="my-profile__value">{userData.profile?.last_name || 'Not set'}</div>
-            )}
+            <input 
+              type="text" 
+              className={`my-profile__input ${fieldErrors.last_name ? 'my-profile__input--error' : ''}`}
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleInputChange}
+              readOnly={!isEditing}
+              disabled={isSaving}
+            />
             {fieldErrors.last_name && (
               <span className="my-profile__field-error">{fieldErrors.last_name[0]}</span>
             )}
@@ -399,55 +489,41 @@ const MyProfile = () => {
 
           <div className="my-profile__form-group">
             <label className="my-profile__label">Suffix</label>
-            {isEditing ? (
-              <input
-                type="text"
-                name="suffix"
-                value={formData.suffix}
-                onChange={handleInputChange}
-                className="my-profile__input"
-                placeholder="Jr., Sr., III, etc."
-                disabled={isSaving}
-              />
-            ) : (
-              <div className="my-profile__value">{userData.profile?.suffix || 'Not set'}</div>
-            )}
+            <input 
+              type="text" 
+              className="my-profile__input"
+              name="suffix"
+              value={formData.suffix}
+              onChange={handleInputChange}
+              placeholder="Jr., Sr., III, etc."
+              readOnly={!isEditing}
+              disabled={isSaving}
+            />
           </div>
 
-          <div className="my-profile__form-group my-profile__form-group--full">
-            <label className="my-profile__label">
-              <Mail size={16} />
-              Email Address
-            </label>
-            <div className="my-profile__value my-profile__value--readonly">
-              {userData.email}
-              <span className="my-profile__readonly-note">Email cannot be changed</span>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Account Information */}
       <div className="my-profile__section">
         <h3 className="my-profile__section-title">Account Information</h3>
-        <div className="my-profile__info-grid">
-          <div className="my-profile__info-item">
-            <span className="my-profile__info-label">Role</span>
-            <span className="my-profile__info-value my-profile__role-badge">
-              {userData.role?.role_name || 'No Role'}
-            </span>
+        <div className="my-profile__form-grid">
+          <div className="my-profile__form-group">
+            <label className="my-profile__label">Email</label>
+            <input 
+              type="email" 
+              className="my-profile__input" 
+              value={userData.email || ''}
+              readOnly 
+            />
           </div>
-          <div className="my-profile__info-item">
-            <span className="my-profile__info-label">Member Since</span>
-            <span className="my-profile__info-value">
-              {new Date(userData.created_at).toLocaleDateString()}
-            </span>
-          </div>
-          <div className="my-profile__info-item">
-            <span className="my-profile__info-label">Last Updated</span>
-            <span className="my-profile__info-value">
-              {new Date(userData.updated_at).toLocaleDateString()}
-            </span>
+          <div className="my-profile__form-group">
+            <label className="my-profile__label">Role</label>
+            <input 
+              type="text" 
+              className="my-profile__input" 
+              value={userData.role?.role_name || 'No Role'}
+              readOnly 
+            />
           </div>
         </div>
       </div>
@@ -489,11 +565,19 @@ const MyProfile = () => {
   const renderPasswordTab = () => (
     <div className="my-profile__container">
       <div className="my-profile__section">
-        <h3 className="my-profile__section-title">Change Password</h3>
-        <div className="my-profile__password-form">
+        <h3 className="my-profile__section-title">
+          {!isChangingPassword ? 'Password Security' : 'Change Password'}
+        </h3>
+        {!isChangingPassword && (
+          <p className="my-profile__section-description">
+            Keep your account secure by using a strong password.
+          </p>
+        )}
+        
+        <div className="my-profile__form-grid">
           <div className="my-profile__form-group">
             <label className="my-profile__label">
-              Current Password <span className="required">*</span>
+              Current Password {isChangingPassword && <span className="required">*</span>}
             </label>
             <div className="my-profile__password-input-wrapper">
               <input
@@ -502,26 +586,27 @@ const MyProfile = () => {
                 value={formData.current_password}
                 onChange={handleInputChange}
                 className={`my-profile__input ${fieldErrors.current_password ? 'my-profile__input--error' : ''}`}
-                disabled={isSaving}
+                placeholder="Enter current password"
+                disabled={!isChangingPassword || isSaving}
+                readOnly={!isChangingPassword}
               />
               <button
                 type="button"
                 className="my-profile__password-toggle"
                 onClick={toggleCurrentPasswordVisibility}
-                disabled={isSaving}
-                aria-label={showCurrentPassword ? "Hide current password" : "Show current password"}
+                disabled={!isChangingPassword || isSaving}
+                aria-label={showCurrentPassword ? "Hide password" : "Show password"}
               >
-                {showCurrentPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showCurrentPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
             {fieldErrors.current_password && (
               <span className="my-profile__field-error">{fieldErrors.current_password[0]}</span>
             )}
           </div>
-
           <div className="my-profile__form-group">
             <label className="my-profile__label">
-              New Password <span className="required">*</span>
+              New Password {isChangingPassword && <span className="required">*</span>}
             </label>
             <div className="my-profile__password-input-wrapper">
               <input
@@ -530,26 +615,27 @@ const MyProfile = () => {
                 value={formData.new_password}
                 onChange={handleInputChange}
                 className={`my-profile__input ${fieldErrors.new_password ? 'my-profile__input--error' : ''}`}
-                disabled={isSaving}
+                placeholder="Enter new password"
+                disabled={!isChangingPassword || isSaving}
+                readOnly={!isChangingPassword}
               />
               <button
                 type="button"
                 className="my-profile__password-toggle"
                 onClick={toggleNewPasswordVisibility}
-                disabled={isSaving}
-                aria-label={showNewPassword ? "Hide new password" : "Show new password"}
+                disabled={!isChangingPassword || isSaving}
+                aria-label={showNewPassword ? "Hide password" : "Show password"}
               >
-                {showNewPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
             {fieldErrors.new_password && (
               <span className="my-profile__field-error">{fieldErrors.new_password[0]}</span>
             )}
           </div>
-
           <div className="my-profile__form-group">
             <label className="my-profile__label">
-              Confirm New Password <span className="required">*</span>
+              Confirm New Password {isChangingPassword && <span className="required">*</span>}
             </label>
             <div className="my-profile__password-input-wrapper">
               <input
@@ -558,16 +644,18 @@ const MyProfile = () => {
                 value={formData.new_password_confirmation}
                 onChange={handleInputChange}
                 className={`my-profile__input ${fieldErrors.new_password_confirmation ? 'my-profile__input--error' : ''}`}
-                disabled={isSaving}
+                placeholder="Confirm new password"
+                disabled={!isChangingPassword || isSaving}
+                readOnly={!isChangingPassword}
               />
               <button
                 type="button"
                 className="my-profile__password-toggle"
                 onClick={toggleConfirmPasswordVisibility}
-                disabled={isSaving}
-                aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
+                disabled={!isChangingPassword || isSaving}
+                aria-label={showConfirmPassword ? "Hide password" : "Show password"}
               >
-                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
             {fieldErrors.new_password_confirmation && (
@@ -578,16 +666,36 @@ const MyProfile = () => {
       </div>
 
       {/* Action Buttons for Password Tab */}
-      <div className="my-profile__tab-actions">
-        <button 
-          className="my-profile__btn my-profile__btn--primary"
-          onClick={handleSave}
-          disabled={isSaving}
-        >
-          <Save size={16} />
-          {isSaving ? 'Updating Password...' : 'Update Password'}
-        </button>
-      </div>
+      {!isChangingPassword ? (
+        <div className="my-profile__tab-actions">
+          <button 
+            className="my-profile__btn my-profile__btn--primary"
+            onClick={() => setIsChangingPassword(true)}
+          >
+            <Lock size={16} />
+            Change Password
+          </button>
+        </div>
+      ) : (
+        <div className="my-profile__tab-actions">
+          <button 
+            className="my-profile__btn my-profile__btn--secondary"
+            onClick={handleCancel}
+            disabled={isSaving}
+          >
+            <X size={16} />
+            Cancel
+          </button>
+          <button 
+            className="my-profile__btn my-profile__btn--primary"
+            onClick={handleSave}
+            disabled={isSaving}
+          >
+            <Save size={16} />
+            {isSaving ? 'Updating Password...' : 'Update Password'}
+          </button>
+        </div>
+      )}
     </div>
   );
 
@@ -595,7 +703,7 @@ const MyProfile = () => {
     <div className="my-profile">
       {/* Header with title matching User Management */}
       <div className="my-profile__header">
-        <h1 className="my-profile__title">My Profile</h1>
+        <h1 className="my-profile__title">Settings</h1>
       </div>
 
       {isLoading && (
@@ -620,16 +728,14 @@ const MyProfile = () => {
           <div className="my-profile__tab-wrapper">
             <button
               className={`my-profile__tab ${activeTab === 'profile' ? 'my-profile__tab--active' : ''}`}
-              onClick={() => setActiveTab('profile')}
+              onClick={() => handleTabChange('profile')}
             >
-              <User size={16} />
               My Profile
             </button>
             <button
               className={`my-profile__tab ${activeTab === 'password' ? 'my-profile__tab--active' : ''}`}
-              onClick={() => setActiveTab('password')}
+              onClick={() => handleTabChange('password')}
             >
-              <Lock size={16} />
               My Password
             </button>
           </div>
@@ -657,4 +763,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default Settings;

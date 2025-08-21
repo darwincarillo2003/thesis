@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Bell, ChevronDown, LogOut, User, Settings } from 'lucide-react';
 
-const CoaHeader = ({ toggleSidebar, onLogout, userData }) => {
+const CoaHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -27,6 +27,20 @@ const CoaHeader = ({ toggleSidebar, onLogout, userData }) => {
     }
   };
 
+  const handleProfileClick = () => {
+    if (typeof onNavigate === 'function') {
+      onNavigate('settings');
+    }
+    setIsDropdownOpen(false);
+  };
+
+  const handleSettingsClick = () => {
+    if (typeof onNavigate === 'function') {
+      onNavigate('settings');
+    }
+    setIsDropdownOpen(false);
+  };
+
   return (
     <header className="coa-header">
       <div className="coa-header__hamburger" onClick={toggleSidebar}>
@@ -35,14 +49,22 @@ const CoaHeader = ({ toggleSidebar, onLogout, userData }) => {
 
       <div className="coa-header__actions">
         <div className="coa-header__notification">
-          <Bell size={20} />
+          <Bell />
         </div>
 
         <div className="coa-header__profile" onClick={toggleDropdown} ref={dropdownRef}>
           <img
-            src="/images/csp.png"
+            src={
+              userData?.profile?.profile_pic 
+                ? `/storage/${userData.profile.profile_pic}` 
+                : "/images/csp.png"
+            }
             alt={userData?.profile?.first_name || "User"}
             className="coa-header__profile-picture"
+            onError={(e) => {
+              // If the profile picture fails to load, use the default
+              e.target.src = "/images/csp.png";
+            }}
           />
           <span className="coa-header__user-name">
             {userData ? `${userData.profile?.first_name || ''} ${userData.profile?.last_name || ''}` : 'Loading...'}
@@ -53,12 +75,12 @@ const CoaHeader = ({ toggleSidebar, onLogout, userData }) => {
           />
           {isDropdownOpen && (
             <div className="coa-header__dropdown-menu">
-              <div className="coa-header__dropdown-item">
+              <button className="coa-header__dropdown-item" onClick={handleProfileClick}>
                 <User size={16} /> Profile
-              </div>
-              <div className="coa-header__dropdown-item">
+              </button>
+              <button className="coa-header__dropdown-item" onClick={handleSettingsClick}>
                 <Settings size={16} /> Settings
-              </div>
+              </button>
               <div className="coa-header__dropdown-separator"></div>
               <button className="coa-header__dropdown-item" onClick={handleLogout}>
                 <LogOut size={16} /> Logout

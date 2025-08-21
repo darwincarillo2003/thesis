@@ -619,10 +619,22 @@ const FormMng = () => {
     </div>
   );
 
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'forms':
+        return renderFormsTable();
+      case 'submissions':
+        return renderSubmissionsTable();
+      case 'analytics':
+        return renderAnalyticsTable();
+      default:
+        return renderFormsTable();
+    }
+  };
+
   const renderFormsTable = () => (
     <div className="form-mng__table-container">
       <div className="form-mng__table-header">
-        <h2 className="form-mng__section-title">Form Management</h2>
         <div className="form-mng__table-actions">
           <div className="form-mng__search-bar">
             <Search size={18} className="form-mng__search-icon" />
@@ -738,6 +750,43 @@ const FormMng = () => {
     </div>
   );
 
+  const renderSubmissionsTable = () => (
+    <div className="form-mng__table-container">
+      <div className="form-mng__table-header">
+        <div className="form-mng__table-actions">
+          <div className="form-mng__search-bar">
+            <Search size={18} className="form-mng__search-icon" />
+            <input
+              type="text"
+              placeholder="Search submissions..."
+              className="form-mng__search-input"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="form-mng__empty-state">
+        <FileText size={48} />
+        <h3>Form Submissions</h3>
+        <p>View and manage form submissions here.</p>
+      </div>
+    </div>
+  );
+
+  const renderAnalyticsTable = () => (
+    <div className="form-mng__table-container">
+      <div className="form-mng__table-header">
+        <div className="form-mng__table-actions">
+          <h3>Form Analytics</h3>
+        </div>
+      </div>
+      <div className="form-mng__empty-state">
+        <Users size={48} />
+        <h3>Analytics & Reports</h3>
+        <p>View form performance and analytics here.</p>
+      </div>
+    </div>
+  );
+
   if (showFormBuilder) {
     return (
       <div className="form-mng">
@@ -748,15 +797,50 @@ const FormMng = () => {
 
   return (
     <div className="form-mng">
+      {/* Header */}
+      <div className="form-mng__header">
+        <h1 className="form-mng__title">Form Management</h1>
+      </div>
+
+      {/* Tab Wrapper matching User Management folder style */}
+      <div className="form-mng__tab-wrapper">
+        <button
+          className={`form-mng__tab ${activeTab === 'forms' ? 'form-mng__tab--active' : ''}`}
+          onClick={() => setActiveTab('forms')}
+        >
+          <FileText size={16} />
+          Forms
+        </button>
+        <button
+          className={`form-mng__tab ${activeTab === 'submissions' ? 'form-mng__tab--active' : ''}`}
+          onClick={() => setActiveTab('submissions')}
+        >
+          <Upload size={16} />
+          Submissions
+        </button>
+        <button
+          className={`form-mng__tab ${activeTab === 'analytics' ? 'form-mng__tab--active' : ''}`}
+          onClick={() => setActiveTab('analytics')}
+        >
+          <Users size={16} />
+          Analytics
+        </button>
+      </div>
+
+      {/* Error Messages */}
       {(error || apiError) && (
         <div className="form-mng__error">
           {apiError || error}
         </div>
       )}
 
-      {renderFormsTable()}
+      {/* Tab Content */}
+      <div className="form-mng__content">
+        {renderTabContent()}
+      </div>
 
-      {selectedForms.length > 0 && (
+      {/* Bulk Actions for Forms Tab */}
+      {activeTab === 'forms' && selectedForms.length > 0 && (
         <div className="form-mng__bulk-actions">
           <span>{selectedForms.length} form(s) selected</span>
           <button className="form-mng__btn form-mng__btn--danger">

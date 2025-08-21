@@ -171,7 +171,9 @@
     flex: 1 1 auto;
     padding: 20px;
     margin-top: 60px;
-    background: #f4f5f7;
+    background: #f4f5f7 url('/images/bgnd.svg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
     width: 100%;
     overflow-y: auto;
     min-height: calc(100vh - 60px);

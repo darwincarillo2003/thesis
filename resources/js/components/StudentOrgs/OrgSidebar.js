@@ -77,19 +77,6 @@ const OrgSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout, activeSection
               <span className="org-sidebar__label">My Reports</span>
             </div>
           </li>
-          
-          {/* Separator */}
-          <li className="org-sidebar__separator"></li>
-          
-          <li className="org-sidebar__item">
-            <div
-              className={`org-sidebar__link ${activeItem === 'my-profile' ? 'active' : ''}`}
-              onClick={() => handleItemClick('my-profile')}
-            >
-              <User size={20} className="org-sidebar__icon" />
-              <span className="org-sidebar__label">My Profile</span>
-            </div>
-          </li>
           <li className="org-sidebar__item">
             <div
               className={`org-sidebar__link ${activeItem === 'settings' ? 'active' : ''}`}
@@ -101,12 +88,6 @@ const OrgSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout, activeSection
           </li>
         </ul>
       </nav>
-      <div className="org-sidebar__footer">
-        <button className="org-sidebar__logout-btn" onClick={handleLogout}>
-          <LogOut size={18} className="org-sidebar__icon" />
-          Logout
-        </button>
-      </div>
     </div>
   );
 };

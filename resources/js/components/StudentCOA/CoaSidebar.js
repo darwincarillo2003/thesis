@@ -3,6 +3,7 @@ import {
   Home,
   ClipboardCheck,
   CheckSquare,
+  Settings,
   LogOut
 } from 'lucide-react';
 
@@ -39,7 +40,7 @@ const CoaSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
     <div className={`coa-sidebar ${isOpen ? 'open' : 'closed'}`}>
       <nav className="coa-sidebar__nav">
         <div className="coa-sidebar__logo">
-          <img src="/images/coa.svg" alt="Commission on Audit" className="coa-sidebar__logo-image" />
+          <img src="/images/coalogo.svg" alt="Commission on Audit" className="coa-sidebar__logo-image" />
         </div>
         <ul className="coa-sidebar__list">
           <li className="coa-sidebar__item">
@@ -60,28 +61,27 @@ const CoaSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
               <span className="coa-sidebar__label">Review Reports</span>
             </div>
           </li>
+          
+          {/* Separator */}
+          <li className="coa-sidebar__separator"></li>
+          
           <li className="coa-sidebar__item">
-            <div 
-              className={`coa-sidebar__link ${activeItem === 'approved-reports' ? 'active' : ''}`} 
-              onClick={() => handleItemClick('approved-reports')}
+            <div
+              className={`coa-sidebar__link ${activeItem === 'settings' ? 'active' : ''}`}
+              onClick={() => handleItemClick('settings')}
             >
-              <CheckSquare size={20} className="coa-sidebar__icon" />
-              <span className="coa-sidebar__label">Approved Reports</span>
+              <Settings size={20} className="coa-sidebar__icon" />
+              <span className="coa-sidebar__label">Settings</span>
             </div>
           </li>
         </ul>
       </nav>
-      <div className="coa-sidebar__footer">
-        <button className="coa-sidebar__logout-btn" onClick={handleLogout}>
-          <LogOut size={18} className="coa-sidebar__icon" />
-          Logout
-        </button>
-      </div>
     </div>
   );
 };
 
 export default CoaSidebar;
+
 
 
 

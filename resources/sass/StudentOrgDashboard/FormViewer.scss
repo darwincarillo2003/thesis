@@ -1,0 +1,524 @@
+// FormViewer.scss
+@import '../variables';
+
+.form-viewer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 20px;
+}
+
+.form-viewer {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 2px solid #0036AF;
+    background: linear-gradient(135deg, #0036AF 0%, #004dd9 100%);
+    color: white;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &__close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    color: white;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+  }
+
+  &__error {
+    padding: 40px;
+    text-align: center;
+    color: #666;
+
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--secondary {
+      background-color: #6c757d;
+      color: white;
+
+      &:hover {
+        background-color: darken(#6c757d, 10%);
+      }
+    }
+
+    &--primary {
+      background-color: #0036AF;
+      color: white;
+
+      &:hover {
+        background-color: darken(#0036AF, 10%);
+      }
+    }
+  }
+}
+
+// Common Form Styles
+.petty-cash-voucher,
+.cash-voucher,
+.acknowledgment-form,
+.communication-expense-form,
+.transportation-form,
+.reimbursement-form,
+.travel-form {
+  padding: 24px;
+  
+  .form-header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e0e0e0;
+  }
+
+  .form-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0036AF;
+    margin: 0;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+
+    &.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #333;
+      font-size: 14px;
+
+      .required {
+        color: #dc3545;
+        margin-left: 2px;
+      }
+    }
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #0036AF;
+      box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.2);
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .date-input-wrapper {
+    position: relative;
+
+    .date-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      pointer-events: none;
+    }
+  }
+
+  .signatures-section {
+    margin: 24px 0;
+  }
+
+  .signature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  .signature-group {
+    label {
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #333;
+    }
+  }
+
+  .signature-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #0036AF;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .form-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--secondary {
+      background-color: #6c757d;
+      color: white;
+
+      &:hover {
+        background-color: darken(#6c757d, 10%);
+      }
+    }
+
+    &--primary {
+      background-color: #0036AF;
+      color: white;
+
+      &:hover {
+        background-color: darken(#0036AF, 10%);
+      }
+    }
+  }
+}
+
+// Petty Cash Voucher Specific Styles
+.petty-cash-voucher {
+  .petty-cash-status {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
+  .status-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0036AF;
+    margin-bottom: 12px;
+  }
+
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  .status-item {
+    label {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #666;
+    }
+  }
+
+  .status-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0036AF;
+  }
+
+  .status-display {
+    padding: 8px 10px;
+    background-color: white;
+    border: 1px solid #28a745;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #28a745;
+    text-align: center;
+  }
+
+  .particulars-section {
+    margin: 24px 0;
+  }
+
+  .particulars-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    label {
+      font-weight: 500;
+      color: #333;
+
+      .required {
+        color: #dc3545;
+      }
+    }
+  }
+
+  .add-item-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: darken(#28a745, 10%);
+    }
+  }
+
+  .particulars-table {
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .table-header {
+    display: grid;
+    grid-template-columns: 1fr 200px 60px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: 1fr 200px 60px;
+    border-bottom: 1px solid #e9ecef;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .table-footer {
+    display: grid;
+    grid-template-columns: 1fr 200px 60px;
+    background-color: #f8f9fa;
+    border-top: 2px solid #0036AF;
+  }
+
+  .table-cell {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+
+    &.header-cell {
+      font-weight: 600;
+      color: #333;
+      background-color: #f8f9fa;
+      border-right: 1px solid #dee2e6;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+
+    &.total-label {
+      font-weight: 600;
+      justify-content: flex-end;
+      color: #0036AF;
+    }
+
+    &.total-amount {
+      font-weight: 600;
+      color: #0036AF;
+      font-size: 16px;
+    }
+  }
+
+  .table-input {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+
+    &:focus {
+      outline: none;
+      border-color: #0036AF;
+    }
+  }
+
+  .remove-item-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background-color: darken(#dc3545, 10%);
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .form-viewer-overlay {
+    padding: 10px;
+  }
+
+  .form-viewer {
+    max-height: 95vh;
+
+    &__header {
+      padding: 16px 20px;
+    }
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__content {
+      padding: 0;
+    }
+  }
+
+  .petty-cash-voucher,
+  .cash-voucher,
+  .acknowledgment-form,
+  .communication-expense-form,
+  .transportation-form,
+  .reimbursement-form,
+  .travel-form {
+    padding: 16px;
+
+    .form-actions {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-btn {
+      width: 100%;
+      padding: 12px;
+    }
+  }
+
+  .petty-cash-voucher {
+    .table-header,
+    .table-row,
+    .table-footer {
+      grid-template-columns: 1fr 120px 50px;
+    }
+
+    .table-cell {
+      padding: 8px 6px;
+      font-size: 12px;
+    }
+
+    .particulars-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+}
+

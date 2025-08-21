@@ -4,14 +4,14 @@ import OrgSidebar from './OrgSidebar';
 import OrgHeader from './OrgHeader';
 import Dashboard from './Dashboard';
 import SubmitForm from './SubmitForm';
-import MyProfile from './MyProfile';
+import MyReports from './MyReports';
 import Settings from './Settings';
 import '../../../sass/StudentOrgDashboard/OrgDashboard.scss';
 import '../../../sass/StudentOrgDashboard/OrgSidebar.scss';
 import '../../../sass/StudentOrgDashboard/OrgHeader.scss';
 import '../../../sass/StudentOrgDashboard/Dashboard.scss';
 import '../../../sass/StudentOrgDashboard/SubmitForm.scss';
-import '../../../sass/StudentOrgDashboard/MyProfile.scss';
+import '../../../sass/StudentOrgDashboard/MyReports.scss';
 import '../../../sass/StudentOrgDashboard/Settings.scss';
 
 const OrgDashboard = ({ onLogout }) => {
@@ -130,9 +130,7 @@ const OrgDashboard = ({ onLogout }) => {
       case 'submit-report':
         return <SubmitForm userData={userData} />;
       case 'my-reports':
-        return <div>My Reports Page (Coming Soon)</div>;
-      case 'my-profile':
-        return <MyProfile />;
+        return <MyReports />;
       case 'settings':
         return <Settings />;
       default:
