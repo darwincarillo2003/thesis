@@ -18,11 +18,14 @@ class SampleFormsSeeder extends Seeder
         $this->createTransportationExpenseForm();
         $this->createReimbursementForm();
         $this->createPayrollForm();
+        $this->createCashFlowStatementForm();
     }
 
     private function createPettyCashVoucherForm()
     {
-        $form = Form::create([
+        $form = Form::updateOrCreate(
+            ['form_code' => 'FORM-01'],
+            [
             'form_code' => 'FORM-01',
             'form_name' => 'Petty Cash Voucher',
             'description' => 'Form for petty cash disbursement requests',
@@ -33,7 +36,8 @@ class SampleFormsSeeder extends Seeder
                 'auto_calculate_totals' => true
             ],
             'created_by' => 1
-        ]);
+            ]
+        );
 
         // Create fields for Petty Cash Voucher
         $fields = [
@@ -103,6 +107,9 @@ class SampleFormsSeeder extends Seeder
             ]
         ];
 
+        // Delete existing fields for this form and recreate
+        FormField::where('form_id', $form->form_id)->delete();
+        
         foreach ($fields as $index => $fieldData) {
             FormField::create(array_merge($fieldData, [
                 'form_id' => $form->form_id
@@ -698,7 +705,168 @@ class SampleFormsSeeder extends Seeder
             ]));
         }
     }
+
+    private function createCashFlowStatementForm()
+    {
+        $form = Form::updateOrCreate(
+            ['form_code' => 'FORM-08'],
+            [
+            'form_code' => 'FORM-08',
+            'form_name' => 'Statement of Cash Flows',
+            'description' => 'Monthly statement of cash flows for student organizations',
+            'is_active' => true,
+            'settings' => [
+                'auto_calculate_totals' => true,
+                'monthly_submission' => true,
+                'requires_supporting_docs' => true
+            ],
+            'created_by' => 1
+            ]
+        );
+
+        $fields = [
+            [
+                'field_name' => 'organization_name',
+                'field_label' => 'Organization Name',
+                'field_type' => 'text',
+                'is_required' => true,
+                'field_order' => 1,
+                'placeholder' => 'Enter organization name'
+            ],
+            [
+                'field_name' => 'academic_year',
+                'field_label' => 'Academic Year',
+                'field_type' => 'text',
+                'is_required' => true,
+                'field_order' => 2,
+                'placeholder' => 'YYYY-YYYY'
+            ],
+            [
+                'field_name' => 'month',
+                'field_label' => 'For the Month of',
+                'field_type' => 'select',
+                'is_required' => true,
+                'field_order' => 3,
+                'field_options' => [
+                    'options' => [
+                        'January', 'February', 'March', 'April', 'May', 'June',
+                        'July', 'August', 'September', 'October', 'November', 'December'
+                    ]
+                ]
+            ],
+            [
+                'field_name' => 'cash_inflows',
+                'field_label' => 'Cash Inflows',
+                'field_type' => 'json',
+                'is_required' => true,
+                'field_order' => 4,
+                'field_options' => [
+                    'schema' => [
+                        'beginningCashInBank' => ['month' => 'string', 'amount' => 'decimal'],
+                        'beginningCashOnHand' => ['month' => 'string', 'amount' => 'decimal'],
+                        'cashReceiptSources' => [
+                            'type' => 'array',
+                            'items' => ['description' => 'string', 'amount' => 'decimal']
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'field_name' => 'cash_outflows',
+                'field_label' => 'Cash Outflows',
+                'field_type' => 'json',
+                'is_required' => true,
+                'field_order' => 5,
+                'field_options' => [
+                    'schema' => [
+                        'organizationAllocations' => [
+                            'type' => 'array',
+                            'items' => ['date' => 'date', 'details' => 'string', 'invoiceNumber' => 'string', 'amount' => 'decimal']
+                        ],
+                        'otherDisbursements' => [
+                            'type' => 'array',
+                            'items' => ['date' => 'date', 'details' => 'string', 'invoiceNumber' => 'string', 'amount' => 'decimal']
+                        ],
+                        'contingencyFund' => [
+                            'type' => 'array',
+                            'items' => ['date' => 'date', 'details' => 'string', 'invoiceNumber' => 'string', 'amount' => 'decimal']
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'field_name' => 'ending_cash_balance',
+                'field_label' => 'Ending Cash Balance',
+                'field_type' => 'json',
+                'is_required' => true,
+                'field_order' => 6,
+                'field_options' => [
+                    'schema' => [
+                        'cashInBank' => 'decimal',
+                        'cashOnHand' => 'decimal'
+                    ]
+                ]
+            ],
+            [
+                'field_name' => 'signatories',
+                'field_label' => 'Signatories',
+                'field_type' => 'json',
+                'is_required' => true,
+                'field_order' => 7,
+                'field_options' => [
+                    'schema' => [
+                        'treasurer' => 'string',
+                        'auditor' => 'string',
+                        'president' => 'string',
+                        'assignedAuditor' => 'string'
+                    ]
+                ]
+            ],
+            [
+                'field_name' => 'supporting_documents',
+                'field_label' => 'Supporting Documents',
+                'field_type' => 'file',
+                'is_required' => true,
+                'field_order' => 8,
+                'field_options' => [
+                    'accept' => '.pdf,.jpg,.jpeg,.png,.doc,.docx',
+                    'multiple' => true,
+                    'max_size' => 10240
+                ]
+            ]
+        ];
+
+        foreach ($fields as $fieldData) {
+            FormField::create(array_merge($fieldData, [
+                'form_id' => $form->form_id
+            ]));
+        }
+
+        // Create workflow: Treasurer -> COA (skipping Auditor for now)
+        $workflowSteps = [
+            [
+                'role_name' => 'treasurer',
+                'step_order' => 1,
+                'is_required' => true,
+                'step_description' => 'Treasurer submits the cash flow statement'
+            ],
+            [
+                'role_name' => 'coa',
+                'step_order' => 2,
+                'is_required' => true,
+                'step_description' => 'COA reviews and validates the cash flow statement'
+            ]
+        ];
+
+        foreach ($workflowSteps as $step) {
+            FormWorkflow::create(array_merge($step, [
+                'form_id' => $form->form_id
+            ]));
+        }
+    }
 }
+
+
 
 
 

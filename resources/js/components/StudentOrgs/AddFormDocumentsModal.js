@@ -80,12 +80,18 @@ const AddFormDocumentsModal = ({ isOpen, onClose, onSave }) => {
 
   const handleSave = () => {
     const formData = {
-      selectedForms: selectedForms.map(formId => 
-        availableForms.find(form => form.id === formId)
-      ),
-      supportingDocuments: supportingDocuments
+      selectedForms: selectedForms.map(formId => {
+        const formInfo = availableForms.find(form => form.id === formId);
+        return {
+          ...formInfo,
+          filledData: completedForms[formId] || null // Include the filled form data
+        };
+      }),
+      supportingDocuments: supportingDocuments,
+      completedForms: completedForms // Also include all completed forms data
     };
     
+    console.log('Saving form data with completed forms:', formData);
     onSave(formData);
     handleClose();
   };

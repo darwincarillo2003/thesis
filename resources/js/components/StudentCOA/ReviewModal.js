@@ -1,20 +1,80 @@
 import React, { useState } from 'react';
 import { X, Check, Flag, AlertCircle, FileText, Download, Eye } from 'lucide-react';
+import SubmittedFormViewer from './SubmittedFormViewer';
 
-const ReviewModal = ({ isOpen, onClose, report }) => {
+const ReviewModal = ({ isOpen, onClose, report, onReviewComplete }) => {
   const [reviewDecision, setReviewDecision] = useState('');
   const [comments, setComments] = useState('');
   const [activeTab, setActiveTab] = useState('form');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const [isFormViewerOpen, setIsFormViewerOpen] = useState(false);
+  const [selectedFormId, setSelectedFormId] = useState(null);
 
-  const handleSubmit = (e) => {
+  const getAuthToken = () => {
+    return localStorage.getItem('token');
+  };
+
+  const handleViewForm = (formId) => {
+    setSelectedFormId(formId);
+    setIsFormViewerOpen(true);
+  };
+
+  const handleCloseFormViewer = () => {
+    setIsFormViewerOpen(false);
+    setSelectedFormId(null);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle the review submission
-    console.log('Review submitted:', {
-      decision: reviewDecision,
-      comments,
-      reportId: report?.id
-    });
-    onClose();
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      let endpoint;
+      let requestBody = { comments };
+
+      // Determine the endpoint based on decision
+      switch (reviewDecision) {
+        case 'approve':
+          endpoint = `/api/cashflow/${report.id}/approve`;
+          break;
+        case 'flag':
+        case 'unliquidated':
+          endpoint = `/api/cashflow/${report.id}/reject`;
+          break;
+        default:
+          endpoint = `/api/cashflow/${report.id}/return`;
+          requestBody.comments = comments || 'Please review and resubmit';
+          break;
+      }
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${getAuthToken()}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Notify parent component of successful review
+        if (onReviewComplete) {
+          onReviewComplete(report.id, reviewDecision, comments);
+        }
+        onClose();
+      } else {
+        setError(result.message || 'Failed to submit review');
+      }
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      setError('Network error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const calculateTotals = (formData) => {
@@ -113,7 +173,7 @@ const ReviewModal = ({ isOpen, onClose, report }) => {
                     onClick={() => setActiveTab('documents')}
                   >
                     <Download size={16} />
-                    Documents ({report.documents?.length || 0})
+                    Documents ({(report.documents?.length || 0) + (report.formData?.attached_forms?.length || 0)})
                   </button>
                   <button 
                     className={`review-modal__tab ${activeTab === 'review' ? 'active' : ''}`}
@@ -295,42 +355,94 @@ const ReviewModal = ({ isOpen, onClose, report }) => {
 
                   {activeTab === 'documents' && (
                     <div className="documents-viewer">
-                      <h4>Supporting Documents</h4>
-                      {report.documents && report.documents.length > 0 ? (
-                        <div className="documents-list">
-                          {report.documents.map((doc, index) => (
-                            <div key={index} className="document-item">
-                              <div className="document-info">
-                                <div className="document-icon">
-                                  {getDocumentIcon(doc.type)}
-                                </div>
-                                <div className="document-details">
-                                  <div className="document-name">{doc.name}</div>
-                                  <div className="document-meta">
-                                    <span className="document-type">{doc.type.replace('_', ' ').toUpperCase()}</span>
-                                    <span className="document-size">{doc.size}</span>
+                      {/* Attached Forms Section */}
+                      {report.formData?.attached_forms && report.formData.attached_forms.length > 0 && (
+                        <div className="attached-forms-section">
+                          <h4>Attached Forms</h4>
+                          <div className="documents-list">
+                            {report.formData.attached_forms.map((form, index) => (
+                              <div key={`form-${index}`} className="document-item">
+                                <div className="document-info">
+                                  <div className="document-icon">
+                                    <FileText size={20} />
+                                  </div>
+                                  <div className="document-details">
+                                    <div className="document-name">{form.name || form.id}</div>
+                                    <div className="document-meta">
+                                      <span className="document-type">FORM REFERENCE</span>
+                                      <span className="document-id">{form.id}</span>
+                                    </div>
+                                    {form.description && (
+                                      <div className="document-description">{form.description}</div>
+                                    )}
                                   </div>
                                 </div>
+                                <div className="document-actions">
+                                  <button 
+                                    className="document-btn document-btn--view" 
+                                    title="View Form"
+                                    onClick={() => handleViewForm(form.id)}
+                                  >
+                                    <Eye size={14} />
+                                  </button>
+                                </div>
                               </div>
-                              <div className="document-actions">
-                                <button className="document-btn document-btn--view" title="View Document">
-                                  <Eye size={14} />
-                                </button>
-                                <button className="document-btn document-btn--download" title="Download Document">
-                                  <Download size={14} />
-                                </button>
-                              </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
-                      ) : (
-                        <p className="no-documents">No documents attached</p>
+                      )}
+
+                      {/* Supporting Documents Section */}
+                      <div className="supporting-documents-section">
+                        <h4>Supporting Documents</h4>
+                        {report.documents && report.documents.length > 0 ? (
+                          <div className="documents-list">
+                            {report.documents.map((doc, index) => (
+                              <div key={`doc-${index}`} className="document-item">
+                                <div className="document-info">
+                                  <div className="document-icon">
+                                    {getDocumentIcon(doc.type)}
+                                  </div>
+                                  <div className="document-details">
+                                    <div className="document-name">{doc.name}</div>
+                                    <div className="document-meta">
+                                      <span className="document-type">{doc.type.replace('_', ' ').toUpperCase()}</span>
+                                      <span className="document-size">{doc.size}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="document-actions">
+                                  <button className="document-btn document-btn--view" title="View Document">
+                                    <Eye size={14} />
+                                  </button>
+                                  <button className="document-btn document-btn--download" title="Download Document">
+                                    <Download size={14} />
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="no-documents">No supporting documents attached</p>
+                        )}
+                      </div>
+
+                      {/* Show message if no documents at all */}
+                      {(!report.formData?.attached_forms || report.formData.attached_forms.length === 0) && 
+                       (!report.documents || report.documents.length === 0) && (
+                        <p className="no-documents">No documents or forms attached</p>
                       )}
                     </div>
                   )}
 
                   {activeTab === 'review' && (
                     <form onSubmit={handleSubmit} className="review-modal__form">
+                      {error && (
+                        <div className="review-modal__error">
+                          <p>{error}</p>
+                        </div>
+                      )}
+                      
                       <div className="review-modal__decision-group">
                         <label className="review-modal__label">Review Decision</label>
                         <div className="review-modal__buttons">
@@ -338,6 +450,7 @@ const ReviewModal = ({ isOpen, onClose, report }) => {
                             type="button"
                             className={`decision-btn decision-btn--approve ${reviewDecision === 'approve' ? 'active' : ''}`}
                             onClick={() => setReviewDecision('approve')}
+                            disabled={isSubmitting}
                           >
                             <Check size={18} />
                             Approve
@@ -346,6 +459,7 @@ const ReviewModal = ({ isOpen, onClose, report }) => {
                             type="button"
                             className={`decision-btn decision-btn--flag ${reviewDecision === 'flag' ? 'active' : ''}`}
                             onClick={() => setReviewDecision('flag')}
+                            disabled={isSubmitting}
                           >
                             <Flag size={18} />
                             Flag for Review
@@ -354,6 +468,7 @@ const ReviewModal = ({ isOpen, onClose, report }) => {
                             type="button"
                             className={`decision-btn decision-btn--unliquidated ${reviewDecision === 'unliquidated' ? 'active' : ''}`}
                             onClick={() => setReviewDecision('unliquidated')}
+                            disabled={isSubmitting}
                           >
                             <AlertCircle size={18} />
                             Mark Unliquidated
@@ -372,19 +487,25 @@ const ReviewModal = ({ isOpen, onClose, report }) => {
                           onChange={(e) => setComments(e.target.value)}
                           placeholder="Enter your review comments here..."
                           rows={4}
+                          disabled={isSubmitting}
                         />
                       </div>
 
                       <div className="review-modal__actions">
-                        <button type="button" className="review-modal__cancel" onClick={onClose}>
+                        <button 
+                          type="button" 
+                          className="review-modal__cancel" 
+                          onClick={onClose}
+                          disabled={isSubmitting}
+                        >
                           Cancel
                         </button>
                         <button
                           type="submit"
                           className="review-modal__submit"
-                          disabled={!reviewDecision}
+                          disabled={!reviewDecision || isSubmitting}
                         >
-                          Submit Review
+                          {isSubmitting ? 'Submitting...' : 'Submit Review'}
                         </button>
                       </div>
                     </form>
@@ -395,6 +516,14 @@ const ReviewModal = ({ isOpen, onClose, report }) => {
           </div>
         </div>
       </div>
+
+      {/* Submitted Form Viewer Modal */}
+      <SubmittedFormViewer
+        isOpen={isFormViewerOpen}
+        onClose={handleCloseFormViewer}
+        formId={selectedFormId}
+        submissionId={report?.id}
+      />
     </div>
   );
 };

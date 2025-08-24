@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
 
 // Import components
 import Login from "./components/LoginArea/Login";
@@ -8,7 +9,29 @@ import Dashboard from "./components/StudentOrgs/Dashboard";
 import CoaDashboard from "./components/StudentCOA/CoaDashboard";
 import AdminDashboard from "./components/AdminArea/AdminDashboard";
 
-const App = () => {
+// Component to handle route protection
+const ProtectedRoute = ({ children, requiredRole }) => {
+  const hasLoginFlag = localStorage.getItem('isLoggedIn') === 'true';
+  const hasToken = !!localStorage.getItem('token');
+  const userRole = localStorage.getItem('userRole');
+  const isAuthenticated = hasLoginFlag && hasToken;
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (requiredRole && userRole !== requiredRole) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
+
+// Component to handle authentication logic and routing
+const AppRoutes = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   // Initialize login state based on both isLoggedIn flag and token presence
   const hasLoginFlag = localStorage.getItem('isLoggedIn') === 'true';
   const hasToken = !!localStorage.getItem('token');
@@ -55,6 +78,24 @@ const App = () => {
       userRole: localStorage.getItem('userRole'),
       hasToken: !!localStorage.getItem('token')
     });
+    
+    // Navigate to appropriate dashboard based on role
+    switch(role) {
+      case 'treasurer':
+        navigate('/org-dashboard');
+        break;
+      case 'coa':
+        navigate('/coa-dashboard');
+        break;
+      case 'auditor':
+        navigate('/auditor-dashboard');
+        break;
+      case 'admin':
+        navigate('/admin-dashboard');
+        break;
+      default:
+        navigate('/login');
+    }
   };
 
   const handleLogout = () => {
@@ -81,38 +122,75 @@ const App = () => {
     
     setIsLoggedIn(false);
     setUserRole('');
-  };
-
-  // Function to render the appropriate dashboard based on role
-  const renderDashboard = () => {
-    // If we're logged in but the role hasn't been populated yet, render nothing (or a small loader)
-    if (!userRole) {
-      return null;
-    }
-
-    switch(userRole) {
-      case 'treasurer':
-        return <OrgDashboard onLogout={handleLogout} />;
-      case 'coa':
-        return <CoaDashboard onLogout={handleLogout} />;
-      case 'auditor':
-        return <Dashboard onLogout={handleLogout} role={userRole} />;
-      case 'admin':
-        return <AdminDashboard onLogout={handleLogout} />;
-      default:
-        // Unknown role: show login without performing side-effects during render
-        return <Login onLogin={handleLogin} />;
-    }
+    
+    // Navigate to login page
+    navigate('/login');
   };
 
   return (
-    <>
-      {isLoggedIn ? (
-        renderDashboard()
-      ) : (
-        <Login onLogin={handleLogin} />
-      )}
-    </>
+    <Routes>
+      <Route path="/login" element={<Login onLogin={handleLogin} />} />
+      <Route 
+        path="/org-dashboard/*" 
+        element={
+          <ProtectedRoute requiredRole="treasurer">
+            <OrgDashboard onLogout={handleLogout} />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/coa-dashboard/*" 
+        element={
+          <ProtectedRoute requiredRole="coa">
+            <CoaDashboard onLogout={handleLogout} />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/auditor-dashboard/*" 
+        element={
+          <ProtectedRoute requiredRole="auditor">
+            <Dashboard onLogout={handleLogout} role="auditor" />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin-dashboard/*" 
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <AdminDashboard onLogout={handleLogout} />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/" 
+        element={
+          isLoggedIn && userRole ? (
+            <Navigate 
+              to={
+                userRole === 'treasurer' ? '/org-dashboard' :
+                userRole === 'coa' ? '/coa-dashboard' :
+                userRole === 'auditor' ? '/auditor-dashboard' :
+                userRole === 'admin' ? '/admin-dashboard' :
+                '/login'
+              } 
+              replace 
+            />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        } 
+      />
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AppRoutes />
+    </Router>
   );
 };
 

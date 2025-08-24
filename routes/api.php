@@ -54,4 +54,16 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/{id}/return', [App\Http\Controllers\API\FormSubmissionController::class, 'returnForRevision']);
         Route::post('/{id}/upload-document', [App\Http\Controllers\API\FormSubmissionController::class, 'uploadDocument']);
     });
+    
+    // Cash Flow Statement Routes
+    Route::prefix('cashflow')->group(function () {
+        Route::get('/form', [App\Http\Controllers\API\CashFlowController::class, 'getForm']);
+        Route::post('/', [App\Http\Controllers\API\CashFlowController::class, 'store']);
+        Route::post('/{id}/submit', [App\Http\Controllers\API\CashFlowController::class, 'submit']);
+        Route::get('/coa-review', [App\Http\Controllers\API\CashFlowController::class, 'getForCOAReview']);
+        Route::get('/{id}', [App\Http\Controllers\API\CashFlowController::class, 'show']);
+        Route::post('/{id}/approve', [App\Http\Controllers\API\CashFlowController::class, 'approve']);
+        Route::post('/{id}/reject', [App\Http\Controllers\API\CashFlowController::class, 'reject']);
+        Route::post('/{id}/return', [App\Http\Controllers\API\CashFlowController::class, 'returnForRevision']);
+    });
 });

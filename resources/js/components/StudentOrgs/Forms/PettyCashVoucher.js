@@ -31,14 +31,19 @@ const PettyCashVoucher = ({ formData, onDataChange, onSave, onCancel }) => {
     }));
   };
 
+  // Helper function to handle monetary calculations with proper precision
+  const roundToTwoDecimals = (num) => {
+    return Math.round((num + Number.EPSILON) * 100) / 100;
+  };
+
   const handleStatusChange = (field, value) => {
-    const numValue = parseFloat(value) || 0;
+    const numValue = roundToTwoDecimals(parseFloat(value) || 0);
     setData(prev => {
       const newStatus = { ...prev.pettyCashStatus, [field]: numValue };
       
-      // Calculate available amount
+      // Calculate available amount with proper precision
       if (field === 'monthlyLimit' || field === 'used') {
-        newStatus.available = newStatus.monthlyLimit - newStatus.used;
+        newStatus.available = roundToTwoDecimals(newStatus.monthlyLimit - newStatus.used);
       }
       
       return {
@@ -56,15 +61,15 @@ const PettyCashVoucher = ({ formData, onDataChange, onSave, onCancel }) => {
         [field]: value
       };
       
-      // Calculate total
+      // Calculate total with proper precision
       const total = newParticulars.reduce((sum, item) => {
-        return sum + (parseFloat(item.amount) || 0);
+        return sum + (roundToTwoDecimals(parseFloat(item.amount) || 0));
       }, 0);
       
       return {
         ...prev,
         particulars: newParticulars,
-        total: total
+        total: roundToTwoDecimals(total)
       };
     });
   };
@@ -81,13 +86,13 @@ const PettyCashVoucher = ({ formData, onDataChange, onSave, onCancel }) => {
       setData(prev => {
         const newParticulars = prev.particulars.filter((_, i) => i !== index);
         const total = newParticulars.reduce((sum, item) => {
-          return sum + (parseFloat(item.amount) || 0);
+          return sum + (roundToTwoDecimals(parseFloat(item.amount) || 0));
         }, 0);
         
         return {
           ...prev,
           particulars: newParticulars,
-          total: total
+          total: roundToTwoDecimals(total)
         };
       });
     }
@@ -305,4 +310,6 @@ const PettyCashVoucher = ({ formData, onDataChange, onSave, onCancel }) => {
 };
 
 export default PettyCashVoucher;
+
+
 

@@ -1,9 +1,14 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Eye, Flag, AlertCircle, Search, Printer, ChevronUp, ChevronDown } from 'lucide-react';
 import ReviewModal from './ReviewModal';
 
 const ReviewReports = () => {
-  const [reports, setReports] = useState([
+  const [reports, setReports] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
+  
+  // Initialize with sample data for now (will be replaced with API data)
+  const [sampleReports] = useState([
     {
       id: 1,
       orgName: 'Student Council',
@@ -159,6 +164,84 @@ const ReviewReports = () => {
   const [sortField, setSortField] = useState('orgName');
   const [sortDirection, setSortDirection] = useState('asc');
 
+  // Fetch cash flow statements from API
+  useEffect(() => {
+    fetchCashFlowStatements();
+  }, []);
+
+  const getAuthToken = () => {
+    return localStorage.getItem('token');
+  };
+
+  const fetchCashFlowStatements = async () => {
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/cashflow/coa-review', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${getAuthToken()}`,
+          'Content-Type': 'application/json',
+        }
+      });
+
+      const result = await response.json();
+      console.log('COA Review API Response:', result);
+
+      if (result.success) {
+        // Handle both paginated and non-paginated data
+        const submissions = result.data.submissions?.data || result.data.submissions || [];
+        console.log('Submissions found:', submissions);
+        
+        // Transform API data to match expected format
+        const transformedReports = submissions.map(submission => ({
+          id: submission.submission_id,
+          orgName: submission.form_data?.organization_name || 'Unknown Organization',
+          reportType: 'Statement of Cashflows',
+          submissionDate: new Date(submission.created_at).toISOString().split('T')[0],
+          status: submission.status,
+          amount: `₱${parseFloat(submission.total_amount || 0).toLocaleString('en-PH', {minimumFractionDigits: 2})}`,
+          academicYear: submission.form_data?.academic_year || '',
+          month: submission.form_data?.month || '',
+          submissionCode: submission.submission_code,
+          submittedBy: submission.submitter?.profile?.first_name + ' ' + submission.submitter?.profile?.last_name || submission.submitter?.email || 'Unknown',
+          formData: {
+            organizationName: submission.form_data?.organization_name || '',
+            cashInflows: submission.form_data?.cash_inflows || {},
+            cashOutflows: submission.form_data?.cash_outflows || {},
+            endingCashBalance: submission.form_data?.ending_cash_balance || {},
+            signatories: submission.form_data?.signatories || {},
+            attached_forms: submission.form_data?.attached_forms || [],
+            completed_forms: submission.form_data?.completed_forms || {}
+          },
+          documents: submission.documents || [],
+          signatures: submission.signatures || [],
+          currentApprover: submission.current_approver,
+          workflowStep: submission.workflow_step
+        }));
+
+        setReports(transformedReports);
+        
+        // If no API data, fallback to sample data for development
+        if (transformedReports.length === 0) {
+          setReports(sampleReports);
+        }
+      } else {
+        setError(result.message || 'Failed to fetch cash flow statements');
+        // Fallback to sample data
+        setReports(sampleReports);
+      }
+    } catch (error) {
+      console.error('Error fetching cash flow statements:', error);
+      setError('Network error occurred. Using sample data.');
+      // Fallback to sample data
+      setReports(sampleReports);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const getStatusBadgeClass = (status) => {
     switch (status.toLowerCase()) {
       case 'approved':
@@ -203,6 +286,23 @@ const ReviewReports = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedReport(null);
+  };
+
+  const handleReviewComplete = (reportId, decision, comments) => {
+    // Update the reports list to reflect the new status
+    setReports(prevReports => 
+      prevReports.map(report => 
+        report.id === reportId 
+          ? { 
+              ...report, 
+              status: decision === 'approve' ? 'approved' : decision === 'flag' ? 'flagged' : 'unliquidated'
+            }
+          : report
+      )
+    );
+    
+    // Optionally refresh the data from server
+    // fetchCashFlowStatements();
   };
 
   const handleSearchChange = (e) => {
@@ -336,11 +436,28 @@ const ReviewReports = () => {
     };
   };
 
+  if (isLoading) {
+    return (
+      <div className="review-reports">
+        <div className="review-reports__loading">
+          <p>Loading cash flow statements...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="review-reports">
       <div className="review-reports__header">
         <h1 className="review-reports__title">Review Reports</h1>
       </div>
+
+      {error && (
+        <div className="review-reports__error">
+          <p>{error}</p>
+          <button onClick={() => setError('')} className="review-reports__error-close">×</button>
+        </div>
+      )}
 
       <div className="review-reports__tab-wrapper">
         <h2 className="review-reports__section-title">Statement of Cashflows Reports</h2>
@@ -493,6 +610,7 @@ const ReviewReports = () => {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         report={selectedReport}
+        onReviewComplete={handleReviewComplete}
       />
     </div>
   );

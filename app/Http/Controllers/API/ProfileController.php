@@ -40,6 +40,72 @@ class ProfileController extends Controller
     }
 
     /**
+     * Update user profile information
+     */
+    public function updateProfile(Request $request, $profileId)
+    {
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'first_name' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'suffix' => 'nullable|string|max:50',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $profile = Profile::find($profileId);
+
+        if (!$profile) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Profile not found'
+            ], 404);
+        }
+
+        // Check if current user can update this profile
+        $currentUser = auth()->user();
+        if ($currentUser->user_id !== $profile->user_id && $currentUser->role->role_name !== 'admin') {
+            return response()->json([
+                'success' => false,
+                'message' => 'You are not authorized to update this profile'
+            ], 403);
+        }
+
+        try {
+            $profile->update([
+                'first_name' => $request->first_name,
+                'middle_name' => $request->middle_name,
+                'last_name' => $request->last_name,
+                'suffix' => $request->suffix,
+            ]);
+
+            // Load updated profile with user and role
+            $profile->load(['user:user_id,email,role_id', 'user.role:role_id,role_name']);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Profile updated successfully',
+                'data' => [
+                    'profile' => $profile
+                ]
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update profile',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
      * Upload profile picture for a user
      */
     public function uploadProfilePicture(Request $request, $profileId)
