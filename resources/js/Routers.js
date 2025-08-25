@@ -7,7 +7,9 @@ import Login from "./components/LoginArea/Login";
 import OrgDashboard from "./components/StudentOrgs/OrgDashboard";
 import Dashboard from "./components/StudentOrgs/Dashboard";
 import CoaDashboard from "./components/StudentCOA/CoaDashboard";
+import AuditorDashboard from "./components/AuditorArea/AuditorDashboard";
 import AdminDashboard from "./components/AdminArea/AdminDashboard";
+
 
 // Component to handle route protection
 const ProtectedRoute = ({ children, requiredRole }) => {
@@ -150,7 +152,7 @@ const AppRoutes = () => {
         path="/auditor-dashboard/*" 
         element={
           <ProtectedRoute requiredRole="auditor">
-            <Dashboard onLogout={handleLogout} role="auditor" />
+            <AuditorDashboard onLogout={handleLogout} />
           </ProtectedRoute>
         } 
       />

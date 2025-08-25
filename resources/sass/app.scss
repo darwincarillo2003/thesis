@@ -10,6 +10,7 @@
 
 @import 'LoginAreas/Login.scss';
 @import 'LoginAreas/Register.scss';
+
 @import 'StudentOrgDashboard/OrgDashboard.scss';
 @import 'StudentOrgDashboard/OrgHeader.scss';
 @import 'StudentOrgDashboard/OrgSidebar.scss';
@@ -28,6 +29,13 @@
 @import 'StudentCoaMain/ReviewReports.scss';
 @import 'StudentCoaMain/SubmittedFormViewer.scss';
 
+
+@import 'AuditorAreas/AuditorDashboard.scss';
+@import 'AuditorAreas/AuditorHeader.scss';
+@import 'AuditorAreas/AuditorSidebar.scss';
+@import 'AuditorAreas/AuditorDashboardMain.scss';
+@import 'AuditorAreas/Settings.scss';
+@import 'AuditorAreas/ReviewSubmission.scss';
 
 @import 'AdminAreas/AdminDashboard.scss';
 @import 'AdminAreas/AdminHeader.scss';

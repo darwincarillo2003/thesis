@@ -1,52 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Clock, CheckCircle, AlertTriangle, Search, Edit, Trash2, ChevronUp, ChevronDown, LogOut } from 'lucide-react';
+import { FileText, Clock, CheckCircle, AlertTriangle, Search, Edit, Eye, LogOut, ChevronUp, ChevronDown } from 'lucide-react';
 import axios from 'axios';
 
-const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
+const AuditorDashboardMain = ({ onLogout, role = 'auditor' }) => {
   // Sample data - would come from API in real application
   const stats = {
-    totalReports: 36,
-    pendingReview: 8,
-    approved: 25,
+    totalAudits: 45,
+    pendingReview: 12,
+    completed: 30,
     flagged: 3
   };
 
-  // Sample table data
-  const reportsData = [
+  // Sample table data for audit reports
+  const auditReportsData = [
     {
       id: 1,
       organization: 'Computer Science Society',
+      auditType: 'Financial Audit',
       submittedBy: 'John Doe',
       date: '2023-07-15',
-      status: 'Approved'
+      status: 'Completed',
+      priority: 'High'
     },
     {
       id: 2,
       organization: 'Engineering Student Council',
+      auditType: 'Compliance Audit',
       submittedBy: 'Jane Smith',
       date: '2023-07-14',
-      status: 'Pending'
+      status: 'In Review',
+      priority: 'Medium'
     },
     {
       id: 3,
       organization: 'Business Administration Club',
+      auditType: 'Financial Audit',
       submittedBy: 'Robert Johnson',
       date: '2023-07-12',
-      status: 'Flagged'
+      status: 'Flagged',
+      priority: 'High'
     },
     {
       id: 4,
       organization: 'Nursing Student Association',
+      auditType: 'Operational Audit',
       submittedBy: 'Maria Garcia',
       date: '2023-07-10',
-      status: 'Approved'
+      status: 'Completed',
+      priority: 'Low'
     },
     {
       id: 5,
       organization: 'Psychology Society',
+      auditType: 'Compliance Audit',
       submittedBy: 'David Wilson',
       date: '2023-07-08',
-      status: 'Pending'
+      status: 'In Review',
+      priority: 'Medium'
     }
   ];
 
@@ -74,12 +84,26 @@ const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
   // Function to get status class
   const getStatusClass = (status) => {
     switch(status.toLowerCase()) {
-      case 'approved':
+      case 'completed':
         return 'status-approved';
-      case 'pending':
+      case 'in review':
         return 'status-pending';
       case 'flagged':
         return 'status-flagged';
+      default:
+        return '';
+    }
+  };
+
+  // Function to get priority class
+  const getPriorityClass = (priority) => {
+    switch(priority.toLowerCase()) {
+      case 'high':
+        return 'priority-high';
+      case 'medium':
+        return 'priority-medium';
+      case 'low':
+        return 'priority-low';
       default:
         return '';
     }
@@ -119,21 +143,22 @@ const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
   };
 
   // Filter reports based on search term
-  const filteredReports = reportsData
-    .filter(report => 
+  const filteredReports = auditReportsData
+    .filter(report =>
       report.organization.toLowerCase().includes(searchTerm.toLowerCase()) ||
       report.submittedBy.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      report.auditType.toLowerCase().includes(searchTerm.toLowerCase()) ||
       report.status.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .sort((a, b) => {
       if (sortField === 'date') {
-        return sortDirection === 'asc' 
+        return sortDirection === 'asc'
           ? new Date(a.date) - new Date(b.date)
           : new Date(b.date) - new Date(a.date);
       } else {
         const aValue = a[sortField]?.toLowerCase() || '';
         const bValue = b[sortField]?.toLowerCase() || '';
-        
+
         return sortDirection === 'asc'
           ? aValue.localeCompare(bValue)
           : bValue.localeCompare(aValue);
@@ -144,12 +169,12 @@ const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
   const renderSortIcon = (field) => {
     return (
       <div className="sort-icon">
-        <ChevronUp 
-          size={14} 
+        <ChevronUp
+          size={14}
           className={`sort-icon-up ${sortField === field && sortDirection === 'asc' ? 'active' : ''}`}
         />
-        <ChevronDown 
-          size={14} 
+        <ChevronDown
+          size={14}
           className={`sort-icon-down ${sortField === field && sortDirection === 'desc' ? 'active' : ''}`}
         />
       </div>
@@ -159,12 +184,12 @@ const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
   // Get dashboard title based on role
   const getDashboardTitle = () => {
     switch(role) {
-      case 'coa':
-        return 'COA Dashboard';
       case 'auditor':
         return 'Auditor Dashboard';
-      default:
+      case 'coa':
         return 'COA Dashboard';
+      default:
+        return 'Dashboard';
     }
   };
 
@@ -173,18 +198,18 @@ const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
       <div className="dashboard__header">
         <h1 className="dashboard__title">{getDashboardTitle()}</h1>
       </div>
-      
+
       <div className="dashboard__stats">
         <div className="dashboard__stat-card total">
-          <p className="dashboard__stat-label">Total Reports</p>
+          <p className="dashboard__stat-label">Total Audits</p>
           <div className="dashboard__stat-content">
-            <h3 className="dashboard__stat-value">{stats.totalReports}</h3>
+            <h3 className="dashboard__stat-value">{stats.totalAudits}</h3>
             <div className="dashboard__stat-icon total">
               <FileText size={32} />
             </div>
           </div>
         </div>
-        
+
         <div className="dashboard__stat-card pending">
           <p className="dashboard__stat-label">Pending Review</p>
           <div className="dashboard__stat-content">
@@ -194,17 +219,17 @@ const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
             </div>
           </div>
         </div>
-        
+
         <div className="dashboard__stat-card approved">
-          <p className="dashboard__stat-label">Approved</p>
+          <p className="dashboard__stat-label">Completed</p>
           <div className="dashboard__stat-content">
-            <h3 className="dashboard__stat-value">{stats.approved}</h3>
+            <h3 className="dashboard__stat-value">{stats.completed}</h3>
             <div className="dashboard__stat-icon approved">
               <CheckCircle size={32} />
             </div>
           </div>
         </div>
-        
+
         <div className="dashboard__stat-card flagged">
           <p className="dashboard__stat-label">Flagged</p>
           <div className="dashboard__stat-content">
@@ -215,57 +240,71 @@ const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
           </div>
         </div>
       </div>
-      
+
       <div className="dashboard__search-container">
         <div className="dashboard__search-bar">
           <Search size={18} className="dashboard__search-icon" />
-          <input 
-            type="text" 
-            placeholder="Search reports..." 
+          <input
+            type="text"
+            placeholder="Search audit reports..."
             className="dashboard__search-input"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
       </div>
-      
+
       <div className="dashboard__table-container">
-        <h2 className="dashboard__section-title">Liquidation Reports</h2>
+        <h2 className="dashboard__section-title">Audit Reports</h2>
         <div className="dashboard__table-wrapper">
           <table className="dashboard__table">
             <thead>
               <tr>
                 <th>
-                  <input 
-                    type="checkbox" 
-                    className="dashboard__select-all" 
+                  <input
+                    type="checkbox"
+                    className="dashboard__select-all"
                     checked={selectAll}
                     onChange={handleSelectAll}
                   />
                 </th>
                 <th>Actions</th>
-                <th 
+                <th
                   className={`sortable ${sortField === 'organization' ? `active-sort sort-${sortDirection}` : ''}`}
                   onClick={() => handleSort('organization')}
                 >
                   Organization Name
                   {renderSortIcon('organization')}
                 </th>
-                <th 
+                <th
+                  className={`sortable ${sortField === 'auditType' ? `active-sort sort-${sortDirection}` : ''}`}
+                  onClick={() => handleSort('auditType')}
+                >
+                  Audit Type
+                  {renderSortIcon('auditType')}
+                </th>
+                <th
                   className={`sortable ${sortField === 'submittedBy' ? `active-sort sort-${sortDirection}` : ''}`}
                   onClick={() => handleSort('submittedBy')}
                 >
                   Submitted By
                   {renderSortIcon('submittedBy')}
                 </th>
-                <th 
+                <th
                   className={`sortable ${sortField === 'date' ? `active-sort sort-${sortDirection}` : ''}`}
                   onClick={() => handleSort('date')}
                 >
                   Date Submitted
                   {renderSortIcon('date')}
                 </th>
-                <th 
+                <th
+                  className={`sortable ${sortField === 'priority' ? `active-sort sort-${sortDirection}` : ''}`}
+                  onClick={() => handleSort('priority')}
+                >
+                  Priority
+                  {renderSortIcon('priority')}
+                </th>
+                <th
                   className={`sortable ${sortField === 'status' ? `active-sort sort-${sortDirection}` : ''}`}
                   onClick={() => handleSort('status')}
                 >
@@ -279,26 +318,32 @@ const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
                 filteredReports.map(report => (
                   <tr key={report.id}>
                     <td className="dashboard__checkbox-cell">
-                      <input 
-                        type="checkbox" 
-                        className="dashboard__select-row" 
+                      <input
+                        type="checkbox"
+                        className="dashboard__select-row"
                         checked={selectedItems.includes(report.id)}
                         onChange={() => handleSelectItem(report.id)}
                       />
                     </td>
                     <td className="dashboard__table-actions">
                       <div className="dashboard__action-buttons">
-                        <button className="dashboard__action-btn dashboard__edit-btn" title="Edit">
-                          <Edit size={16} />
+                        <button className="dashboard__action-btn dashboard__edit-btn" title="Review">
+                          <Eye size={16} />
                         </button>
-                        <button className="dashboard__action-btn dashboard__delete-btn" title="Delete">
-                          <Trash2 size={16} />
+                        <button className="dashboard__action-btn dashboard__delete-btn" title="Edit">
+                          <Edit size={16} />
                         </button>
                       </div>
                     </td>
                     <td>{report.organization}</td>
+                    <td>{report.auditType}</td>
                     <td>{report.submittedBy}</td>
                     <td>{formatDate(report.date)}</td>
+                    <td>
+                      <span className={`dashboard__priority ${getPriorityClass(report.priority)}`}>
+                        {report.priority}
+                      </span>
+                    </td>
                     <td>
                       <span className={`dashboard__status ${getStatusClass(report.status)}`}>
                         {report.status}
@@ -308,12 +353,12 @@ const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="dashboard__no-results">No reports found</td>
+                  <td colSpan="8" className="dashboard__no-results">No audit reports found</td>
                 </tr>
               )}
             </tbody>
           </table>
-          
+
           <div className="dashboard__pagination">
             <div className="dashboard__page-info">
               Page 1 of 100
@@ -329,27 +374,4 @@ const CoaDashboardMain = ({ onLogout, role = 'coa' }) => {
   );
 };
 
-export default CoaDashboardMain;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default AuditorDashboardMain;

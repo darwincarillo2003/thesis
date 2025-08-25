@@ -14861,6 +14861,150 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".user-mng {\n  padding: 20px;\n  font-
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorDashboard.scss":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorDashboard.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".loader-container {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  background-color: #fff;\n  z-index: 1000;\n}\n\n.spinner-loader {\n  width: 50px;\n  height: 50px;\n  border: 5px solid rgba(0, 54, 175, 0.2);\n  border-radius: 50%;\n  border-top-color: #0036AF;\n  animation: spin 1s linear infinite;\n  margin-bottom: 15px;\n}\n.spinner-loader.small {\n  width: 30px;\n  height: 30px;\n  border-width: 3px;\n}\n.spinner-loader.mini {\n  width: 16px;\n  height: 16px;\n  border-width: 2px;\n  margin-bottom: 0;\n  margin-right: 8px;\n}\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.loading-text {\n  font-size: 18px;\n  color: #0036AF;\n  animation: pulse 1.5s ease-in-out infinite;\n}\n\n@keyframes pulse {\n  0% {\n    opacity: 0.6;\n  }\n  50% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0.6;\n  }\n}\n.error-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  height: 100vh;\n  padding: 20px;\n  text-align: center;\n}\n.error-container .error-icon {\n  font-size: 48px;\n  margin-bottom: 20px;\n}\n.error-container h2 {\n  font-size: 24px;\n  color: #e74c3c;\n  margin-bottom: 10px;\n}\n.error-container p {\n  font-size: 16px;\n  color: #555;\n  margin-bottom: 30px;\n  max-width: 500px;\n}\n.error-container .retry-button, .error-container .logout-button {\n  padding: 10px 20px;\n  border-radius: 4px;\n  font-size: 16px;\n  cursor: pointer;\n  margin: 0 10px;\n  transition: all 0.3s ease;\n}\n.error-container .retry-button {\n  background-color: #0036AF;\n  color: white;\n  border: none;\n}\n.error-container .retry-button:hover {\n  background-color: #002580;\n}\n.error-container .logout-button {\n  background-color: transparent;\n  color: #555;\n  border: 1px solid #ccc;\n}\n.error-container .logout-button:hover {\n  background-color: #f5f5f5;\n}\n\n.content-loading {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 40px;\n}\n.content-loading p {\n  margin-top: 15px;\n  color: #666;\n  font-size: 14px;\n}\n\n.content-refreshing {\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  display: flex;\n  align-items: center;\n  background-color: rgba(255, 255, 255, 0.9);\n  padding: 8px 16px;\n  border-radius: 20px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  z-index: 100;\n}\n.content-refreshing span {\n  font-size: 14px;\n  color: #555;\n}\n\n.org-dashboard {\n  display: flex;\n  min-height: 100vh;\n  overflow: hidden;\n  font-family: \"Roboto\", sans-serif;\n}\n.org-dashboard .org-dashboard__wrapper {\n  flex: 1 1 auto;\n  display: flex;\n  flex-direction: column;\n  transition: margin-left 0.3s ease;\n  width: 100%;\n  position: relative;\n  min-height: 0;\n  overflow: hidden;\n}\n.org-dashboard .org-dashboard__wrapper.sidebar-open {\n  margin-left: 220px;\n}\n.org-dashboard .org-dashboard__wrapper.sidebar-closed {\n  margin-left: 0;\n}\n.org-dashboard .org-dashboard__content {\n  flex: 1 1 auto;\n  padding: 20px;\n  margin-top: 60px;\n  background: #f4f5f7 url(\"/images/bgnd.svg\") no-repeat center center;\n  background-size: cover;\n  background-attachment: fixed;\n  width: 100%;\n  overflow-y: auto;\n  min-height: calc(100vh - 60px);\n  max-width: 100%;\n  box-sizing: border-box;\n  flex-grow: 0;\n}\n.org-dashboard .org-dashboard__content::-webkit-scrollbar {\n  height: 0;\n  width: 8px;\n  background-color: transparent;\n}\n.org-dashboard .org-dashboard__content::-webkit-scrollbar-thumb {\n  background-color: rgba(58, 166, 185, 0.3);\n  border-radius: 4px;\n}\n.org-dashboard .org-dashboard__content::-webkit-scrollbar-thumb:hover {\n  background-color: rgba(58, 166, 185, 0.5);\n}\n.org-dashboard .no-scroll {\n  overflow: hidden !important;\n}\n\n.dashboard {\n  padding: 20px;\n}\n.dashboard__title {\n  font-size: 24px;\n  font-weight: 600;\n  color: #333;\n  margin-bottom: 20px;\n  padding-bottom: 10px;\n  border-bottom: 2px solid rgba(128, 128, 128, 0.3);\n}\n.dashboard__content {\n  margin-top: 20px;\n}\n.dashboard__text {\n  font-size: 16px;\n  line-height: 1.5;\n  color: #555;\n  margin-bottom: 30px;\n}\n.dashboard__cards {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 20px;\n}\n.dashboard__card {\n  background-color: #fff;\n  border-radius: 8px;\n  padding: 20px;\n  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.dashboard__card:hover {\n  transform: translateY(-5px);\n  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);\n}\n.dashboard__card-title {\n  font-size: 18px;\n  font-weight: 600;\n  color: #0036AF;\n  margin-bottom: 10px;\n}\n.dashboard__card-text {\n  font-size: 14px;\n  color: #666;\n  line-height: 1.5;\n}\n\n@media (max-width: 768px) {\n  .org-dashboard {\n    min-height: auto;\n    overflow: hidden;\n  }\n  .org-dashboard .org-dashboard__wrapper {\n    min-height: 0;\n    flex: 1 1 auto;\n    overflow: hidden;\n  }\n  .org-dashboard .org-dashboard__wrapper.sidebar-open {\n    margin-left: 200px;\n  }\n  .org-dashboard .org-dashboard__wrapper.sidebar-closed {\n    margin-left: 0;\n  }\n  .org-dashboard .org-dashboard__content {\n    margin-top: 50px;\n    padding: 15px;\n    min-height: auto;\n    height: auto;\n    flex: 1 1 auto;\n    flex-grow: 0;\n    overflow-y: auto;\n  }\n  .dashboard {\n    padding: 15px;\n  }\n  .dashboard__title {\n    font-size: 20px;\n  }\n  .dashboard__text {\n    font-size: 14px;\n  }\n  .dashboard__cards {\n    grid-template-columns: 1fr;\n  }\n}\n@media (max-width: 480px) {\n  .org-dashboard .org-dashboard__wrapper.sidebar-open {\n    margin-left: 180px;\n  }\n  .org-dashboard .org-dashboard__wrapper.sidebar-closed {\n    margin-left: 0;\n  }\n  .org-dashboard .org-dashboard__content {\n    margin-top: 46px;\n    padding: 10px;\n    min-height: auto;\n    height: auto;\n  }\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorDashboardMain.scss":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorDashboardMain.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".dashboard {\n  padding: 20px;\n  font-family: \"Roboto\", sans-serif;\n}\n.dashboard__header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n.dashboard__title {\n  font-size: 24px;\n  font-weight: 600;\n  color: #333;\n  margin: 0;\n  padding-bottom: 10px;\n  border-bottom: 2px solid rgba(128, 128, 128, 0.3);\n}\n.dashboard__stats {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 15px;\n  margin-bottom: 30px;\n}\n.dashboard__stat-card {\n  background-color: #fff;\n  border-radius: 8px;\n  padding: 15px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  transition: transform 0.3s ease;\n  width: auto;\n  height: 108px;\n  box-sizing: border-box;\n}\n.dashboard__stat-card:hover {\n  transform: translateY(-3px);\n}\n.dashboard__stat-card.total {\n  border-left: 4px solid #0036AF;\n}\n.dashboard__stat-card.pending {\n  border-left: 4px solid #FF9800;\n}\n.dashboard__stat-card.approved {\n  border-left: 4px solid #4CAF50;\n}\n.dashboard__stat-card.flagged {\n  border-left: 4px solid #F44336;\n}\n.dashboard__stat-label {\n  font-size: 14px;\n  color: #666;\n  margin: 0 0 10px;\n  font-weight: 500;\n}\n.dashboard__stat-content {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.dashboard__stat-icon {\n  width: 36px;\n  height: 36px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.dashboard__stat-icon.total svg {\n  color: #0036AF;\n}\n.dashboard__stat-icon.pending svg {\n  color: #FF9800;\n}\n.dashboard__stat-icon.approved svg {\n  color: #4CAF50;\n}\n.dashboard__stat-icon.flagged svg {\n  color: #F44336;\n}\n.dashboard__stat-value {\n  font-size: 32px;\n  font-weight: 600;\n  color: #333;\n  margin: 0;\n  line-height: 1;\n}\n.dashboard__section-title {\n  font-size: 20px;\n  font-weight: 500;\n  color: #333;\n  margin: 0 0 15px;\n}\n.dashboard__search-container {\n  display: flex;\n  justify-content: flex-end;\n  margin-bottom: 15px;\n}\n.dashboard__search-bar {\n  position: relative;\n  width: 300px;\n  max-width: 100%;\n}\n.dashboard__search-icon {\n  position: absolute;\n  left: 12px;\n  top: 50%;\n  transform: translateY(-50%);\n  color: #666;\n}\n.dashboard__search-input {\n  width: 100%;\n  padding: 10px 10px 10px 40px;\n  border: 1px solid #e0e0e0;\n  border-radius: 6px;\n  font-size: 14px;\n  transition: border-color 0.3s ease, box-shadow 0.3s ease;\n}\n.dashboard__search-input:focus {\n  outline: none;\n  border-color: #0036AF;\n  box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);\n}\n.dashboard__search-input::-moz-placeholder {\n  color: #aaa;\n}\n.dashboard__search-input::placeholder {\n  color: #aaa;\n}\n.dashboard__table-container {\n  margin-bottom: 30px;\n  background-color: #fff;\n  border-radius: 8px;\n  padding: 20px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);\n}\n.dashboard__no-results {\n  text-align: center;\n  padding: 30px 0;\n  color: #666;\n  font-style: italic;\n}\n.dashboard__table-wrapper {\n  width: 100%;\n  overflow-x: auto;\n}\n.dashboard__table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.dashboard__table th, .dashboard__table td {\n  padding: 12px 15px;\n  text-align: left;\n  border-bottom: 1px solid #f0f0f0;\n}\n.dashboard__table th {\n  font-weight: 500;\n  color: white;\n  font-size: 14px;\n  background-color: #0036AF;\n  padding: 14px 15px;\n  position: relative;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n          user-select: none;\n}\n.dashboard__table th.sortable {\n  padding-right: 30px;\n}\n.dashboard__table th.sortable:hover {\n  background-color: #002d91;\n}\n.dashboard__table th:first-child, .dashboard__table th:nth-child(2) {\n  cursor: default;\n}\n.dashboard__table th:first-child:hover, .dashboard__table th:nth-child(2):hover {\n  background-color: #0036AF;\n}\n.dashboard__table .sort-icon {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  transform: translateY(-50%);\n  display: inline-flex;\n  flex-direction: column;\n  height: 16px;\n  width: 16px;\n  align-items: center;\n  justify-content: center;\n}\n.dashboard__table .sort-icon svg {\n  height: 14px;\n  width: 14px;\n  opacity: 0.7;\n  transition: opacity 0.2s ease;\n}\n.dashboard__table th.active-sort .sort-icon svg {\n  opacity: 1;\n}\n.dashboard__table th.active-sort.sort-asc .sort-icon-down {\n  opacity: 0.3;\n}\n.dashboard__table th.active-sort.sort-desc .sort-icon-up {\n  opacity: 0.3;\n}\n.dashboard__table td {\n  font-size: 14px;\n  color: #333;\n}\n.dashboard__table tbody tr:hover {\n  background-color: #f5f9ff;\n}\n.dashboard__table tbody tr:nth-child(even) {\n  background-color: #f8f9fc;\n}\n.dashboard__table-actions {\n  white-space: nowrap;\n}\n.dashboard__checkbox-cell {\n  text-align: center;\n  width: 40px;\n}\n.dashboard__select-all, .dashboard__select-row {\n  width: 18px;\n  height: 18px;\n  cursor: pointer;\n  accent-color: #0036AF;\n  border-radius: 3px;\n}\n.dashboard__action-buttons {\n  display: flex;\n  gap: 8px;\n}\n.dashboard__action-btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 32px;\n  height: 32px;\n  border: none;\n  background-color: #f0f0f0;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n  padding: 0;\n}\n.dashboard__action-btn:hover {\n  transform: scale(1.05);\n  background-color: #e0e0e0;\n}\n.dashboard__action-btn svg {\n  width: 16px;\n  height: 16px;\n}\n.dashboard__edit-btn {\n  color: #0036AF;\n}\n.dashboard__delete-btn {\n  color: #f44336;\n}\n.dashboard__status {\n  display: inline-block;\n  padding: 6px 12px;\n  border-radius: 20px;\n  font-size: 12px;\n  font-weight: 500;\n}\n.dashboard__status.status-approved {\n  background-color: rgba(76, 175, 80, 0.1);\n  color: #4CAF50;\n}\n.dashboard__status.status-pending {\n  background-color: rgba(255, 152, 0, 0.1);\n  color: #FF9800;\n}\n.dashboard__status.status-flagged {\n  background-color: rgba(244, 67, 54, 0.1);\n  color: #F44336;\n}\n.dashboard__pagination {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 20px;\n  padding-top: 15px;\n  border-top: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n.dashboard__page-info {\n  color: #666;\n}\n.dashboard__page-buttons {\n  display: flex;\n  gap: 10px;\n}\n.dashboard__page-button {\n  background-color: white;\n  border: 1px solid #e0e0e0;\n  color: #0036AF;\n  padding: 6px 12px;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n  font-weight: 500;\n}\n.dashboard__page-button:hover {\n  background-color: #f5f9ff;\n  border-color: #0036AF;\n}\n.dashboard__page-button:disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n}\n.dashboard__page-button:disabled:hover {\n  background-color: white;\n  border-color: #e0e0e0;\n}\n.dashboard__content {\n  margin-top: 20px;\n}\n.dashboard__cards {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));\n  gap: 20px;\n}\n.dashboard__card {\n  background-color: #fff;\n  border-radius: 8px;\n  padding: 20px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.dashboard__card:hover {\n  transform: translateY(-3px);\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);\n}\n.dashboard__card-title {\n  font-size: 18px;\n  font-weight: 500;\n  color: #0036AF;\n  margin-bottom: 15px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #f0f0f0;\n}\n.dashboard__card-text {\n  font-size: 14px;\n  color: #666;\n  line-height: 1.5;\n}\n.dashboard__activity-list {\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n.dashboard__activity-item {\n  display: flex;\n  flex-direction: column;\n  padding: 8px 0;\n  border-bottom: 1px solid #f0f0f0;\n}\n.dashboard__activity-item:last-child {\n  border-bottom: none;\n}\n.dashboard__activity-date {\n  font-size: 12px;\n  color: #888;\n  margin-bottom: 3px;\n}\n.dashboard__activity-text {\n  font-size: 14px;\n  color: #333;\n}\n\n@media (max-width: 992px) {\n  .dashboard__stats {\n    grid-template-columns: repeat(2, 1fr);\n    justify-items: center;\n  }\n  .dashboard__stat-card {\n    width: 241px;\n    height: 108px;\n  }\n  .dashboard__search-container {\n    margin-top: 10px;\n  }\n}\n@media (max-width: 768px) {\n  .dashboard {\n    padding: 15px;\n  }\n  .dashboard__header {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n  .dashboard__title {\n    font-size: 20px;\n  }\n  .dashboard__cards {\n    grid-template-columns: 1fr;\n  }\n  .dashboard__card-title {\n    font-size: 16px;\n  }\n  .dashboard__stat-card {\n    width: 241px;\n    height: 108px;\n  }\n  .dashboard__search-container {\n    justify-content: flex-start;\n  }\n  .dashboard__search-bar {\n    width: 100%;\n  }\n  .dashboard__table th, .dashboard__table td {\n    padding: 10px;\n  }\n  .dashboard__table th {\n    font-size: 13px;\n  }\n  .dashboard__table td {\n    font-size: 13px;\n  }\n  .dashboard__view-btn {\n    padding: 5px 10px;\n    font-size: 12px;\n  }\n}\n@media (max-width: 576px) {\n  .dashboard__stats {\n    grid-template-columns: 1fr;\n    justify-items: center;\n  }\n  .dashboard__stat-card {\n    width: 241px;\n    height: 108px;\n  }\n  .dashboard__table th, .dashboard__table td {\n    padding: 8px 6px;\n  }\n  .dashboard__table th {\n    font-size: 12px;\n  }\n  .dashboard__table td {\n    font-size: 12px;\n  }\n  .dashboard__view-btn {\n    padding: 4px 8px;\n    font-size: 11px;\n  }\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorHeader.scss":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorHeader.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorSidebar.scss":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorSidebar.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/ReviewSubmission.scss":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/ReviewSubmission.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".review-submission {\n  padding: 20px;\n  font-family: \"Roboto\", sans-serif;\n}\n.review-submission__header {\n  margin-bottom: 30px;\n}\n.review-submission__title {\n  font-size: 28px;\n  font-weight: 600;\n  color: #333;\n  margin: 0 0 8px 0;\n  padding-bottom: 10px;\n  border-bottom: 2px solid #0036AF;\n  display: inline-block;\n}\n.review-submission__subtitle {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n.review-submission__stats {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 20px;\n  margin-bottom: 30px;\n}\n.review-submission__stat-card {\n  background-color: #fff;\n  border-radius: 8px;\n  padding: 20px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);\n  display: flex;\n  align-items: center;\n  gap: 15px;\n  transition: transform 0.3s ease;\n}\n.review-submission__stat-card:hover {\n  transform: translateY(-2px);\n}\n.review-submission__stat-card.pending {\n  border-left: 4px solid #FF9800;\n}\n.review-submission__stat-card.approved {\n  border-left: 4px solid #4CAF50;\n}\n.review-submission__stat-card.rejected {\n  border-left: 4px solid #F44336;\n}\n.review-submission__stat-icon {\n  width: 48px;\n  height: 48px;\n  border-radius: 50%;\n  background-color: #f5f5f5;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #666;\n}\n.review-submission__stat-content {\n  flex: 1;\n}\n.review-submission__stat-value {\n  font-size: 24px;\n  font-weight: 600;\n  color: #333;\n  margin: 0 0 4px 0;\n}\n.review-submission__stat-label {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n  font-weight: 500;\n}\n.review-submission__tab-wrapper {\n  position: relative;\n  width: 100%;\n  border-bottom: 1px solid #e0e0e0;\n  margin-bottom: -1px;\n  z-index: 2;\n}\n.review-submission__section-title {\n  font-size: 16px;\n  font-weight: 500;\n  color: #333;\n  background-color: white;\n  border: 1px solid #e0e0e0;\n  border-bottom: none;\n  border-radius: 8px 8px 0 0;\n  padding: 12px 20px;\n  margin: 0;\n  display: inline-block;\n  position: relative;\n  z-index: 3;\n}\n.review-submission__section-title::after {\n  content: \"\";\n  position: absolute;\n  bottom: -1px;\n  left: 0;\n  right: 0;\n  height: 1px;\n  background-color: white;\n  z-index: 4;\n}\n.review-submission__controls {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 15px;\n  padding: 20px 20px 0 20px;\n  border-bottom: 1px solid #f0f0f0;\n  padding-bottom: 15px;\n}\n.review-submission__left-controls {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n}\n.review-submission__right-controls {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.review-submission__search-bar {\n  position: relative;\n  width: 250px;\n}\n.review-submission__search-icon {\n  position: absolute;\n  left: 12px;\n  top: 50%;\n  transform: translateY(-50%);\n  color: #666;\n  z-index: 1;\n}\n.review-submission__search-input {\n  width: 100%;\n  padding: 8px 35px 8px 35px;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  font-size: 14px;\n  transition: border-color 0.3s ease, box-shadow 0.3s ease;\n}\n.review-submission__search-input:focus {\n  outline: none;\n  border-color: #0036AF;\n  box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);\n}\n.review-submission__search-input::-moz-placeholder {\n  color: #aaa;\n}\n.review-submission__search-input::placeholder {\n  color: #aaa;\n}\n.review-submission__table-container {\n  margin-bottom: 30px;\n  background-color: #fff;\n  border: 1px solid #e0e0e0;\n  border-radius: 0 8px 8px 8px;\n  padding: 0;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);\n  position: relative;\n  z-index: 1;\n  width: 100%;\n  border-top: none;\n}\n.review-submission__table-wrapper {\n  width: 100%;\n  overflow-x: auto;\n  padding: 20px;\n  padding-top: 0;\n}\n.review-submission__table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.review-submission__table th, .review-submission__table td {\n  padding: 12px 15px;\n  text-align: left;\n  border-bottom: 1px solid #f0f0f0;\n}\n.review-submission__table th {\n  font-weight: 500;\n  color: #333;\n  font-size: 14px;\n  background-color: #f8f9fa;\n  padding: 14px 15px;\n  position: relative;\n  border-bottom: 2px solid #e9ecef;\n}\n.review-submission__table td {\n  font-size: 14px;\n  color: #333;\n}\n.review-submission__table tbody tr:hover {\n  background-color: #f5f9ff;\n}\n.review-submission__table tbody tr:nth-child(even) {\n  background-color: #f8f9fc;\n}\n.review-submission__table-row {\n  cursor: pointer;\n}\n.review-submission__organization {\n  font-weight: 600;\n  color: #0036AF;\n  max-width: 200px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.review-submission__type {\n  font-weight: 500;\n  color: #555;\n}\n.review-submission__submitter {\n  color: #666;\n}\n.review-submission__date {\n  color: #666;\n  white-space: nowrap;\n}\n.review-submission__amount {\n  font-weight: 600;\n  color: #4CAF50;\n  font-family: \"Courier New\", monospace;\n}\n.review-submission__priority {\n  text-align: center;\n}\n.review-submission__priority-badge {\n  display: inline-flex;\n  align-items: center;\n  gap: 4px;\n  padding: 4px 8px;\n  border-radius: 12px;\n  font-size: 12px;\n  font-weight: 500;\n}\n.review-submission__priority-badge .priority-text.priority-high {\n  color: #F44336;\n}\n.review-submission__priority-badge .priority-text.priority-medium {\n  color: #FF9800;\n}\n.review-submission__priority-badge .priority-text.priority-low {\n  color: #4CAF50;\n}\n.review-submission__priority-icon.high {\n  color: #F44336;\n}\n.review-submission__priority-icon.medium {\n  color: #FF9800;\n}\n.review-submission__priority-icon.low {\n  color: #4CAF50;\n}\n.review-submission__status {\n  text-align: center;\n}\n.review-submission__status-badge {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 6px 12px;\n  border-radius: 16px;\n  font-size: 12px;\n  font-weight: 500;\n  text-transform: uppercase;\n}\n.review-submission__status-badge .status-text {\n  font-size: 11px;\n  letter-spacing: 0.5px;\n}\n.review-submission__status-badge.status-approved {\n  background-color: rgba(76, 175, 80, 0.1);\n  color: #4CAF50;\n}\n.review-submission__status-badge.status-rejected {\n  background-color: rgba(244, 67, 54, 0.1);\n  color: #F44336;\n}\n.review-submission__status-badge.status-pending {\n  background-color: rgba(255, 152, 0, 0.1);\n  color: #FF9800;\n}\n.review-submission__status-icon.approved {\n  color: #4CAF50;\n}\n.review-submission__status-icon.rejected {\n  color: #F44336;\n}\n.review-submission__status-icon.pending {\n  color: #FF9800;\n}\n.review-submission__actions {\n  text-align: center;\n}\n.review-submission__action-btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 32px;\n  height: 32px;\n  border: none;\n  background-color: transparent;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n  padding: 0;\n}\n.review-submission__action-btn:hover {\n  transform: scale(1.05);\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.review-submission__action-btn svg {\n  width: 16px;\n  height: 16px;\n}\n.review-submission__no-results {\n  text-align: center;\n  padding: 40px 20px;\n  color: #666;\n  font-style: italic;\n  grid-column: 1/-1;\n}\n.review-submission__pagination {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 20px;\n  padding-top: 15px;\n  border-top: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n.review-submission__page-info {\n  color: #666;\n}\n.review-submission__page-controls {\n  display: flex;\n  gap: 10px;\n}\n.review-submission__page-btn {\n  background-color: white;\n  border: 1px solid #e0e0e0;\n  color: #0036AF;\n  padding: 6px 12px;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n  font-weight: 500;\n}\n.review-submission__page-btn:hover:not(:disabled) {\n  background-color: #f5f9ff;\n  border-color: #0036AF;\n}\n.review-submission__page-btn:disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n}\n.review-submission__page-btn:disabled:hover {\n  background-color: white;\n  border-color: #e0e0e0;\n}\n.review-submission__page-current {\n  background-color: #0036AF;\n  color: white;\n  padding: 6px 12px;\n  border-radius: 4px;\n  font-weight: 500;\n  min-width: 32px;\n  text-align: center;\n}\n\n@media (max-width: 768px) {\n  .review-submission {\n    padding: 15px;\n  }\n  .review-submission__stats {\n    grid-template-columns: 1fr;\n    gap: 15px;\n  }\n  .review-submission__filters {\n    flex-direction: column;\n    align-items: stretch;\n    gap: 15px;\n  }\n  .review-submission__search-bar {\n    min-width: auto;\n  }\n  .review-submission__filter-group {\n    justify-content: flex-end;\n  }\n  .review-submission__table {\n    min-width: 700px;\n  }\n  .review-submission__table th, .review-submission__table td {\n    padding: 10px 8px;\n    font-size: 13px;\n  }\n  .review-submission__pagination {\n    flex-direction: column;\n    gap: 10px;\n    text-align: center;\n  }\n  .review-submission__page-controls {\n    order: -1;\n  }\n}\n@media (max-width: 480px) {\n  .review-submission__title {\n    font-size: 24px;\n  }\n  .review-submission__table {\n    min-width: 600px;\n  }\n  .review-submission__table th, .review-submission__table td {\n    padding: 8px 6px;\n    font-size: 12px;\n  }\n  .review-submission__organization {\n    max-width: 150px;\n  }\n}\n.status-badge {\n  display: inline-block;\n  padding: 4px 8px;\n  border-radius: 12px;\n  font-size: 12px;\n  font-weight: 500;\n  text-align: center;\n  border: 1px solid;\n  min-width: 60px;\n  text-transform: capitalize;\n}\n.status-badge--approved {\n  background-color: #e8f5e8;\n  color: #2e7d32;\n  border-color: #c8e6c9;\n}\n.status-badge--flagged {\n  background-color: #fff3e0;\n  color: #f57c00;\n  border-color: #ffcc02;\n}\n.status-badge--unliquidated {\n  background-color: #fbe9e7;\n  color: #d32f2f;\n  border-color: #ffcdd2;\n}\n.status-badge--pending {\n  background-color: #e3f2fd;\n  color: #1976d2;\n  border-color: #bbdefb;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/Settings.scss":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/Settings.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".my-profile {\n  padding: 0;\n  font-family: \"Roboto\", sans-serif;\n}\n.my-profile__header {\n  margin-bottom: 25px;\n}\n.my-profile__title {\n  font-size: 28px;\n  font-weight: 600;\n  color: #333;\n  margin: 0;\n  padding-bottom: 15px;\n  border-bottom: 3px solid #0036AF;\n  display: inline-block;\n}\n.my-profile__tab-wrapper {\n  display: flex;\n  margin-bottom: 0;\n  border-bottom: 1px solid #e9ecef;\n}\n.my-profile__tab {\n  padding: 15px 25px;\n  background: #f8f9fa;\n  border: 1px solid #e9ecef;\n  border-bottom: none;\n  color: #6c757d;\n  cursor: pointer;\n  font-weight: 500;\n  transition: all 0.3s ease;\n  border-radius: 8px 8px 0 0;\n  margin-right: 2px;\n}\n.my-profile__tab:hover {\n  background: #e9ecef;\n  color: #495057;\n}\n.my-profile__tab--active {\n  background: white;\n  color: #0036AF;\n  border-color: #e9ecef;\n  font-weight: 600;\n  position: relative;\n  z-index: 1;\n}\n.my-profile__tab--active::after {\n  content: \"\";\n  position: absolute;\n  bottom: -1px;\n  left: 0;\n  right: 0;\n  height: 2px;\n  background: white;\n}\n.my-profile__content {\n  background: white;\n  border: 1px solid #e9ecef;\n  border-top: none;\n  min-height: 400px;\n}\n.my-profile__container {\n  padding: 25px;\n}\n.my-profile__section {\n  margin-bottom: 30px;\n}\n.my-profile__section:last-child {\n  margin-bottom: 0;\n}\n.my-profile__section-title {\n  font-size: 18px;\n  font-weight: 600;\n  color: #333;\n  margin-bottom: 15px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #e9ecef;\n}\n.my-profile__profile-pic-section {\n  display: flex;\n  align-items: center;\n  gap: 20px;\n}\n.my-profile__profile-pic {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  border: 3px solid #e9ecef;\n}\n.my-profile__profile-pic-actions {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n.my-profile__form-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 20px;\n}\n.my-profile__form-group {\n  display: flex;\n  flex-direction: column;\n}\n.my-profile__label {\n  font-weight: 500;\n  color: #333;\n  margin-bottom: 8px;\n  font-size: 14px;\n}\n.my-profile__input {\n  padding: 10px 12px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  font-size: 14px;\n  transition: border-color 0.3s ease, background-color 0.3s ease;\n}\n.my-profile__input:focus {\n  outline: none;\n  border-color: #0036AF;\n  box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);\n}\n.my-profile__input[readonly] {\n  background-color: #f8f9fa;\n  color: #6c757d;\n  cursor: default;\n  border-color: #e9ecef;\n}\n.my-profile__input[readonly]:focus {\n  border-color: #e9ecef;\n  box-shadow: none;\n}\n.my-profile__password-input-wrapper {\n  position: relative;\n  display: flex;\n  align-items: center;\n}\n.my-profile__password-input-wrapper .my-profile__input {\n  padding-right: 45px;\n  width: 100%;\n}\n.my-profile__password-toggle {\n  position: absolute;\n  right: 12px;\n  top: 50%;\n  transform: translateY(-50%);\n  background: none;\n  border: none;\n  color: #6c757d;\n  cursor: pointer;\n  padding: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.my-profile__password-toggle:hover {\n  color: #0036AF;\n}\n.my-profile__password-toggle:focus {\n  outline: none;\n}\n.my-profile__tab-actions {\n  margin-top: 30px;\n  padding-top: 20px;\n  border-top: 1px solid #e9ecef;\n  display: flex;\n  gap: 12px;\n}\n.my-profile__btn {\n  padding: 10px 20px;\n  border-radius: 4px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  font-size: 14px;\n}\n.my-profile__btn--primary {\n  background-color: #0036AF;\n  color: white;\n  border: 1px solid #0036AF;\n}\n.my-profile__btn--primary:hover {\n  background-color: #002d91;\n  border-color: #002d91;\n}\n.my-profile__btn--secondary {\n  background-color: white;\n  color: #6c757d;\n  border: 1px solid #ddd;\n}\n.my-profile__btn--secondary:hover {\n  background-color: #f8f9fa;\n  border-color: #adb5bd;\n}\n.my-profile__btn--small {\n  padding: 6px 12px;\n  font-size: 12px;\n}\n.my-profile__btn:disabled {\n  opacity: 0.6;\n  cursor: not-allowed;\n}\n.my-profile__btn:disabled:hover {\n  background-color: initial;\n  border-color: initial;\n}\n.my-profile .required {\n  color: #dc2626;\n}\n\n@media (max-width: 768px) {\n  .my-profile__tab-wrapper {\n    flex-direction: column;\n  }\n  .my-profile__tab {\n    border-radius: 0;\n    margin-right: 0;\n    margin-bottom: 1px;\n  }\n  .my-profile__tab--active::after {\n    display: none;\n  }\n  .my-profile__form-grid {\n    grid-template-columns: 1fr;\n  }\n  .my-profile__profile-pic-section {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n  .my-profile__tab-actions {\n    flex-direction: column;\n  }\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/LoginAreas/Login.scss":
 /*!************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/LoginAreas/Login.scss ***!
@@ -14878,7 +15022,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".login-container {\n  min-height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 20px;\n  font-family: \"Roboto\", sans-serif;\n  position: relative;\n  overflow: hidden;\n  background: #ffffff;\n}\n.login-container::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: radial-gradient(ellipse 120% 60% at 50% 100%, rgba(0, 102, 204, 0.9) 0%, rgba(26, 135, 255, 0.8) 20%, rgba(77, 166, 255, 0.6) 40%, rgba(179, 217, 255, 0.4) 60%, rgba(230, 240, 255, 0.2) 80%, transparent 100%), radial-gradient(ellipse 100% 50% at 30% 90%, rgba(26, 135, 255, 0.7) 0%, rgba(128, 196, 255, 0.5) 30%, rgba(230, 240, 255, 0.3) 60%, transparent 100%), radial-gradient(ellipse 80% 40% at 70% 95%, rgba(77, 166, 255, 0.6) 0%, rgba(179, 217, 255, 0.4) 40%, transparent 80%);\n  animation: waveFlow 20s ease-in-out infinite;\n  z-index: 0;\n}\n.login-container::after {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: radial-gradient(ellipse 40% 25% at 20% 80%, rgba(128, 196, 255, 0.3) 0%, transparent 70%), radial-gradient(ellipse 35% 20% at 80% 85%, rgba(179, 217, 255, 0.4) 0%, transparent 70%), radial-gradient(ellipse 50% 30% at 60% 75%, rgba(230, 240, 255, 0.5) 0%, transparent 70%);\n  animation: waveFlow 25s ease-in-out infinite reverse;\n  z-index: 1;\n}\n\n@keyframes waveFlow {\n  0%, 100% {\n    transform: translate(0, 0) scale(1);\n    opacity: 1;\n  }\n  33% {\n    transform: translate(-15px, 10px) scale(1.02);\n    opacity: 0.9;\n  }\n  66% {\n    transform: translate(20px, -5px) scale(0.98);\n    opacity: 1;\n  }\n}\n@keyframes logoFadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(20px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n.login-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  max-width: 900px;\n  width: 100%;\n  margin-top: -80px;\n  position: relative;\n  z-index: 2;\n}\n\n.logo-section {\n  text-align: center;\n  margin-bottom: 40px;\n  color: #0066cc;\n  animation: logoFadeIn 1.2s ease-out forwards;\n}\n.logo-section .university-logo {\n  width: 178px;\n  height: 178px;\n  margin-bottom: 5px;\n  transition: transform 0.3s ease;\n  opacity: 0;\n}\n.logo-section .university-logo.logo-loaded {\n  animation: logoPulse 1.5s ease-in-out forwards;\n}\n.logo-section .university-name {\n  font-size: 32px;\n  font-weight: 700;\n  margin: 0 0 5px 0;\n  letter-spacing: 1px;\n  text-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);\n  white-space: nowrap;\n}\n.logo-section .university-full-name {\n  font-size: 16px;\n  margin: 0;\n  opacity: 0.9;\n  font-weight: 300;\n}\n\n@keyframes logoPulse {\n  0% {\n    transform: scale(0.8);\n    opacity: 0;\n  }\n  50% {\n    transform: scale(1.1);\n    opacity: 1;\n  }\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n.login-form-container {\n  background-color: white;\n  padding: 20px;\n  border-radius: 0;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);\n  width: 100%;\n  max-width: 398px;\n  box-sizing: border-box;\n  animation: fadeIn 1s ease-out 0.3s forwards;\n  opacity: 0;\n}\n.login-form-container .form-title {\n  text-align: center;\n  font-size: 20px;\n  font-weight: 400;\n  color: #0036AF;\n  margin: 0 0 25px 0;\n}\n\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@keyframes loginButtonSpin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.login-form .error-message {\n  color: #e74c3c;\n  background-color: rgba(231, 76, 60, 0.1);\n  border-left: 3px solid #e74c3c;\n  padding: 10px;\n  margin-bottom: 15px;\n  font-size: 14px;\n  border-radius: 0;\n}\n.login-form .success-message {\n  color: #2ecc71;\n  background-color: rgba(46, 204, 113, 0.1);\n  border-left: 3px solid #2ecc71;\n  padding: 10px;\n  margin-bottom: 15px;\n  font-size: 14px;\n  border-radius: 0;\n}\n.login-form .input-group {\n  margin-bottom: 20px;\n  position: relative;\n  display: flex;\n  flex-direction: column;\n}\n.login-form .input-group .field-error {\n  color: #e74c3c;\n  font-size: 12px;\n  margin-top: 5px;\n  text-align: left;\n  font-weight: 400;\n  padding-left: 2px;\n}\n.login-form .input-group .input-control {\n  position: relative;\n  display: flex;\n  align-items: center;\n}\n.login-form .input-group.password-group .form-input {\n  padding-right: 45px;\n}\n.login-form .input-group .input-label {\n  position: absolute;\n  left: 12px;\n  top: 14px;\n  font-size: 12px;\n  color: #999;\n  font-weight: 400;\n  font-family: \"Roboto\", sans-serif;\n  text-transform: uppercase;\n  transition: all 0.2s ease;\n  pointer-events: none;\n  background-color: white;\n  padding: 0 5px;\n  transform-origin: left top;\n}\n.login-form .input-group .form-input {\n  width: 100%;\n  padding: 12px 15px;\n  height: 46px;\n  border: 1px solid #000;\n  border-radius: 0;\n  font-size: 14px;\n  font-family: \"Roboto\", sans-serif;\n  font-weight: 400;\n  color: #333;\n  background-color: #fff;\n  box-sizing: border-box;\n  transition: border-color 0.3s ease, background-color 0.3s ease;\n}\n.login-form .input-group .form-input.error-input {\n  border-color: #e74c3c;\n  background-color: rgba(231, 76, 60, 0.03);\n}\n.login-form .input-group .form-input:focus {\n  outline: none;\n  border-color: #0036AF;\n  box-shadow: 0 0 0 1px rgba(0, 54, 175, 0.1);\n}\n.login-form .input-group .form-input:not(:-moz-placeholder) + .input-label {\n  transform: translateY(-24px) scale(0.85);\n  color: #0036AF;\n}\n.login-form .input-group .form-input:focus + .input-label, .login-form .input-group .form-input:not(:placeholder-shown) + .input-label {\n  transform: translateY(-24px) scale(0.85);\n  color: #0036AF;\n}\n.login-form .input-group .form-input:focus::-moz-placeholder, .login-form .input-group .form-input:not(:placeholder-shown)::-moz-placeholder {\n  opacity: 0;\n}\n.login-form .input-group .form-input:not(:-moz-placeholder)::placeholder {\n  opacity: 0;\n}\n.login-form .input-group .form-input:focus::placeholder, .login-form .input-group .form-input:not(:placeholder-shown)::placeholder {\n  opacity: 0;\n}\n.login-form .input-group .form-input::-moz-placeholder {\n  color: transparent;\n}\n.login-form .input-group .form-input::placeholder {\n  color: transparent;\n}\n.login-form .password-toggle {\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  transform: translateY(-50%);\n  background: none;\n  border: none;\n  color: #666;\n  cursor: pointer;\n  padding: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 24px;\n  height: 24px;\n}\n.login-form .password-toggle svg {\n  stroke-width: 1.5px;\n}\n.login-form .password-toggle:hover {\n  color: #0036AF;\n}\n.login-form .password-toggle:focus {\n  outline: none;\n}\n.login-form .login-button {\n  width: 100%;\n  background-color: #0036AF;\n  color: white;\n  border: none;\n  height: 46px;\n  border-radius: 20px;\n  font-size: 16px;\n  font-weight: 400;\n  font-family: \"Roboto\", sans-serif;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n  margin-bottom: 0;\n  position: relative;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.login-form .login-button:hover {\n  background-color: #002580;\n}\n.login-form .login-button:focus {\n  outline: none;\n  box-shadow: 0 0 0 3px rgba(0, 54, 175, 0.3);\n}\n.login-form .login-button:disabled {\n  background-color: #4a6ba8;\n  cursor: not-allowed;\n}\n.login-form .login-button .button-text {\n  transition: opacity 0.2s ease;\n}\n.login-form .login-button .loading-spinner {\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  border: 2px solid rgba(255, 255, 255, 0.3);\n  border-top: 2px solid white;\n  border-radius: 50%;\n  animation: loginButtonSpin 1s linear infinite;\n  opacity: 0;\n  transition: opacity 0.2s ease;\n}\n.login-form .login-button.loading .button-text {\n  opacity: 0;\n}\n.login-form .login-button.loading .loading-spinner {\n  opacity: 1;\n}\n.login-form .forgot-password {\n  text-align: right;\n  margin-bottom: 15px;\n}\n.login-form .forgot-password a {\n  color: #0036AF;\n  text-decoration: none;\n  font-size: 12px;\n  font-weight: 400;\n  font-family: \"Roboto\", sans-serif;\n}\n.login-form .forgot-password a:hover {\n  text-decoration: underline;\n}\n\n@media (max-width: 992px) {\n  .login-content {\n    max-width: 700px;\n  }\n  .logo-section .university-name {\n    font-size: 28px;\n  }\n}\n@media (max-width: 768px) {\n  .login-content {\n    max-width: 100%;\n    padding: 0 20px;\n  }\n  .logo-section .university-name {\n    font-size: 24px;\n  }\n  .logo-section .university-full-name {\n    font-size: 14px;\n  }\n}\n@media (max-width: 576px) {\n  .login-container {\n    padding: 15px;\n    padding-bottom: 30px;\n  }\n  .login-content {\n    margin-top: -30px;\n  }\n  .logo-section {\n    margin-bottom: 15px;\n  }\n  .logo-section .university-logo {\n    width: 150px;\n    height: 150px;\n  }\n  .logo-section .university-name {\n    font-size: 20px;\n    white-space: normal;\n    line-height: 1.2;\n  }\n  .logo-section .university-full-name {\n    font-size: 12px;\n  }\n  .login-form-container {\n    padding: 20px 15px;\n  }\n}\n@media (max-height: 700px) {\n  .login-container {\n    padding-top: 10px;\n    padding-bottom: 10px;\n  }\n  .login-content {\n    margin-top: -20px;\n  }\n  .logo-section .university-logo {\n    width: 130px;\n    height: 130px;\n    margin-bottom: 3px;\n  }\n}\nbutton::-moz-focus-inner {\n  border: 0;\n}\n\ninput::-webkit-outer-spin-button, input::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}\ninput[type=number] {\n  -webkit-appearance: textfield;\n          appearance: textfield;\n  -moz-appearance: textfield;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".login-container {\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 20px;\n  font-family: \"Roboto\", sans-serif;\n  position: relative;\n  overflow: hidden;\n  background: #ffffff;\n}\n.login-container::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 400'%3E%3Cpath fill='%23b3d9ff' fill-opacity='0.4' d='M0,240C150,220 350,180 600,200C850,220 1050,260 1200,240L1200,400L0,400Z'%3E%3C/path%3E%3C/svg%3E\") repeat-x, url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 400'%3E%3Cpath fill='%2379a6ff' fill-opacity='0.6' d='M0,160C200,140 400,100 600,120C800,140 1000,180 1200,160L1200,400L0,400Z'%3E%3C/path%3E%3C/svg%3E\") repeat-x, url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 400'%3E%3Cpath fill='%231a87ff' fill-opacity='0.8' d='M0,200C200,180 400,140 600,160C800,180 1000,220 1200,200L1200,400L0,400Z'%3E%3C/path%3E%3C/svg%3E\") repeat-x;\n  background-size: 1200px 400px, 1200px 400px, 1200px 400px;\n  background-position: 0 calc(100% - 0px), 0 calc(100% - 40px), 0 calc(100% - 20px);\n  animation: waveAnimation1 10s ease-in-out infinite, waveAnimation2 8s ease-in-out infinite, waveAnimation3 12s ease-in-out infinite reverse;\n  z-index: 0;\n}\n.login-container::after {\n  display: none;\n}\n\n@keyframes waveAnimation1 {\n  0% {\n    background-position-x: 0;\n  }\n  100% {\n    background-position-x: 1200px;\n  }\n}\n@keyframes waveAnimation2 {\n  0% {\n    background-position-x: 0;\n  }\n  100% {\n    background-position-x: 1200px;\n  }\n}\n@keyframes waveAnimation3 {\n  0% {\n    background-position-x: 0;\n  }\n  100% {\n    background-position-x: 1200px;\n  }\n}\n@keyframes logoFadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(20px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n.login-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  max-width: 450px;\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  position: relative;\n  z-index: 2;\n}\n\n@keyframes logoPulse {\n  0% {\n    transform: scale(0.8);\n    opacity: 0;\n  }\n  50% {\n    transform: scale(1.1);\n    opacity: 1;\n  }\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n.login-form-container {\n  background-color: white;\n  padding: 30px 40px;\n  border-radius: 8px;\n  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);\n  width: 100%;\n  max-width: 400px;\n  box-sizing: border-box;\n  animation: fadeIn 1s ease-out 0.3s forwards;\n  opacity: 0;\n}\n.login-form-container .logo-section {\n  text-align: center;\n  margin-bottom: 25px;\n}\n.login-form-container .logo-section .university-logo {\n  width: 120px;\n  height: 120px;\n  margin: 0 auto;\n  transition: transform 0.3s ease;\n  opacity: 0;\n}\n.login-form-container .logo-section .university-logo.logo-loaded {\n  animation: logoPulse 1.5s ease-in-out forwards;\n}\n.login-form-container .form-title {\n  text-align: center;\n  font-size: 20px;\n  font-weight: 400;\n  color: #0036AF;\n  margin: 0 0 25px 0;\n}\n\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@keyframes loginButtonSpin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.login-form .error-message {\n  color: #e74c3c;\n  background-color: rgba(231, 76, 60, 0.1);\n  border-left: 3px solid #e74c3c;\n  padding: 10px;\n  margin-bottom: 15px;\n  font-size: 14px;\n  border-radius: 0;\n}\n.login-form .success-message {\n  color: #2ecc71;\n  background-color: rgba(46, 204, 113, 0.1);\n  border-left: 3px solid #2ecc71;\n  padding: 10px;\n  margin-bottom: 15px;\n  font-size: 14px;\n  border-radius: 0;\n}\n.login-form .input-group {\n  margin-bottom: 20px;\n  position: relative;\n  display: flex;\n  flex-direction: column;\n}\n.login-form .input-group .field-error {\n  color: #e74c3c;\n  font-size: 12px;\n  margin-top: 5px;\n  text-align: left;\n  font-weight: 400;\n  padding-left: 2px;\n}\n.login-form .input-group .input-control {\n  position: relative;\n  display: flex;\n  align-items: center;\n}\n.login-form .input-group.password-group .form-input {\n  padding-right: 45px;\n}\n.login-form .input-group .input-label {\n  position: absolute;\n  left: 12px;\n  top: 14px;\n  font-size: 12px;\n  color: #999;\n  font-weight: 400;\n  font-family: \"Roboto\", sans-serif;\n  text-transform: uppercase;\n  transition: all 0.2s ease;\n  pointer-events: none;\n  background-color: white;\n  padding: 0 5px;\n  transform-origin: left top;\n}\n.login-form .input-group .form-input {\n  width: 100%;\n  padding: 12px 15px;\n  height: 46px;\n  border: 1px solid #000;\n  border-radius: 0;\n  font-size: 14px;\n  font-family: \"Roboto\", sans-serif;\n  font-weight: 400;\n  color: #333;\n  background-color: #fff;\n  box-sizing: border-box;\n  transition: border-color 0.3s ease, background-color 0.3s ease;\n}\n.login-form .input-group .form-input.error-input {\n  border-color: #e74c3c;\n  background-color: rgba(231, 76, 60, 0.03);\n}\n.login-form .input-group .form-input:focus {\n  outline: none;\n  border-color: #0036AF;\n  box-shadow: 0 0 0 1px rgba(0, 54, 175, 0.1);\n}\n.login-form .input-group .form-input:not(:-moz-placeholder) + .input-label {\n  transform: translateY(-24px) scale(0.85);\n  color: #0036AF;\n}\n.login-form .input-group .form-input:focus + .input-label, .login-form .input-group .form-input:not(:placeholder-shown) + .input-label {\n  transform: translateY(-24px) scale(0.85);\n  color: #0036AF;\n}\n.login-form .input-group .form-input:focus::-moz-placeholder, .login-form .input-group .form-input:not(:placeholder-shown)::-moz-placeholder {\n  opacity: 0;\n}\n.login-form .input-group .form-input:not(:-moz-placeholder)::placeholder {\n  opacity: 0;\n}\n.login-form .input-group .form-input:focus::placeholder, .login-form .input-group .form-input:not(:placeholder-shown)::placeholder {\n  opacity: 0;\n}\n.login-form .input-group .form-input::-moz-placeholder {\n  color: transparent;\n}\n.login-form .input-group .form-input::placeholder {\n  color: transparent;\n}\n.login-form .password-toggle {\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  transform: translateY(-50%);\n  background: none;\n  border: none;\n  color: #666;\n  cursor: pointer;\n  padding: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 24px;\n  height: 24px;\n}\n.login-form .password-toggle svg {\n  stroke-width: 1.5px;\n}\n.login-form .password-toggle:hover {\n  color: #0036AF;\n}\n.login-form .password-toggle:focus {\n  outline: none;\n}\n.login-form .login-button {\n  width: 100%;\n  background-color: #0036AF;\n  color: white;\n  border: none;\n  height: 48px;\n  border-radius: 20px;\n  font-size: 16px;\n  font-weight: 400;\n  font-family: \"Roboto\", sans-serif;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n  margin-bottom: 0;\n  position: relative;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.login-form .login-button:hover {\n  background-color: #002580;\n}\n.login-form .login-button:focus {\n  outline: none;\n  box-shadow: 0 0 0 3px rgba(0, 54, 175, 0.3);\n}\n.login-form .login-button:disabled {\n  background-color: #4a6ba8;\n  cursor: not-allowed;\n}\n.login-form .login-button .button-text {\n  transition: opacity 0.2s ease;\n}\n.login-form .login-button .loading-spinner {\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  border: 2px solid rgba(255, 255, 255, 0.3);\n  border-top: 2px solid white;\n  border-radius: 50%;\n  animation: loginButtonSpin 1s linear infinite;\n  opacity: 0;\n  transition: opacity 0.2s ease;\n}\n.login-form .login-button.loading .button-text {\n  opacity: 0;\n}\n.login-form .login-button.loading .loading-spinner {\n  opacity: 1;\n}\n.login-form .forgot-password {\n  text-align: right;\n  margin-bottom: 15px;\n}\n.login-form .forgot-password a {\n  color: #0036AF;\n  text-decoration: none;\n  font-size: 12px;\n  font-weight: 400;\n  font-family: \"Roboto\", sans-serif;\n}\n.login-form .forgot-password a:hover {\n  text-decoration: underline;\n}\n\n@media (max-width: 992px) {\n  .login-content {\n    max-width: 700px;\n  }\n  .logo-section .university-name {\n    font-size: 28px;\n  }\n}\n@media (max-width: 768px) {\n  .login-content {\n    max-width: 100%;\n    padding: 0 20px;\n  }\n  .logo-section .university-name {\n    font-size: 24px;\n  }\n  .logo-section .university-full-name {\n    font-size: 14px;\n  }\n}\n@media (max-width: 576px) {\n  .login-container {\n    padding: 15px;\n    padding-bottom: 30px;\n  }\n  .login-content {\n    margin-top: -30px;\n  }\n  .logo-section {\n    margin-bottom: 15px;\n  }\n  .logo-section .university-logo {\n    width: 150px;\n    height: 150px;\n  }\n  .logo-section .university-name {\n    font-size: 20px;\n    white-space: normal;\n    line-height: 1.2;\n  }\n  .logo-section .university-full-name {\n    font-size: 12px;\n  }\n  .login-form-container {\n    padding: 20px 15px;\n  }\n}\n@media (max-height: 700px) {\n  .login-container {\n    padding-top: 10px;\n    padding-bottom: 10px;\n  }\n  .login-content {\n    margin-top: -20px;\n  }\n  .logo-section .university-logo {\n    width: 130px;\n    height: 130px;\n    margin-bottom: 3px;\n  }\n}\nbutton::-moz-focus-inner {\n  border: 0;\n}\n\ninput::-webkit-outer-spin-button, input::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}\ninput[type=number] {\n  -webkit-appearance: textfield;\n          appearance: textfield;\n  -moz-appearance: textfield;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33018,6 +33162,41 @@ const CircleCheckBig = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__["def
 
 /***/ }),
 
+/***/ "./node_modules/lucide-react/dist/esm/icons/circle-x.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/lucide-react/dist/esm/icons/circle-x.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   __iconNode: () => (/* binding */ __iconNode),
+/* harmony export */   "default": () => (/* binding */ CircleX)
+/* harmony export */ });
+/* harmony import */ var _createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../createLucideIcon.js */ "./node_modules/lucide-react/dist/esm/createLucideIcon.js");
+/**
+ * @license lucide-react v0.525.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+
+const __iconNode = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m15 9-6 6", key: "1uzhvr" }],
+  ["path", { d: "m9 9 6 6", key: "z0biqf" }]
+];
+const CircleX = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__["default"])("circle-x", __iconNode);
+
+
+//# sourceMappingURL=circle-x.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/lucide-react/dist/esm/icons/clipboard-check.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/lucide-react/dist/esm/icons/clipboard-check.js ***!
@@ -33248,6 +33427,45 @@ const FilePlus = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__["default"]
 
 
 //# sourceMappingURL=file-plus.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/lucide-react/dist/esm/icons/file-search.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/lucide-react/dist/esm/icons/file-search.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   __iconNode: () => (/* binding */ __iconNode),
+/* harmony export */   "default": () => (/* binding */ FileSearch)
+/* harmony export */ });
+/* harmony import */ var _createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../createLucideIcon.js */ "./node_modules/lucide-react/dist/esm/createLucideIcon.js");
+/**
+ * @license lucide-react v0.525.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+
+const __iconNode = [
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  [
+    "path",
+    { d: "M4.268 21a2 2 0 0 0 1.727 1H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v3", key: "ms7g94" }
+  ],
+  ["path", { d: "m9 18-1.5-1.5", key: "1j6qii" }],
+  ["circle", { cx: "5", cy: "14", r: "3", key: "ufru5t" }]
+];
+const FileSearch = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__["default"])("file-search", __iconNode);
+
+
+//# sourceMappingURL=file-search.js.map
 
 
 /***/ }),
@@ -72489,14 +72707,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _components_LoginArea_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/LoginArea/Login */ "./resources/js/components/LoginArea/Login.js");
 /* harmony import */ var _components_StudentOrgs_OrgDashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/StudentOrgs/OrgDashboard */ "./resources/js/components/StudentOrgs/OrgDashboard.js");
 /* harmony import */ var _components_StudentOrgs_Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/StudentOrgs/Dashboard */ "./resources/js/components/StudentOrgs/Dashboard.js");
 /* harmony import */ var _components_StudentCOA_CoaDashboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/StudentCOA/CoaDashboard */ "./resources/js/components/StudentCOA/CoaDashboard.js");
-/* harmony import */ var _components_AdminArea_AdminDashboard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/AdminArea/AdminDashboard */ "./resources/js/components/AdminArea/AdminDashboard.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_AuditorArea_AuditorDashboard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/AuditorArea/AuditorDashboard */ "./resources/js/components/AuditorArea/AuditorDashboard.js");
+/* harmony import */ var _components_AdminArea_AdminDashboard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AdminArea/AdminDashboard */ "./resources/js/components/AdminArea/AdminDashboard.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -72514,6 +72733,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
 // Component to handle route protection
 
 var ProtectedRoute = function ProtectedRoute(_ref) {
@@ -72524,13 +72744,13 @@ var ProtectedRoute = function ProtectedRoute(_ref) {
   var userRole = localStorage.getItem('userRole');
   var isAuthenticated = hasLoginFlag && hasToken;
   if (!isAuthenticated) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Navigate, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Navigate, {
       to: "/login",
       replace: true
     });
   }
   if (requiredRole && userRole !== requiredRole) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Navigate, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Navigate, {
       to: "/login",
       replace: true
     });
@@ -72540,8 +72760,8 @@ var ProtectedRoute = function ProtectedRoute(_ref) {
 
 // Component to handle authentication logic and routing
 var AppRoutes = function AppRoutes() {
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useNavigate)();
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useLocation)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useNavigate)();
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useLocation)();
 
   // Initialize login state based on both isLoggedIn flag and token presence
   var hasLoginFlag = localStorage.getItem('isLoggedIn') === 'true';
@@ -72639,57 +72859,56 @@ var AppRoutes = function AppRoutes() {
     // Navigate to login page
     navigate('/login');
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Routes, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Routes, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       path: "/login",
-      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_LoginArea_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_LoginArea_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {
         onLogin: handleLogin
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       path: "/org-dashboard/*",
-      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ProtectedRoute, {
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(ProtectedRoute, {
         requiredRole: "treasurer",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_StudentOrgs_OrgDashboard__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_StudentOrgs_OrgDashboard__WEBPACK_IMPORTED_MODULE_3__["default"], {
           onLogout: handleLogout
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       path: "/coa-dashboard/*",
-      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ProtectedRoute, {
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(ProtectedRoute, {
         requiredRole: "coa",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_StudentCOA_CoaDashboard__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_StudentCOA_CoaDashboard__WEBPACK_IMPORTED_MODULE_5__["default"], {
           onLogout: handleLogout
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       path: "/auditor-dashboard/*",
-      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ProtectedRoute, {
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(ProtectedRoute, {
         requiredRole: "auditor",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_StudentOrgs_Dashboard__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          onLogout: handleLogout,
-          role: "auditor"
-        })
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
-      path: "/admin-dashboard/*",
-      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ProtectedRoute, {
-        requiredRole: "admin",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_AdminArea_AdminDashboard__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_AuditorArea_AuditorDashboard__WEBPACK_IMPORTED_MODULE_6__["default"], {
           onLogout: handleLogout
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+      path: "/admin-dashboard/*",
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(ProtectedRoute, {
+        requiredRole: "admin",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_AdminArea_AdminDashboard__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          onLogout: handleLogout
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       path: "/",
-      element: isLoggedIn && userRole ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Navigate, {
+      element: isLoggedIn && userRole ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Navigate, {
         to: userRole === 'treasurer' ? '/org-dashboard' : userRole === 'coa' ? '/coa-dashboard' : userRole === 'auditor' ? '/auditor-dashboard' : userRole === 'admin' ? '/admin-dashboard' : '/login',
         replace: true
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Navigate, {
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Navigate, {
         to: "/login",
         replace: true
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       path: "*",
-      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Navigate, {
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Navigate, {
         to: "/login",
         replace: true
       })
@@ -72697,14 +72916,14 @@ var AppRoutes = function AppRoutes() {
   });
 };
 var App = function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(AppRoutes, {})
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(AppRoutes, {})
   });
 };
 
 // Mount the React App to the DOM
 if (document.getElementById("root")) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(App, {}), document.getElementById("root"));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(App, {}), document.getElementById("root"));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -77548,6 +77767,2369 @@ var UserMng = function UserMng() {
 
 /***/ }),
 
+/***/ "./resources/js/components/AuditorArea/AuditorDashboard.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/AuditorArea/AuditorDashboard.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _AuditorSidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AuditorSidebar */ "./resources/js/components/AuditorArea/AuditorSidebar.js");
+/* harmony import */ var _AuditorHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AuditorHeader */ "./resources/js/components/AuditorArea/AuditorHeader.js");
+/* harmony import */ var _AuditorDashboardMain__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AuditorDashboardMain */ "./resources/js/components/AuditorArea/AuditorDashboardMain.js");
+/* harmony import */ var _Settings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Settings */ "./resources/js/components/AuditorArea/Settings.js");
+/* harmony import */ var _ReviewSubmission__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ReviewSubmission */ "./resources/js/components/AuditorArea/ReviewSubmission.js");
+/* harmony import */ var _sass_AuditorAreas_AuditorDashboard_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../sass/AuditorAreas/AuditorDashboard.scss */ "./resources/sass/AuditorAreas/AuditorDashboard.scss");
+/* harmony import */ var _sass_AuditorAreas_AuditorSidebar_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../sass/AuditorAreas/AuditorSidebar.scss */ "./resources/sass/AuditorAreas/AuditorSidebar.scss");
+/* harmony import */ var _sass_AuditorAreas_AuditorHeader_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../sass/AuditorAreas/AuditorHeader.scss */ "./resources/sass/AuditorAreas/AuditorHeader.scss");
+/* harmony import */ var _sass_AuditorAreas_AuditorDashboardMain_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../sass/AuditorAreas/AuditorDashboardMain.scss */ "./resources/sass/AuditorAreas/AuditorDashboardMain.scss");
+/* harmony import */ var _sass_AuditorAreas_Settings_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../sass/AuditorAreas/Settings.scss */ "./resources/sass/AuditorAreas/Settings.scss");
+/* harmony import */ var _sass_AuditorAreas_ReviewSubmission_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../sass/AuditorAreas/ReviewSubmission.scss */ "./resources/sass/AuditorAreas/ReviewSubmission.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { if (r) i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n;else { var o = function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); }; o("next", 0), o("throw", 1), o("return", 2); } }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AuditorDashboard = function AuditorDashboard(_ref) {
+  var onLogout = _ref.onLogout;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState2 = _slicedToArray(_useState, 2),
+    isSidebarOpen = _useState2[0],
+    setIsSidebarOpen = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('dashboard'),
+    _useState4 = _slicedToArray(_useState3, 2),
+    activeSection = _useState4[0],
+    setActiveSection = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    userData = _useState6[0],
+    setUserData = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState8 = _slicedToArray(_useState7, 2),
+    isLoading = _useState8[0],
+    setIsLoading = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState0 = _slicedToArray(_useState9, 2),
+    error = _useState0[0],
+    setError = _useState0[1];
+
+  // Split the useEffects to optimize rendering
+  // First useEffect for immediate UI display from localStorage
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Get user data from localStorage for immediate display
+    var storedUser = localStorage.getItem('user');
+    var token = localStorage.getItem('token');
+    var tokenType = localStorage.getItem('token_type');
+    if (storedUser) {
+      setUserData(JSON.parse(storedUser));
+      // Set loading to false immediately if we have cached data
+      setIsLoading(false);
+    }
+
+    // Set up axios authorization header
+    if (token && tokenType) {
+      (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults).headers.common['Authorization'] = "".concat(tokenType, " ").concat(token);
+    }
+  }, []);
+
+  // Second useEffect for API data fetch - runs only once on component mount
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Fetch fresh user data from the API
+    var fetchUserData = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+        var response, _t;
+        return _regenerator().w(function (_context) {
+          while (1) switch (_context.p = _context.n) {
+            case 0:
+              _context.p = 0;
+              // Only show loading if we don't already have user data from localStorage
+              if (!userData) {
+                setIsLoading(true);
+              }
+              _context.n = 1;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user');
+            case 1:
+              response = _context.v;
+              if (response.data.success) {
+                setUserData(response.data.data.user);
+                // Update localStorage with fresh data
+                localStorage.setItem('user', JSON.stringify(response.data.data.user));
+              } else {
+                setError('Failed to fetch user data');
+              }
+              _context.n = 3;
+              break;
+            case 2:
+              _context.p = 2;
+              _t = _context.v;
+              console.error('Error fetching user data:', _t);
+              // Only show error if we don't have cached data
+              if (!userData) {
+                setError('Error fetching user data. Please try logging in again.');
+              }
+            case 3:
+              _context.p = 3;
+              setIsLoading(false);
+              return _context.f(3);
+            case 4:
+              return _context.a(2);
+          }
+        }, _callee, null, [[0, 2, 3, 4]]);
+      }));
+      return function fetchUserData() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+    fetchUserData();
+  }, []);
+
+  // Third useEffect for mobile sidebar handling
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var isMobile = window.innerWidth <= 768;
+    if (isMobile && isSidebarOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [isSidebarOpen]);
+  var toggleSidebar = function toggleSidebar() {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+  var handleNavigation = function handleNavigation(section) {
+    setActiveSection(section);
+  };
+
+  // Handle profile updates from Settings component
+  var handleProfileUpdate = function handleProfileUpdate(updatedUserData) {
+    setUserData(updatedUserData);
+    localStorage.setItem('user', JSON.stringify(updatedUserData));
+  };
+
+  // Handle logout with API call
+  var handleLogout = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+      var token, tokenType, _t2;
+      return _regenerator().w(function (_context2) {
+        while (1) switch (_context2.p = _context2.n) {
+          case 0:
+            _context2.p = 0;
+            // Get token from localStorage
+            token = localStorage.getItem('token');
+            tokenType = localStorage.getItem('token_type');
+            if (!(token && tokenType)) {
+              _context2.n = 1;
+              break;
+            }
+            // Set authorization header
+            (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults).headers.common['Authorization'] = "".concat(tokenType, " ").concat(token);
+
+            // Call logout API
+            _context2.n = 1;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/logout');
+          case 1:
+            _context2.n = 3;
+            break;
+          case 2:
+            _context2.p = 2;
+            _t2 = _context2.v;
+            console.error('Logout error:', _t2);
+          case 3:
+            _context2.p = 3;
+            // Clear localStorage and call onLogout regardless of API success/failure
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            localStorage.removeItem('token_type');
+            localStorage.removeItem('userRole');
+            if (typeof onLogout === 'function') {
+              onLogout();
+            }
+            return _context2.f(3);
+          case 4:
+            return _context2.a(2);
+        }
+      }, _callee2, null, [[0, 2, 3, 4]]);
+    }));
+    return function handleLogout() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  // Dashboard content
+  var renderContent = function renderContent() {
+    switch (activeSection) {
+      case 'dashboard':
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_AuditorDashboardMain__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          onLogout: onLogout,
+          role: "auditor"
+        });
+      case 'review-submission':
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_ReviewSubmission__WEBPACK_IMPORTED_MODULE_6__["default"], {});
+      case 'settings':
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Settings__WEBPACK_IMPORTED_MODULE_5__["default"], {});
+      default:
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_AuditorDashboardMain__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          onLogout: onLogout,
+          role: "auditor"
+        });
+    }
+  };
+
+  // Only show full-screen loading if we have no cached data
+  if (isLoading && !userData) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+      className: "loader-container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+        className: "spinner-loader"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("p", {
+        className: "loading-text",
+        children: "Loading your dashboard..."
+      })]
+    });
+  }
+
+  // Show error state
+  if (error && !userData) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+      className: "error-container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+        className: "error-icon",
+        children: "\u26A0\uFE0F"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("h2", {
+        children: "Error Loading Dashboard"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("p", {
+        children: error
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("button", {
+        className: "retry-button",
+        onClick: function onClick() {
+          return window.location.reload();
+        },
+        children: "Retry"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("button", {
+        className: "logout-button",
+        onClick: onLogout,
+        children: "Back to Login"
+      })]
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+    className: "org-dashboard",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_AuditorSidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      isOpen: isSidebarOpen,
+      toggleSidebar: toggleSidebar,
+      onNavigate: handleNavigation,
+      onLogout: handleLogout,
+      activeSection: activeSection,
+      userData: userData
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+      className: "org-dashboard__wrapper ".concat(isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_AuditorHeader__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        toggleSidebar: toggleSidebar,
+        isOpen: isSidebarOpen,
+        onLogout: handleLogout,
+        userData: userData,
+        onNavigate: handleNavigation
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("main", {
+        className: "org-dashboard__content",
+        children: [renderContent(), isLoading && userData && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+          className: "content-refreshing",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+            className: "spinner-loader mini"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
+            children: "Refreshing..."
+          })]
+        })]
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AuditorDashboard);
+
+/***/ }),
+
+/***/ "./resources/js/components/AuditorArea/AuditorDashboardMain.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/AuditorArea/AuditorDashboardMain.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-up.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-down.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/file-text.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/clock.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/circle-check-big.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/triangle-alert.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/search.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/square-pen.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+var AuditorDashboardMain = function AuditorDashboardMain(_ref) {
+  var onLogout = _ref.onLogout,
+    _ref$role = _ref.role,
+    role = _ref$role === void 0 ? 'auditor' : _ref$role;
+  // Sample data - would come from API in real application
+  var stats = {
+    totalAudits: 45,
+    pendingReview: 12,
+    completed: 30,
+    flagged: 3
+  };
+
+  // Sample table data for audit reports
+  var auditReportsData = [{
+    id: 1,
+    organization: 'Computer Science Society',
+    auditType: 'Financial Audit',
+    submittedBy: 'John Doe',
+    date: '2023-07-15',
+    status: 'Completed',
+    priority: 'High'
+  }, {
+    id: 2,
+    organization: 'Engineering Student Council',
+    auditType: 'Compliance Audit',
+    submittedBy: 'Jane Smith',
+    date: '2023-07-14',
+    status: 'In Review',
+    priority: 'Medium'
+  }, {
+    id: 3,
+    organization: 'Business Administration Club',
+    auditType: 'Financial Audit',
+    submittedBy: 'Robert Johnson',
+    date: '2023-07-12',
+    status: 'Flagged',
+    priority: 'High'
+  }, {
+    id: 4,
+    organization: 'Nursing Student Association',
+    auditType: 'Operational Audit',
+    submittedBy: 'Maria Garcia',
+    date: '2023-07-10',
+    status: 'Completed',
+    priority: 'Low'
+  }, {
+    id: 5,
+    organization: 'Psychology Society',
+    auditType: 'Compliance Audit',
+    submittedBy: 'David Wilson',
+    date: '2023-07-08',
+    status: 'In Review',
+    priority: 'Medium'
+  }];
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    searchTerm = _useState2[0],
+    setSearchTerm = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    selectedItems = _useState4[0],
+    setSelectedItems = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    selectAll = _useState6[0],
+    setSelectAll = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('date'),
+    _useState8 = _slicedToArray(_useState7, 2),
+    sortField = _useState8[0],
+    setSortField = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('desc'),
+    _useState0 = _slicedToArray(_useState9, 2),
+    sortDirection = _useState0[0],
+    setSortDirection = _useState0[1];
+  var _useState1 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState10 = _slicedToArray(_useState1, 2),
+    userData = _useState10[0],
+    setUserData = _useState10[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Get user data from localStorage
+    var storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUserData(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // Function to format date
+  var formatDate = function formatDate(dateString) {
+    var options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  // Function to get status class
+  var getStatusClass = function getStatusClass(status) {
+    switch (status.toLowerCase()) {
+      case 'completed':
+        return 'status-approved';
+      case 'in review':
+        return 'status-pending';
+      case 'flagged':
+        return 'status-flagged';
+      default:
+        return '';
+    }
+  };
+
+  // Function to get priority class
+  var getPriorityClass = function getPriorityClass(priority) {
+    switch (priority.toLowerCase()) {
+      case 'high':
+        return 'priority-high';
+      case 'medium':
+        return 'priority-medium';
+      case 'low':
+        return 'priority-low';
+      default:
+        return '';
+    }
+  };
+
+  // Handle select all checkbox
+  var handleSelectAll = function handleSelectAll(e) {
+    setSelectAll(e.target.checked);
+    if (e.target.checked) {
+      setSelectedItems(filteredReports.map(function (report) {
+        return report.id;
+      }));
+    } else {
+      setSelectedItems([]);
+    }
+  };
+
+  // Handle individual checkbox selection
+  var handleSelectItem = function handleSelectItem(id) {
+    if (selectedItems.includes(id)) {
+      setSelectedItems(selectedItems.filter(function (item) {
+        return item !== id;
+      }));
+      setSelectAll(false);
+    } else {
+      setSelectedItems([].concat(_toConsumableArray(selectedItems), [id]));
+      if (selectedItems.length + 1 === filteredReports.length) {
+        setSelectAll(true);
+      }
+    }
+  };
+
+  // Handle sorting
+  var handleSort = function handleSort(field) {
+    if (sortField === field) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('asc');
+    }
+  };
+
+  // Filter reports based on search term
+  var filteredReports = auditReportsData.filter(function (report) {
+    return report.organization.toLowerCase().includes(searchTerm.toLowerCase()) || report.submittedBy.toLowerCase().includes(searchTerm.toLowerCase()) || report.auditType.toLowerCase().includes(searchTerm.toLowerCase()) || report.status.toLowerCase().includes(searchTerm.toLowerCase());
+  }).sort(function (a, b) {
+    if (sortField === 'date') {
+      return sortDirection === 'asc' ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date);
+    } else {
+      var _a$sortField, _b$sortField;
+      var aValue = ((_a$sortField = a[sortField]) === null || _a$sortField === void 0 ? void 0 : _a$sortField.toLowerCase()) || '';
+      var bValue = ((_b$sortField = b[sortField]) === null || _b$sortField === void 0 ? void 0 : _b$sortField.toLowerCase()) || '';
+      return sortDirection === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+    }
+  });
+
+  // Render sort icon for column headers
+  var renderSortIcon = function renderSortIcon(field) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "sort-icon",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        size: 14,
+        className: "sort-icon-up ".concat(sortField === field && sortDirection === 'asc' ? 'active' : '')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        size: 14,
+        className: "sort-icon-down ".concat(sortField === field && sortDirection === 'desc' ? 'active' : '')
+      })]
+    });
+  };
+
+  // Get dashboard title based on role
+  var getDashboardTitle = function getDashboardTitle() {
+    switch (role) {
+      case 'auditor':
+        return 'Auditor Dashboard';
+      case 'coa':
+        return 'COA Dashboard';
+      default:
+        return 'Dashboard';
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "dashboard",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "dashboard__header",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+        className: "dashboard__title",
+        children: getDashboardTitle()
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "dashboard__stats",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "dashboard__stat-card total",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          className: "dashboard__stat-label",
+          children: "Total Audits"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "dashboard__stat-content",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+            className: "dashboard__stat-value",
+            children: stats.totalAudits
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "dashboard__stat-icon total",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              size: 32
+            })
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "dashboard__stat-card pending",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          className: "dashboard__stat-label",
+          children: "Pending Review"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "dashboard__stat-content",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+            className: "dashboard__stat-value",
+            children: stats.pendingReview
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "dashboard__stat-icon pending",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+              size: 32
+            })
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "dashboard__stat-card approved",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          className: "dashboard__stat-label",
+          children: "Completed"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "dashboard__stat-content",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+            className: "dashboard__stat-value",
+            children: stats.completed
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "dashboard__stat-icon approved",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              size: 32
+            })
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "dashboard__stat-card flagged",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          className: "dashboard__stat-label",
+          children: "Flagged"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "dashboard__stat-content",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+            className: "dashboard__stat-value",
+            children: stats.flagged
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "dashboard__stat-icon flagged",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+              size: 32
+            })
+          })]
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "dashboard__search-container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "dashboard__search-bar",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          size: 18,
+          className: "dashboard__search-icon"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "text",
+          placeholder: "Search audit reports...",
+          className: "dashboard__search-input",
+          value: searchTerm,
+          onChange: function onChange(e) {
+            return setSearchTerm(e.target.value);
+          }
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "dashboard__table-container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+        className: "dashboard__section-title",
+        children: "Audit Reports"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "dashboard__table-wrapper",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
+          className: "dashboard__table",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                  type: "checkbox",
+                  className: "dashboard__select-all",
+                  checked: selectAll,
+                  onChange: handleSelectAll
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Actions"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("th", {
+                className: "sortable ".concat(sortField === 'organization' ? "active-sort sort-".concat(sortDirection) : ''),
+                onClick: function onClick() {
+                  return handleSort('organization');
+                },
+                children: ["Organization Name", renderSortIcon('organization')]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("th", {
+                className: "sortable ".concat(sortField === 'auditType' ? "active-sort sort-".concat(sortDirection) : ''),
+                onClick: function onClick() {
+                  return handleSort('auditType');
+                },
+                children: ["Audit Type", renderSortIcon('auditType')]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("th", {
+                className: "sortable ".concat(sortField === 'submittedBy' ? "active-sort sort-".concat(sortDirection) : ''),
+                onClick: function onClick() {
+                  return handleSort('submittedBy');
+                },
+                children: ["Submitted By", renderSortIcon('submittedBy')]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("th", {
+                className: "sortable ".concat(sortField === 'date' ? "active-sort sort-".concat(sortDirection) : ''),
+                onClick: function onClick() {
+                  return handleSort('date');
+                },
+                children: ["Date Submitted", renderSortIcon('date')]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("th", {
+                className: "sortable ".concat(sortField === 'priority' ? "active-sort sort-".concat(sortDirection) : ''),
+                onClick: function onClick() {
+                  return handleSort('priority');
+                },
+                children: ["Priority", renderSortIcon('priority')]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("th", {
+                className: "sortable ".concat(sortField === 'status' ? "active-sort sort-".concat(sortDirection) : ''),
+                onClick: function onClick() {
+                  return handleSort('status');
+                },
+                children: ["Status", renderSortIcon('status')]
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
+            children: filteredReports.length > 0 ? filteredReports.map(function (report) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  className: "dashboard__checkbox-cell",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                    type: "checkbox",
+                    className: "dashboard__select-row",
+                    checked: selectedItems.includes(report.id),
+                    onChange: function onChange() {
+                      return handleSelectItem(report.id);
+                    }
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  className: "dashboard__table-actions",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                    className: "dashboard__action-buttons",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                      className: "dashboard__action-btn dashboard__edit-btn",
+                      title: "Review",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                        size: 16
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                      className: "dashboard__action-btn dashboard__delete-btn",
+                      title: "Edit",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_11__["default"], {
+                        size: 16
+                      })
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: report.organization
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: report.auditType
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: report.submittedBy
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: formatDate(report.date)
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                    className: "dashboard__priority ".concat(getPriorityClass(report.priority)),
+                    children: report.priority
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                    className: "dashboard__status ".concat(getStatusClass(report.status)),
+                    children: report.status
+                  })
+                })]
+              }, report.id);
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                colSpan: "8",
+                className: "dashboard__no-results",
+                children: "No audit reports found"
+              })
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "dashboard__pagination",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "dashboard__page-info",
+            children: "Page 1 of 100"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "dashboard__page-buttons",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              className: "dashboard__page-button",
+              disabled: true,
+              children: "Previous"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              className: "dashboard__page-button",
+              children: "Next"
+            })]
+          })]
+        })]
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AuditorDashboardMain);
+
+/***/ }),
+
+/***/ "./resources/js/components/AuditorArea/AuditorHeader.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/AuditorArea/AuditorHeader.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/menu.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/bell.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/chevron-down.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/user.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/settings.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/log-out.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+var AuditorHeader = function AuditorHeader(_ref) {
+  var _userData$profile, _userData$profile2, _userData$profile3, _userData$profile4;
+  var toggleSidebar = _ref.toggleSidebar,
+    onLogout = _ref.onLogout,
+    userData = _ref.userData,
+    onNavigate = _ref.onNavigate;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isDropdownOpen = _useState2[0],
+    setIsDropdownOpen = _useState2[1];
+  var dropdownRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var handleClickOutside = function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return function () {
+      return document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  var toggleDropdown = function toggleDropdown() {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+  var handleLogout = function handleLogout() {
+    // Call the onLogout function passed from parent
+    if (typeof onLogout === 'function') {
+      onLogout();
+    }
+  };
+  var handleProfileClick = function handleProfileClick() {
+    if (typeof onNavigate === 'function') {
+      onNavigate('settings');
+    }
+    setIsDropdownOpen(false);
+  };
+  var handleSettingsClick = function handleSettingsClick() {
+    if (typeof onNavigate === 'function') {
+      onNavigate('settings');
+    }
+    setIsDropdownOpen(false);
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("header", {
+    className: "org-header",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "org-header__hamburger",
+      onClick: toggleSidebar,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        size: 24,
+        color: "#0036AF",
+        strokeWidth: 2
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "org-header__actions",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "org-header__notification",
+        title: "Notifications",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "org-header__profile",
+        onClick: toggleDropdown,
+        ref: dropdownRef,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+          src: userData !== null && userData !== void 0 && (_userData$profile = userData.profile) !== null && _userData$profile !== void 0 && _userData$profile.profile_pic ? "/storage/".concat(userData.profile.profile_pic) : "/images/csp.png",
+          alt: (userData === null || userData === void 0 || (_userData$profile2 = userData.profile) === null || _userData$profile2 === void 0 ? void 0 : _userData$profile2.first_name) || "User",
+          className: "org-header__profile-picture",
+          onError: function onError(e) {
+            // If the profile picture fails to load, use the default
+            e.target.src = "/images/csp.png";
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "org-header__user-name",
+          children: userData ? "".concat(((_userData$profile3 = userData.profile) === null || _userData$profile3 === void 0 ? void 0 : _userData$profile3.first_name) || '', " ").concat(((_userData$profile4 = userData.profile) === null || _userData$profile4 === void 0 ? void 0 : _userData$profile4.last_name) || '') : 'Loading...'
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          className: "org-header__dropdown-arrow ".concat(isDropdownOpen ? 'open' : ''),
+          size: 16
+        }), isDropdownOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "org-header__dropdown-menu",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
+            className: "org-header__dropdown-item",
+            onClick: handleProfileClick,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              size: 16
+            }), " Profile"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
+            className: "org-header__dropdown-item",
+            onClick: handleSettingsClick,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+              size: 16
+            }), " Settings"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "org-header__dropdown-separator"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
+            className: "org-header__dropdown-item",
+            onClick: handleLogout,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              size: 16
+            }), " Logout"]
+          })]
+        })]
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AuditorHeader);
+
+/***/ }),
+
+/***/ "./resources/js/components/AuditorArea/AuditorSidebar.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/AuditorArea/AuditorSidebar.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/house.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/file-search.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/settings.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+var AuditorSidebar = function AuditorSidebar(_ref) {
+  var isOpen = _ref.isOpen,
+    toggleSidebar = _ref.toggleSidebar,
+    onNavigate = _ref.onNavigate,
+    onLogout = _ref.onLogout,
+    activeSection = _ref.activeSection;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(window.innerWidth <= 768),
+    _useState2 = _slicedToArray(_useState, 2),
+    isMobile = _useState2[0],
+    setIsMobile = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(activeSection || 'dashboard'),
+    _useState4 = _slicedToArray(_useState3, 2),
+    activeItem = _useState4[0],
+    setActiveItem = _useState4[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var handleResize = function handleResize() {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return function () {
+      return window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (activeSection) {
+      setActiveItem(activeSection);
+    }
+  }, [activeSection]);
+  var handleItemClick = function handleItemClick(section) {
+    setActiveItem(section);
+    if (typeof onNavigate === 'function') {
+      onNavigate(section);
+    }
+    if (isMobile) {
+      toggleSidebar();
+    }
+  };
+  var handleLogout = function handleLogout() {
+    if (typeof onLogout === 'function') {
+      onLogout();
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "org-sidebar ".concat(isOpen ? 'open' : 'closed'),
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("nav", {
+      className: "org-sidebar__nav",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "org-sidebar__logo",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+          src: "/images/urioslogo.svg",
+          alt: "Father Saturnino Urios University",
+          className: "org-sidebar__logo-image"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+        className: "org-sidebar__list",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          className: "org-sidebar__item",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "org-sidebar__link ".concat(activeItem === 'dashboard' ? 'active' : ''),
+            onClick: function onClick() {
+              return handleItemClick('dashboard');
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              size: 20,
+              className: "org-sidebar__icon"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              className: "org-sidebar__label",
+              children: "Dashboard"
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          className: "org-sidebar__item",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "org-sidebar__link ".concat(activeItem === 'review-submission' ? 'active' : ''),
+            onClick: function onClick() {
+              return handleItemClick('review-submission');
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+              size: 20,
+              className: "org-sidebar__icon"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              className: "org-sidebar__label",
+              children: "Review Submission"
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          className: "org-sidebar__item",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "org-sidebar__link ".concat(activeItem === 'settings' ? 'active' : ''),
+            onClick: function onClick() {
+              return handleItemClick('settings');
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              size: 20,
+              className: "org-sidebar__icon"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              className: "org-sidebar__label",
+              children: "Settings"
+            })]
+          })
+        })]
+      })]
+    })
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AuditorSidebar);
+
+/***/ }),
+
+/***/ "./resources/js/components/AuditorArea/ReviewSubmission.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/AuditorArea/ReviewSubmission.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/circle-check-big.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/circle-x.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/clock.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/triangle-alert.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/search.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye.js");
+/* harmony import */ var _sass_AuditorAreas_ReviewSubmission_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../sass/AuditorAreas/ReviewSubmission.scss */ "./resources/sass/AuditorAreas/ReviewSubmission.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+var ReviewSubmission = function ReviewSubmission() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    searchTerm = _useState2[0],
+    setSearchTerm = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('all'),
+    _useState4 = _slicedToArray(_useState3, 2),
+    statusFilter = _useState4[0],
+    setStatusFilter = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    selectedIds = _useState6[0],
+    setSelectedIds = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    selectAll = _useState8[0],
+    setSelectAll = _useState8[1];
+
+  // Sample data for review submissions
+  var reviewData = [{
+    id: 1,
+    organization: 'Computer Science Society',
+    submissionType: 'Financial Report',
+    submittedBy: 'John Doe',
+    submittedDate: '2024-01-15',
+    status: 'pending',
+    priority: 'high',
+    amount: '₱45,000',
+    description: 'Q4 2023 Financial Report'
+  }, {
+    id: 2,
+    organization: 'Engineering Student Council',
+    submissionType: 'Activity Report',
+    submittedBy: 'Jane Smith',
+    submittedDate: '2024-01-14',
+    status: 'approved',
+    priority: 'medium',
+    amount: '₱25,000',
+    description: 'Student Engineering Conference'
+  }, {
+    id: 3,
+    organization: 'Business Administration Club',
+    submissionType: 'Reimbursement',
+    submittedBy: 'Robert Johnson',
+    submittedDate: '2024-01-13',
+    status: 'rejected',
+    priority: 'low',
+    amount: '₱8,500',
+    description: 'Office Supplies Purchase'
+  }, {
+    id: 4,
+    organization: 'Nursing Student Association',
+    submissionType: 'Financial Report',
+    submittedBy: 'Maria Garcia',
+    submittedDate: '2024-01-12',
+    status: 'pending',
+    priority: 'high',
+    amount: '₱32,000',
+    description: 'Q4 2023 Nursing Program'
+  }, {
+    id: 5,
+    organization: 'Psychology Society',
+    submissionType: 'Activity Report',
+    submittedBy: 'David Wilson',
+    submittedDate: '2024-01-11',
+    status: 'approved',
+    priority: 'medium',
+    amount: '₱15,000',
+    description: 'Mental Health Awareness Week'
+  }, {
+    id: 6,
+    organization: 'Mathematics Club',
+    submissionType: 'Reimbursement',
+    submittedBy: 'Sarah Brown',
+    submittedDate: '2024-01-10',
+    status: 'pending',
+    priority: 'low',
+    amount: '₱5,200',
+    description: 'Competition Materials'
+  }];
+  var getStatusIcon = function getStatusIcon(status) {
+    switch (status) {
+      case 'approved':
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          size: 16,
+          className: "status-icon approved"
+        });
+      case 'rejected':
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          size: 16,
+          className: "status-icon rejected"
+        });
+      case 'pending':
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          size: 16,
+          className: "status-icon pending"
+        });
+      default:
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          size: 16,
+          className: "status-icon"
+        });
+    }
+  };
+  var getStatusClass = function getStatusClass(status) {
+    switch (status) {
+      case 'approved':
+        return 'status-approved';
+      case 'rejected':
+        return 'status-rejected';
+      case 'pending':
+        return 'status-pending';
+      default:
+        return '';
+    }
+  };
+  var getPriorityIcon = function getPriorityIcon(priority) {
+    switch (priority) {
+      case 'high':
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          size: 14,
+          className: "priority-icon high"
+        });
+      case 'medium':
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          size: 14,
+          className: "priority-icon medium"
+        });
+      case 'low':
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          size: 14,
+          className: "priority-icon low"
+        });
+      default:
+        return null;
+    }
+  };
+  var formatDate = function formatDate(dateString) {
+    var options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+  var filteredData = reviewData.filter(function (item) {
+    var matchesSearch = item.organization.toLowerCase().includes(searchTerm.toLowerCase()) || item.submittedBy.toLowerCase().includes(searchTerm.toLowerCase()) || item.submissionType.toLowerCase().includes(searchTerm.toLowerCase()) || item.status.toLowerCase().includes(searchTerm.toLowerCase());
+    var matchesStatus = statusFilter === 'all' || item.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
+  var selectedCount = selectedIds.length;
+  var getStatusCounts = function getStatusCounts() {
+    var counts = {
+      total: reviewData.length,
+      pending: reviewData.filter(function (item) {
+        return item.status === 'pending';
+      }).length,
+      approved: reviewData.filter(function (item) {
+        return item.status === 'approved';
+      }).length,
+      rejected: reviewData.filter(function (item) {
+        return item.status === 'rejected';
+      }).length
+    };
+    return counts;
+  };
+
+  // Checkbox functionality
+  var allSelected = selectedIds.length === filteredData.length && filteredData.length > 0;
+  var handleToggleSelectAll = function handleToggleSelectAll() {
+    var next = !(selectAll || allSelected);
+    setSelectAll(next);
+    setSelectedIds(next ? filteredData.map(function (r) {
+      return r.id;
+    }) : []);
+  };
+  var handleToggleRow = function handleToggleRow(id) {
+    setSelectAll(false);
+    setSelectedIds(function (prev) {
+      return prev.includes(id) ? prev.filter(function (x) {
+        return x !== id;
+      }) : [].concat(_toConsumableArray(prev), [id]);
+    });
+  };
+  var counts = getStatusCounts();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "review-submission",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "review-submission__header",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+        className: "review-submission__title",
+        children: "Review Submissions"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "review-submission__tab-wrapper",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+        className: "review-submission__section-title",
+        children: "Audit Report Submissions"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "review-submission__table-container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "review-submission__controls",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "review-submission__left-controls",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "review-submission__search-bar",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              size: 18,
+              className: "review-submission__search-icon"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "text",
+              placeholder: "Search submissions...",
+              className: "review-submission__search-input",
+              value: searchTerm,
+              onChange: function onChange(e) {
+                return setSearchTerm(e.target.value);
+              }
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "review-submission__right-controls",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+            className: "review-submission__search-input",
+            style: {
+              width: '150px',
+              padding: '8px 12px'
+            },
+            value: statusFilter,
+            onChange: function onChange(e) {
+              return setStatusFilter(e.target.value);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+              value: "all",
+              children: "All Status"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+              value: "pending",
+              children: "Pending"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+              value: "approved",
+              children: "Approved"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+              value: "rejected",
+              children: "Rejected"
+            })]
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "review-submission__table-wrapper",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
+          className: "review-submission__table",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                  type: "checkbox",
+                  className: "review-submission__select-all",
+                  checked: allSelected,
+                  onChange: handleToggleSelectAll,
+                  "aria-label": "Select all"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Actions"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Organization"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Submission Type"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Submitted By"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Date"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Amount"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Priority"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                children: "Status"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
+            children: filteredData.length > 0 ? filteredData.map(function (item) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  className: "review-submission__checkbox-cell",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                    type: "checkbox",
+                    className: "review-submission__select-row",
+                    checked: selectedIds.includes(item.id),
+                    onChange: function onChange() {
+                      return handleToggleRow(item.id);
+                    },
+                    "aria-label": "Select ".concat(item.organization)
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  className: "review-submission__table-actions",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "review-submission__action-buttons",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                      className: "review-submission__action-btn",
+                      onClick: function onClick() {
+                        return console.log('View', item.id);
+                      },
+                      title: "View Details",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                        size: 16
+                      })
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: item.organization
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: item.submissionType
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: item.submittedBy
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: formatDate(item.submittedDate)
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: item.amount
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                    className: "review-submission__priority-badge",
+                    children: [getPriorityIcon(item.priority), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                      className: "priority-text priority-".concat(item.priority),
+                      children: item.priority
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                    className: "status-badge ".concat(getStatusClass(item.status)),
+                    children: item.status
+                  })
+                })]
+              }, item.id);
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                colSpan: 9,
+                className: "review-submission__no-results",
+                children: "No submissions found matching your criteria."
+              })
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "review-submission__pagination",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "review-submission__page-info",
+            children: ["Showing ", filteredData.length, " of ", reviewData.length, " submissions"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "review-submission__page-controls",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              className: "review-submission__page-btn",
+              disabled: true,
+              children: "Previous"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "review-submission__page-current",
+              children: "1"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              className: "review-submission__page-btn",
+              children: "Next"
+            })]
+          })]
+        })]
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewSubmission);
+
+/***/ }),
+
+/***/ "./resources/js/components/AuditorArea/Settings.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/AuditorArea/Settings.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/camera.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/x.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/square-pen.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/save.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye-off.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/eye.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/lock.js");
+/* harmony import */ var _sass_AuditorAreas_Settings_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../sass/AuditorAreas/Settings.scss */ "./resources/sass/AuditorAreas/Settings.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { if (r) i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n;else { var o = function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); }; o("next", 0), o("throw", 1), o("return", 2); } }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+var Settings = function Settings() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    userData = _useState2[0],
+    setUserData = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isEditing = _useState4[0],
+    setIsEditing = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isChangingPassword = _useState6[0],
+    setIsChangingPassword = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState8 = _slicedToArray(_useState7, 2),
+    isLoading = _useState8[0],
+    setIsLoading = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState0 = _slicedToArray(_useState9, 2),
+    isSaving = _useState0[0],
+    setIsSaving = _useState0[1];
+  var _useState1 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState10 = _slicedToArray(_useState1, 2),
+    error = _useState10[0],
+    setError = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState12 = _slicedToArray(_useState11, 2),
+    success = _useState12[0],
+    setSuccess = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    profilePicPreview = _useState14[0],
+    setProfilePicPreview = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('profile'),
+    _useState16 = _slicedToArray(_useState15, 2),
+    activeTab = _useState16[0],
+    setActiveTab = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    showCurrentPassword = _useState18[0],
+    setShowCurrentPassword = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    showNewPassword = _useState20[0],
+    setShowNewPassword = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    showConfirmPassword = _useState22[0],
+    setShowConfirmPassword = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      first_name: '',
+      middle_name: '',
+      last_name: '',
+      suffix: '',
+      email: '',
+      current_password: '',
+      new_password: '',
+      new_password_confirmation: '',
+      profile_pic: null
+    }),
+    _useState24 = _slicedToArray(_useState23, 2),
+    formData = _useState24[0],
+    setFormData = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState26 = _slicedToArray(_useState25, 2),
+    fieldErrors = _useState26[0],
+    setFieldErrors = _useState26[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchUserData();
+  }, []);
+  var fetchUserData = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+      var _response$data, response, _user$profile, _user$profile2, _user$profile3, _user$profile4, _user$profile5, user, _t;
+      return _regenerator().w(function (_context) {
+        while (1) switch (_context.p = _context.n) {
+          case 0:
+            _context.p = 0;
+            setIsLoading(true);
+            _context.n = 1;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user');
+          case 1:
+            response = _context.v;
+            if ((_response$data = response.data) !== null && _response$data !== void 0 && _response$data.success) {
+              user = response.data.data.user;
+              setUserData(user);
+              setFormData({
+                first_name: ((_user$profile = user.profile) === null || _user$profile === void 0 ? void 0 : _user$profile.first_name) || '',
+                middle_name: ((_user$profile2 = user.profile) === null || _user$profile2 === void 0 ? void 0 : _user$profile2.middle_name) || '',
+                last_name: ((_user$profile3 = user.profile) === null || _user$profile3 === void 0 ? void 0 : _user$profile3.last_name) || '',
+                suffix: ((_user$profile4 = user.profile) === null || _user$profile4 === void 0 ? void 0 : _user$profile4.suffix) || '',
+                email: user.email || '',
+                current_password: '',
+                new_password: '',
+                new_password_confirmation: '',
+                profile_pic: null
+              });
+
+              // Set profile picture preview
+              if ((_user$profile5 = user.profile) !== null && _user$profile5 !== void 0 && _user$profile5.profile_pic) {
+                setProfilePicPreview("/storage/".concat(user.profile.profile_pic));
+              }
+            } else {
+              setError('Failed to fetch user data');
+            }
+            _context.n = 3;
+            break;
+          case 2:
+            _context.p = 2;
+            _t = _context.v;
+            console.error('Error fetching user data:', _t);
+            setError('Error fetching user data');
+          case 3:
+            _context.p = 3;
+            setIsLoading(false);
+            return _context.f(3);
+          case 4:
+            return _context.a(2);
+        }
+      }, _callee, null, [[0, 2, 3, 4]]);
+    }));
+    return function fetchUserData() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  var handleInputChange = function handleInputChange(e) {
+    var _e$target = e.target,
+      name = _e$target.name,
+      value = _e$target.value;
+    setFormData(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, value));
+    });
+
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors(function (prev) {
+        return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, ''));
+      });
+    }
+  };
+  var handleFileChange = function handleFileChange(e) {
+    var file = e.target.files[0];
+    if (file) {
+      if (!file.type.startsWith('image/')) {
+        setError('Please select a valid image file');
+        return;
+      }
+      if (file.size > 2048 * 1024) {
+        // 2MB limit
+        setError('Image size must be less than 2MB');
+        return;
+      }
+      setFormData(function (prev) {
+        return _objectSpread(_objectSpread({}, prev), {}, {
+          profile_pic: file
+        });
+      });
+
+      // Create preview
+      var reader = new FileReader();
+      reader.onloadend = function () {
+        setProfilePicPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setError('');
+    }
+  };
+  var handleRemoveImage = function handleRemoveImage() {
+    var _userData$profile;
+    setFormData(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, {
+        profile_pic: null
+      });
+    });
+
+    // Reset to original image
+    if (userData !== null && userData !== void 0 && (_userData$profile = userData.profile) !== null && _userData$profile !== void 0 && _userData$profile.profile_pic) {
+      setProfilePicPreview("/storage/".concat(userData.profile.profile_pic));
+    } else {
+      setProfilePicPreview(null);
+    }
+  };
+  var handleDeleteProfilePicture = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+      var response, _t2;
+      return _regenerator().w(function (_context2) {
+        while (1) switch (_context2.p = _context2.n) {
+          case 0:
+            if (window.confirm('Are you sure you want to delete your profile picture?')) {
+              _context2.n = 1;
+              break;
+            }
+            return _context2.a(2);
+          case 1:
+            _context2.p = 1;
+            setIsSaving(true);
+            _context2.n = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/profiles/".concat(userData.profile.profile_id, "/delete-picture"));
+          case 2:
+            response = _context2.v;
+            if (response.data.success) {
+              setProfilePicPreview(null);
+              setSuccess('Profile picture deleted successfully');
+              // Update userData
+              setUserData(function (prev) {
+                return _objectSpread(_objectSpread({}, prev), {}, {
+                  profile: _objectSpread(_objectSpread({}, prev.profile), {}, {
+                    profile_pic: null
+                  })
+                });
+              });
+            } else {
+              setError('Failed to delete profile picture');
+            }
+            _context2.n = 4;
+            break;
+          case 3:
+            _context2.p = 3;
+            _t2 = _context2.v;
+            console.error('Error deleting profile picture:', _t2);
+            setError('Failed to delete profile picture');
+          case 4:
+            _context2.p = 4;
+            setIsSaving(false);
+            return _context2.f(4);
+          case 5:
+            return _context2.a(2);
+        }
+      }, _callee2, null, [[1, 3, 4, 5]]);
+    }));
+    return function handleDeleteProfilePicture() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var handleSave = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+      var formDataFile, uploadResponse, profileData, profileResponse, passwordData, passwordResponse, _t3;
+      return _regenerator().w(function (_context3) {
+        while (1) switch (_context3.p = _context3.n) {
+          case 0:
+            _context3.p = 0;
+            setIsSaving(true);
+            setError('');
+            setSuccess('');
+            setFieldErrors({});
+            if (!(activeTab === 'profile')) {
+              _context3.n = 6;
+              break;
+            }
+            if (!formData.profile_pic) {
+              _context3.n = 2;
+              break;
+            }
+            formDataFile = new FormData();
+            formDataFile.append('profile_picture', formData.profile_pic);
+            _context3.n = 1;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/profiles/".concat(userData.profile.profile_id, "/upload-picture"), formDataFile, {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            });
+          case 1:
+            uploadResponse = _context3.v;
+            if (uploadResponse.data.success) {
+              _context3.n = 2;
+              break;
+            }
+            throw new Error('Failed to upload profile picture');
+          case 2:
+            // Update profile information
+            profileData = {
+              first_name: formData.first_name,
+              middle_name: formData.middle_name,
+              last_name: formData.last_name,
+              suffix: formData.suffix
+            };
+            _context3.n = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/profiles/".concat(userData.profile.profile_id), profileData);
+          case 3:
+            profileResponse = _context3.v;
+            if (profileResponse.data.success) {
+              _context3.n = 4;
+              break;
+            }
+            throw new Error('Failed to update profile information');
+          case 4:
+            setSuccess('Profile updated successfully');
+            setIsEditing(false);
+
+            // Reset form
+            setFormData(function (prev) {
+              return _objectSpread(_objectSpread({}, prev), {}, {
+                profile_pic: null
+              });
+            });
+
+            // Refresh user data
+            _context3.n = 5;
+            return fetchUserData();
+          case 5:
+            _context3.n = 9;
+            break;
+          case 6:
+            if (!(activeTab === 'password')) {
+              _context3.n = 9;
+              break;
+            }
+            // Handle password change
+            passwordData = {
+              current_password: formData.current_password,
+              new_password: formData.new_password,
+              new_password_confirmation: formData.new_password_confirmation
+            };
+            _context3.n = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/change-password', passwordData);
+          case 7:
+            passwordResponse = _context3.v;
+            if (passwordResponse.data.success) {
+              _context3.n = 8;
+              break;
+            }
+            throw new Error('Failed to change password');
+          case 8:
+            setSuccess('Password updated successfully');
+            setIsChangingPassword(false);
+
+            // Reset password fields
+            setFormData(function (prev) {
+              return _objectSpread(_objectSpread({}, prev), {}, {
+                current_password: '',
+                new_password: '',
+                new_password_confirmation: ''
+              });
+            });
+          case 9:
+            _context3.n = 11;
+            break;
+          case 10:
+            _context3.p = 10;
+            _t3 = _context3.v;
+            console.error('Error updating:', _t3);
+            if (_t3.response && _t3.response.data && _t3.response.data.errors) {
+              setFieldErrors(_t3.response.data.errors);
+            } else if (_t3.response && _t3.response.data && _t3.response.data.message) {
+              setError(_t3.response.data.message);
+            } else {
+              setError(activeTab === 'profile' ? 'Failed to update profile' : 'Failed to change password');
+            }
+          case 11:
+            _context3.p = 11;
+            setIsSaving(false);
+            return _context3.f(11);
+          case 12:
+            return _context3.a(2);
+        }
+      }, _callee3, null, [[0, 10, 11, 12]]);
+    }));
+    return function handleSave() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var toggleCurrentPasswordVisibility = function toggleCurrentPasswordVisibility() {
+    setShowCurrentPassword(!showCurrentPassword);
+  };
+  var toggleNewPasswordVisibility = function toggleNewPasswordVisibility() {
+    setShowNewPassword(!showNewPassword);
+  };
+  var toggleConfirmPasswordVisibility = function toggleConfirmPasswordVisibility() {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+  var handleTabChange = function handleTabChange(tabName) {
+    setActiveTab(tabName);
+    setError('');
+    setSuccess('');
+    setFieldErrors({});
+    setIsEditing(false);
+    setIsChangingPassword(false);
+    setShowCurrentPassword(false);
+    setShowNewPassword(false);
+    setShowConfirmPassword(false);
+
+    // Reset form to original data
+    if (userData) {
+      var _userData$profile2, _userData$profile3, _userData$profile4, _userData$profile5, _userData$profile6;
+      setFormData({
+        first_name: ((_userData$profile2 = userData.profile) === null || _userData$profile2 === void 0 ? void 0 : _userData$profile2.first_name) || '',
+        middle_name: ((_userData$profile3 = userData.profile) === null || _userData$profile3 === void 0 ? void 0 : _userData$profile3.middle_name) || '',
+        last_name: ((_userData$profile4 = userData.profile) === null || _userData$profile4 === void 0 ? void 0 : _userData$profile4.last_name) || '',
+        suffix: ((_userData$profile5 = userData.profile) === null || _userData$profile5 === void 0 ? void 0 : _userData$profile5.suffix) || '',
+        email: userData.email || '',
+        current_password: '',
+        new_password: '',
+        new_password_confirmation: '',
+        profile_pic: null
+      });
+
+      // Reset profile picture preview
+      if ((_userData$profile6 = userData.profile) !== null && _userData$profile6 !== void 0 && _userData$profile6.profile_pic) {
+        setProfilePicPreview("/storage/".concat(userData.profile.profile_pic));
+      } else {
+        setProfilePicPreview(null);
+      }
+    }
+  };
+  var handleCancel = function handleCancel() {
+    if (activeTab === 'profile') {
+      setIsEditing(false);
+    } else if (activeTab === 'password') {
+      setIsChangingPassword(false);
+    }
+    setError('');
+    setSuccess('');
+    setFieldErrors({});
+    setShowCurrentPassword(false);
+    setShowNewPassword(false);
+    setShowConfirmPassword(false);
+
+    // Reset form to original data
+    if (userData) {
+      var _userData$profile7, _userData$profile8, _userData$profile9, _userData$profile0, _userData$profile1;
+      setFormData({
+        first_name: ((_userData$profile7 = userData.profile) === null || _userData$profile7 === void 0 ? void 0 : _userData$profile7.first_name) || '',
+        middle_name: ((_userData$profile8 = userData.profile) === null || _userData$profile8 === void 0 ? void 0 : _userData$profile8.middle_name) || '',
+        last_name: ((_userData$profile9 = userData.profile) === null || _userData$profile9 === void 0 ? void 0 : _userData$profile9.last_name) || '',
+        suffix: ((_userData$profile0 = userData.profile) === null || _userData$profile0 === void 0 ? void 0 : _userData$profile0.suffix) || '',
+        email: userData.email || '',
+        current_password: '',
+        new_password: '',
+        new_password_confirmation: '',
+        profile_pic: null
+      });
+
+      // Reset profile picture preview
+      if ((_userData$profile1 = userData.profile) !== null && _userData$profile1 !== void 0 && _userData$profile1.profile_pic) {
+        setProfilePicPreview("/storage/".concat(userData.profile.profile_pic));
+      } else {
+        setProfilePicPreview(null);
+      }
+    }
+  };
+  var renderProfileTab = function renderProfileTab() {
+    var _userData$profile10, _userData$role;
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "my-profile__container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "my-profile__section",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+          className: "my-profile__section-title",
+          children: "Profile Picture"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "my-profile__profile-pic-section",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+            src: profilePicPreview || '/images/csp.png',
+            alt: "Profile",
+            className: "my-profile__profile-pic"
+          }), isEditing && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "my-profile__profile-pic-actions",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+              className: "my-profile__btn my-profile__btn--secondary my-profile__btn--small",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                size: 16
+              }), "Change Photo", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                type: "file",
+                accept: "image/*",
+                onChange: handleFileChange,
+                className: "my-profile__file-input",
+                disabled: isSaving,
+                style: {
+                  display: 'none'
+                }
+              })]
+            }), formData.profile_pic && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
+              type: "button",
+              onClick: handleRemoveImage,
+              className: "my-profile__btn my-profile__btn--secondary my-profile__btn--small",
+              disabled: isSaving,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                size: 16
+              }), "Remove"]
+            }), (userData === null || userData === void 0 || (_userData$profile10 = userData.profile) === null || _userData$profile10 === void 0 ? void 0 : _userData$profile10.profile_pic) && !formData.profile_pic && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              type: "button",
+              onClick: handleDeleteProfilePicture,
+              className: "my-profile__btn my-profile__btn--danger my-profile__btn--small",
+              disabled: isSaving,
+              children: "Delete Current"
+            })]
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "my-profile__section",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+          className: "my-profile__section-title",
+          children: "Personal Information"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "my-profile__form-grid",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "my-profile__form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+              className: "my-profile__label",
+              children: ["First Name ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "required",
+                children: "*"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "text",
+              className: "my-profile__input ".concat(fieldErrors.first_name ? 'my-profile__input--error' : ''),
+              name: "first_name",
+              value: formData.first_name,
+              onChange: handleInputChange,
+              readOnly: !isEditing,
+              disabled: isSaving
+            }), fieldErrors.first_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              className: "my-profile__field-error",
+              children: fieldErrors.first_name[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "my-profile__form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              className: "my-profile__label",
+              children: "Middle Name"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "text",
+              className: "my-profile__input",
+              name: "middle_name",
+              value: formData.middle_name,
+              onChange: handleInputChange,
+              readOnly: !isEditing,
+              disabled: isSaving
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "my-profile__form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+              className: "my-profile__label",
+              children: ["Last Name ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "required",
+                children: "*"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "text",
+              className: "my-profile__input ".concat(fieldErrors.last_name ? 'my-profile__input--error' : ''),
+              name: "last_name",
+              value: formData.last_name,
+              onChange: handleInputChange,
+              readOnly: !isEditing,
+              disabled: isSaving
+            }), fieldErrors.last_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              className: "my-profile__field-error",
+              children: fieldErrors.last_name[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "my-profile__form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              className: "my-profile__label",
+              children: "Suffix"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "text",
+              className: "my-profile__input",
+              name: "suffix",
+              value: formData.suffix,
+              onChange: handleInputChange,
+              placeholder: "Jr., Sr., III, etc.",
+              readOnly: !isEditing,
+              disabled: isSaving
+            })]
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "my-profile__section",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+          className: "my-profile__section-title",
+          children: "Account Information"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "my-profile__form-grid",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "my-profile__form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              className: "my-profile__label",
+              children: "Email"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "email",
+              className: "my-profile__input",
+              value: (userData === null || userData === void 0 ? void 0 : userData.email) || '',
+              readOnly: true
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "my-profile__form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              className: "my-profile__label",
+              children: "Role"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "text",
+              className: "my-profile__input",
+              value: (userData === null || userData === void 0 || (_userData$role = userData.role) === null || _userData$role === void 0 ? void 0 : _userData$role.role_name) || 'Auditor',
+              readOnly: true
+            })]
+          })]
+        })]
+      }), !isEditing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "my-profile__tab-actions",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
+          className: "my-profile__btn my-profile__btn--primary",
+          onClick: function onClick() {
+            return setIsEditing(true);
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            size: 16
+          }), "Edit Profile"]
+        })
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "my-profile__tab-actions",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
+          className: "my-profile__btn my-profile__btn--secondary",
+          onClick: handleCancel,
+          disabled: isSaving,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            size: 16
+          }), "Cancel"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
+          className: "my-profile__btn my-profile__btn--primary",
+          onClick: handleSave,
+          disabled: isSaving,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            size: 16
+          }), isSaving ? 'Saving...' : 'Save Changes']
+        })]
+      })]
+    });
+  };
+  var renderPasswordTab = function renderPasswordTab() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "my-profile__container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "my-profile__section",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+          className: "my-profile__section-title",
+          children: !isChangingPassword ? 'Password Security' : 'Change Password'
+        }), !isChangingPassword && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          className: "my-profile__section-description",
+          children: "Keep your account secure by using a strong password."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "my-profile__form-grid",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "my-profile__form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+              className: "my-profile__label",
+              children: ["Current Password ", isChangingPassword && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "required",
+                children: "*"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "my-profile__password-input-wrapper",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                type: showCurrentPassword ? "text" : "password",
+                name: "current_password",
+                value: formData.current_password,
+                onChange: handleInputChange,
+                className: "my-profile__input ".concat(fieldErrors.current_password ? 'my-profile__input--error' : ''),
+                placeholder: "Enter current password",
+                disabled: !isChangingPassword || isSaving,
+                readOnly: !isChangingPassword
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                type: "button",
+                className: "my-profile__password-toggle",
+                onClick: toggleCurrentPasswordVisibility,
+                disabled: !isChangingPassword || isSaving,
+                "aria-label": showCurrentPassword ? "Hide password" : "Show password",
+                children: showCurrentPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                  size: 18
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                  size: 18
+                })
+              })]
+            }), fieldErrors.current_password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              className: "my-profile__field-error",
+              children: fieldErrors.current_password[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "my-profile__form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+              className: "my-profile__label",
+              children: ["New Password ", isChangingPassword && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "required",
+                children: "*"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "my-profile__password-input-wrapper",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                type: showNewPassword ? "text" : "password",
+                name: "new_password",
+                value: formData.new_password,
+                onChange: handleInputChange,
+                className: "my-profile__input ".concat(fieldErrors.new_password ? 'my-profile__input--error' : ''),
+                placeholder: "Enter new password",
+                disabled: !isChangingPassword || isSaving,
+                readOnly: !isChangingPassword
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                type: "button",
+                className: "my-profile__password-toggle",
+                onClick: toggleNewPasswordVisibility,
+                disabled: !isChangingPassword || isSaving,
+                "aria-label": showNewPassword ? "Hide password" : "Show password",
+                children: showNewPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                  size: 18
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                  size: 18
+                })
+              })]
+            }), fieldErrors.new_password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              className: "my-profile__field-error",
+              children: fieldErrors.new_password[0]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "my-profile__form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+              className: "my-profile__label",
+              children: ["Confirm New Password ", isChangingPassword && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                className: "required",
+                children: "*"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "my-profile__password-input-wrapper",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                type: showConfirmPassword ? "text" : "password",
+                name: "new_password_confirmation",
+                value: formData.new_password_confirmation,
+                onChange: handleInputChange,
+                className: "my-profile__input ".concat(fieldErrors.new_password_confirmation ? 'my-profile__input--error' : ''),
+                placeholder: "Confirm new password",
+                disabled: !isChangingPassword || isSaving,
+                readOnly: !isChangingPassword
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                type: "button",
+                className: "my-profile__password-toggle",
+                onClick: toggleConfirmPasswordVisibility,
+                disabled: !isChangingPassword || isSaving,
+                "aria-label": showConfirmPassword ? "Hide password" : "Show password",
+                children: showConfirmPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                  size: 18
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                  size: 18
+                })
+              })]
+            }), fieldErrors.new_password_confirmation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              className: "my-profile__field-error",
+              children: fieldErrors.new_password_confirmation[0]
+            })]
+          })]
+        })]
+      }), !isChangingPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "my-profile__tab-actions",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
+          className: "my-profile__btn my-profile__btn--primary",
+          onClick: function onClick() {
+            return setIsChangingPassword(true);
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            size: 16
+          }), "Change Password"]
+        })
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "my-profile__tab-actions",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
+          className: "my-profile__btn my-profile__btn--secondary",
+          onClick: handleCancel,
+          disabled: isSaving,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            size: 16
+          }), "Cancel"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
+          className: "my-profile__btn my-profile__btn--primary",
+          onClick: handleSave,
+          disabled: isSaving,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            size: 16
+          }), isSaving ? 'Updating Password...' : 'Update Password']
+        })]
+      })]
+    });
+  };
+  if (isLoading) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "my-profile__loading",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "spinner"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        children: "Loading profile..."
+      })]
+    });
+  }
+  if (!userData) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "my-profile__error",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        children: "Failed to load profile data"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        onClick: fetchUserData,
+        className: "my-profile__retry-btn",
+        children: "Retry"
+      })]
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "my-profile",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "my-profile__header",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
+        className: "my-profile__title",
+        children: "Settings"
+      })
+    }), isLoading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "my-profile__loading",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "spinner"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        children: "Loading profile..."
+      })]
+    }), !isLoading && !userData && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "my-profile__error",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        children: "Failed to load profile data"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        onClick: fetchUserData,
+        className: "my-profile__retry-btn",
+        children: "Retry"
+      })]
+    }), !isLoading && userData && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "my-profile__tab-wrapper",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "my-profile__tab ".concat(activeTab === 'profile' ? 'my-profile__tab--active' : ''),
+          onClick: function onClick() {
+            return handleTabChange('profile');
+          },
+          children: "My Profile"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "my-profile__tab ".concat(activeTab === 'password' ? 'my-profile__tab--active' : ''),
+          onClick: function onClick() {
+            return handleTabChange('password');
+          },
+          children: "My Password"
+        })]
+      }), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "my-profile__alert my-profile__alert--error",
+        children: error
+      }), success && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "my-profile__alert my-profile__alert--success",
+        children: success
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "my-profile__content",
+        children: activeTab === 'profile' ? renderProfileTab() : renderPasswordTab()
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Settings);
+
+/***/ }),
+
 /***/ "./resources/js/components/LoginArea/Login.js":
 /*!****************************************************!*\
   !*** ./resources/js/components/LoginArea/Login.js ***!
@@ -77805,27 +80387,21 @@ var Login = function Login(_ref) {
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "login-container",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "login-content",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "logo-section",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-          src: "/images/logourios.svg",
-          alt: "FSUU Logo",
-          className: "university-logo ".concat(logoLoaded ? 'logo-loaded' : ''),
-          onLoad: function onLoad() {
-            return setLogoLoaded(true);
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-          className: "university-name",
-          children: "FATHER SATURNINO URIOS UNIVERSITY"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-          className: "university-full-name",
-          children: "Student Organization Liquidation System"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "login-form-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "logo-section",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+            src: "/images/logourios.svg",
+            alt: "FSUU Logo",
+            className: "university-logo ".concat(logoLoaded ? 'logo-loaded' : ''),
+            onLoad: function onLoad() {
+              return setLogoLoaded(true);
+            }
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
           className: "form-title",
           children: "Account Login"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
@@ -77909,7 +80485,7 @@ var Login = function Login(_ref) {
             })]
           })]
         })]
-      })]
+      })
     })
   });
 };
@@ -86108,7 +88684,6 @@ var OrgHeader = function OrgHeader(_ref) {
       className: "org-header__actions",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "org-header__notification",
-        title: "Notifications",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "org-header__profile",
@@ -88336,6 +90911,186 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_UserMng_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/sass/AuditorAreas/AuditorDashboard.scss":
+/*!***********************************************************!*\
+  !*** ./resources/sass/AuditorAreas/AuditorDashboard.scss ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorDashboard_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./AuditorDashboard.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorDashboard.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorDashboard_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorDashboard_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/sass/AuditorAreas/AuditorDashboardMain.scss":
+/*!***************************************************************!*\
+  !*** ./resources/sass/AuditorAreas/AuditorDashboardMain.scss ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorDashboardMain_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./AuditorDashboardMain.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorDashboardMain.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorDashboardMain_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorDashboardMain_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/sass/AuditorAreas/AuditorHeader.scss":
+/*!********************************************************!*\
+  !*** ./resources/sass/AuditorAreas/AuditorHeader.scss ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorHeader_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./AuditorHeader.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorHeader.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorHeader_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorHeader_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/sass/AuditorAreas/AuditorSidebar.scss":
+/*!*********************************************************!*\
+  !*** ./resources/sass/AuditorAreas/AuditorSidebar.scss ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorSidebar_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./AuditorSidebar.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/AuditorSidebar.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorSidebar_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_AuditorSidebar_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/sass/AuditorAreas/ReviewSubmission.scss":
+/*!***********************************************************!*\
+  !*** ./resources/sass/AuditorAreas/ReviewSubmission.scss ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ReviewSubmission_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./ReviewSubmission.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/ReviewSubmission.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ReviewSubmission_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_ReviewSubmission_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/sass/AuditorAreas/Settings.scss":
+/*!***************************************************!*\
+  !*** ./resources/sass/AuditorAreas/Settings.scss ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_Settings_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./Settings.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/sass/AuditorAreas/Settings.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_Settings_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_Settings_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 

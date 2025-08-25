@@ -182,18 +182,15 @@ const Login = ({ onLogin }) => {
     return (
         <div className="login-container">
             <div className="login-content">
-                <div className="logo-section">
-                    <img 
-                        src="/images/logourios.svg" 
-                        alt="FSUU Logo" 
-                        className={`university-logo ${logoLoaded ? 'logo-loaded' : ''}`}
-                        onLoad={() => setLogoLoaded(true)}
-                    />
-                    <h1 className="university-name">FATHER SATURNINO URIOS UNIVERSITY</h1>
-                    <p className="university-full-name">Student Organization Liquidation System</p>
-                </div>
-                
                 <div className="login-form-container">
+                    <div className="logo-section">
+                        <img 
+                            src="/images/logourios.svg" 
+                            alt="FSUU Logo" 
+                            className={`university-logo ${logoLoaded ? 'logo-loaded' : ''}`}
+                            onLoad={() => setLogoLoaded(true)}
+                        />
+                    </div>
                     <h2 className="form-title">Account Login</h2>
                     
                     <form onSubmit={handleSubmit} className="login-form">

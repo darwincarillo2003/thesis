@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Bell, ChevronDown, LogOut, User, Settings } from 'lucide-react';
 
-const OrgHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
+const AuditorHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -41,27 +41,28 @@ const OrgHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
     setIsDropdownOpen(false);
   };
 
-  return (
+    return (
     <header className="org-header">
       <div className="org-header__hamburger" onClick={toggleSidebar}>
         <Menu size={24} color="#0036AF" strokeWidth={2} />
       </div>
 
       <div className="org-header__actions">
-        <div className="org-header__notification">
+        <div className="org-header__notification" title="Notifications">
           <Bell />
         </div>
 
         <div className="org-header__profile" onClick={toggleDropdown} ref={dropdownRef}>
           <img
             src={
-              userData?.profile?.profile_pic 
-                ? `/storage/${userData.profile.profile_pic}` 
+              userData?.profile?.profile_pic
+                ? `/storage/${userData.profile.profile_pic}`
                 : "/images/csp.png"
             }
             alt={userData?.profile?.first_name || "User"}
             className="org-header__profile-picture"
             onError={(e) => {
+              // If the profile picture fails to load, use the default
               e.target.src = "/images/csp.png";
             }}
           />
@@ -92,4 +93,4 @@ const OrgHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
   );
 };
 
-export default OrgHeader;
+export default AuditorHeader;
