@@ -5,7 +5,9 @@ import {
   FileText,
   User,
   Settings,
-  LogOut
+  LogOut,
+  Shield,
+  Building
 } from 'lucide-react';
 
 const AdminSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout, activeSection }) => {
@@ -75,6 +77,24 @@ const AdminSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout, activeSecti
             >
               <FileText size={20} className="admin-sidebar__icon" />
               <span className="admin-sidebar__label">Form Management</span>
+            </div>
+          </li>
+          <li className="admin-sidebar__item">
+            <div
+              className={`admin-sidebar__link ${activeItem === 'role-management' ? 'active' : ''}`}
+              onClick={() => handleItemClick('role-management')}
+            >
+              <Shield size={20} className="admin-sidebar__icon" />
+              <span className="admin-sidebar__label">Role Management</span>
+            </div>
+          </li>
+          <li className="admin-sidebar__item">
+            <div
+              className={`admin-sidebar__link ${activeItem === 'organization-management' ? 'active' : ''}`}
+              onClick={() => handleItemClick('organization-management')}
+            >
+              <Building size={20} className="admin-sidebar__icon" />
+              <span className="admin-sidebar__label">Organization Management</span>
             </div>
           </li>
           <li className="admin-sidebar__item">

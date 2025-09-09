@@ -18,7 +18,11 @@ class ProfileController extends Controller
 
         $query = Profile::query()
             ->select(['profile_id', 'user_id', 'first_name', 'middle_name', 'last_name', 'suffix', 'profile_pic'])
-            ->with(['user:user_id,email,role_id', 'user.role:role_id,role_name']);
+            ->with([
+                'user:user_id,email,role_id',
+                'user.role:role_id,role_name',
+                'user.organizations'
+            ]);
 
         if ($search !== '') {
             $query->where(function ($q) use ($search) {
@@ -70,11 +74,15 @@ class ProfileController extends Controller
 
         // Check if current user can update this profile
         $currentUser = auth()->user();
-        if ($currentUser->user_id !== $profile->user_id && $currentUser->role->role_name !== 'admin') {
-            return response()->json([
-                'success' => false,
-                'message' => 'You are not authorized to update this profile'
-            ], 403);
+        if ($currentUser->user_id !== $profile->user_id) {
+            // Load role relationship to check if admin
+            $currentUser->load('role');
+            if (!$currentUser->role || $currentUser->role->role_name !== 'admin') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'You are not authorized to update this profile'
+                ], 403);
+            }
         }
 
         try {
@@ -129,6 +137,19 @@ class ProfileController extends Controller
                 'success' => false,
                 'message' => 'Profile not found'
             ], 404);
+        }
+
+        // Check if current user can update this profile
+        $currentUser = auth()->user();
+        if ($currentUser->user_id !== $profile->user_id) {
+            // Load role relationship to check if admin
+            $currentUser->load('role');
+            if (!$currentUser->role || $currentUser->role->role_name !== 'admin') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'You are not authorized to update this profile'
+                ], 403);
+            }
         }
 
         try {

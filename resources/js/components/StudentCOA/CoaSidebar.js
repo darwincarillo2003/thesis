@@ -4,7 +4,8 @@ import {
   ClipboardCheck,
   CheckSquare,
   Settings,
-  LogOut
+  LogOut,
+  Calendar
 } from 'lucide-react';
 
 const CoaSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
@@ -53,15 +54,24 @@ const CoaSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout }) => {
             </div>
           </li>
           <li className="coa-sidebar__item">
-            <div 
-              className={`coa-sidebar__link ${activeItem === 'review-reports' ? 'active' : ''}`} 
+            <div
+              className={`coa-sidebar__link ${activeItem === 'review-reports' ? 'active' : ''}`}
               onClick={() => handleItemClick('review-reports')}
             >
               <ClipboardCheck size={20} className="coa-sidebar__icon" />
               <span className="coa-sidebar__label">Review Reports</span>
             </div>
           </li>
-          
+          <li className="coa-sidebar__item">
+            <div
+              className={`coa-sidebar__link ${activeItem === 'events' ? 'active' : ''}`}
+              onClick={() => handleItemClick('events')}
+            >
+              <Calendar size={20} className="coa-sidebar__icon" />
+              <span className="coa-sidebar__label">Events</span>
+            </div>
+          </li>
+
           {/* Separator */}
           <li className="coa-sidebar__separator"></li>
           

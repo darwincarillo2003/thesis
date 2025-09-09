@@ -19,6 +19,8 @@
 @import 'StudentOrgDashboard/FormViewer.scss';
 @import 'StudentOrgDashboard/Dashboard.scss';
 @import 'StudentOrgDashboard/MyReports.scss';
+@import 'StudentOrgDashboard/Calendar.scss';
+
 
 @import 'StudentOrgDashboard/Settings.scss';
 @import 'StudentCoaMain/CoaDashboard.scss';
@@ -28,7 +30,7 @@
 @import 'StudentCoaMain/Settings.scss';
 @import 'StudentCoaMain/ReviewReports.scss';
 @import 'StudentCoaMain/SubmittedFormViewer.scss';
-
+@import 'StudentCoaMain/Events.scss';
 
 @import 'AuditorAreas/AuditorDashboard.scss';
 @import 'AuditorAreas/AuditorHeader.scss';
@@ -45,6 +47,12 @@
 @import 'AdminAreas/AddUserModal.scss';
 @import 'AdminAreas/EditUserModal.scss';
 @import 'AdminAreas/FormMng.scss';
+@import 'AdminAreas/RoleMng.scss';
+@import 'AdminAreas/OrgMng.scss';
+@import 'AdminAreas/AdminSettings.scss';
+@import 'AdminAreas/OrgMngModal.scss';
+@import 'AdminAreas/RoleMngModal.scss';
+
 
 @import 'AdminAreas/Settings.scss';
 @import 'SuccessPop/SuccessNotif.scss';

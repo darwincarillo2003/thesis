@@ -87,14 +87,45 @@ const ReviewModal = ({ isOpen, onClose, report, onReviewComplete }) => {
       sum + parseFloat(source.amount?.replace(/[₱,]/g, '') || 0), 0) || 0;
     const totalCashInflows = beginningCashInBank + beginningCashOnHand + cashReceiptSources;
 
-    // Calculate cash outflows total
-    const organizationAllocations = formData.cashOutflows?.organizationAllocations?.reduce((sum, item) => 
-      sum + parseFloat(item.amount?.replace(/[₱,]/g, '') || 0), 0) || 0;
-    const otherDisbursements = formData.cashOutflows?.otherDisbursements?.reduce((sum, item) => 
-      sum + parseFloat(item.amount?.replace(/[₱,]/g, '') || 0), 0) || 0;
-    const contingencyFund = formData.cashOutflows?.contingencyFund?.reduce((sum, item) => 
-      sum + parseFloat(item.amount?.replace(/[₱,]/g, '') || 0), 0) || 0;
-    const totalCashOutflows = organizationAllocations + otherDisbursements + contingencyFund;
+    // Calculate cash outflows total - support both old and new data structures
+    let organizationAllocations = 0;
+    let otherDisbursements = 0;
+    let contingencyFund = 0;
+    let activitiesTotal = 0;
+
+    // Check for new structure (activities-based)
+    if (formData.cashOutflows?.activities && Array.isArray(formData.cashOutflows.activities)) {
+      activitiesTotal = formData.cashOutflows.activities.reduce((activitySum, activity) => {
+        const activityTotal = activity.items?.reduce((itemSum, item) => {
+          return itemSum + parseFloat(item.amount?.replace(/[₱,]/g, '') || 0);
+        }, 0) || 0;
+        return activitySum + activityTotal;
+      }, 0);
+      
+      // Add contingency fund from new structure
+      contingencyFund = parseFloat(formData.cashOutflows?.contingencyFund?.amount?.replace(/[₱,]/g, '') || 0);
+    } else {
+      // Use old structure
+      organizationAllocations = formData.cashOutflows?.organizationAllocations?.reduce((sum, item) => 
+        sum + parseFloat(item.amount?.replace(/[₱,]/g, '') || 0), 0) || 0;
+      otherDisbursements = formData.cashOutflows?.otherDisbursements?.reduce((sum, item) => 
+        sum + parseFloat(item.amount?.replace(/[₱,]/g, '') || 0), 0) || 0;
+      contingencyFund = formData.cashOutflows?.contingencyFund?.reduce((sum, item) => 
+        sum + parseFloat(item.amount?.replace(/[₱,]/g, '') || 0), 0) || 0;
+    }
+
+    // Calculate totals from notes if available (new structure)
+    let notesTotals = { organizationAllocations: 0, otherDisbursements: 0, contingencyFundNotes: 0 };
+    if (formData.notes && Array.isArray(formData.notes)) {
+      notesTotals = formData.notes.reduce((noteAcc, note) => {
+        const noteTotal = note.items?.reduce((sum, item) => sum + parseFloat(item.amount?.replace(/[₱,]/g, '') || 0), 0) || 0;
+        const noteName = note.name?.toLowerCase().replace(/[^a-z]/g, '') || '';
+        noteAcc[noteName] = noteTotal;
+        return noteAcc;
+      }, {});
+    }
+
+    const totalCashOutflows = activitiesTotal + contingencyFund + organizationAllocations + otherDisbursements;
 
     // Calculate ending cash balance
     const endingCashInBank = parseFloat(formData.endingCashBalance?.cashInBank?.replace(/[₱,]/g, '') || 0);
@@ -103,11 +134,15 @@ const ReviewModal = ({ isOpen, onClose, report, onReviewComplete }) => {
 
     return {
       totalCashInflows,
-      organizationAllocations,
-      otherDisbursements,
-      contingencyFund,
+      organizationAllocations: organizationAllocations || notesTotals.organizationallocations || 0,
+      otherDisbursements: otherDisbursements || notesTotals.otherdisbursements || 0,
+      contingencyFund: contingencyFund || notesTotals.contingencyfund || 0,
+      activitiesTotal,
       totalCashOutflows,
-      totalEndingCashBalance
+      totalEndingCashBalance,
+      // Additional data for new structure
+      activities: formData.cashOutflows?.activities || [],
+      notes: formData.notes || []
     };
   };
 
@@ -132,7 +167,33 @@ const ReviewModal = ({ isOpen, onClose, report, onReviewComplete }) => {
 
   if (!isOpen) return null;
 
+  // Add debug logging
+  console.log('ReviewModal - Report data:', report);
+  console.log('ReviewModal - Form data:', report?.formData);
+  
   const totals = report?.formData ? calculateTotals(report.formData) : {};
+  console.log('ReviewModal - Calculated totals:', totals);
+
+  // Error boundary check
+  if (!report) {
+    return (
+      <div className="review-modal">
+        <div className="review-modal__overlay" onClick={onClose}>
+          <div className="review-modal__content" onClick={e => e.stopPropagation()}>
+            <div className="review-modal__header">
+              <h2 className="review-modal__title">Error Loading Report</h2>
+              <button className="review-modal__close" onClick={onClose}>
+                <X size={20} />
+              </button>
+            </div>
+            <div className="review-modal__body">
+              <p>Unable to load report data. Please try again.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="review-modal">
@@ -186,20 +247,26 @@ const ReviewModal = ({ isOpen, onClose, report, onReviewComplete }) => {
 
                 {/* Tab Content */}
                 <div className="review-modal__tab-content">
-                  {activeTab === 'form' && report.formData && (
+                  {activeTab === 'form' && (
                     <div className="form-viewer">
+                      {!report.formData ? (
+                        <div className="form-error">
+                          <p>No form data available for this report.</p>
+                        </div>
+                      ) : (
+                        <>
                       {/* Cash Inflows Section */}
                       <div className="form-section">
                         <h4 className="section-title">Cash Inflows</h4>
                         
                         <div className="form-row">
-                          <label>Cash in Bank, Beginning ({report.formData.cashInflows.beginningCashInBank.month}):</label>
-                          <span>{report.formData.cashInflows.beginningCashInBank.amount}</span>
+                          <label>Cash in Bank, Beginning ({report.formData.cashInflows?.beginningCashInBank?.month || 'N/A'}):</label>
+                          <span>{report.formData.cashInflows?.beginningCashInBank?.amount || '₱0.00'}</span>
                         </div>
                         
                         <div className="form-row">
-                          <label>Cash on Hand, Beginning ({report.formData.cashInflows.beginningCashOnHand.month}):</label>
-                          <span>{report.formData.cashInflows.beginningCashOnHand.amount}</span>
+                          <label>Cash on Hand, Beginning ({report.formData.cashInflows?.beginningCashOnHand?.month || 'N/A'}):</label>
+                          <span>{report.formData.cashInflows?.beginningCashOnHand?.amount || '₱0.00'}</span>
                         </div>
                         
                         <div className="form-subsection">
@@ -212,12 +279,16 @@ const ReviewModal = ({ isOpen, onClose, report, onReviewComplete }) => {
                               </tr>
                             </thead>
                             <tbody>
-                              {report.formData.cashInflows.cashReceiptSources.map((source, index) => (
+                              {report.formData.cashInflows?.cashReceiptSources?.map((source, index) => (
                                 <tr key={index}>
-                                  <td>{source.description}</td>
-                                  <td>{source.amount}</td>
+                                  <td>{source.description || '-'}</td>
+                                  <td>{source.amount || '₱0.00'}</td>
                                 </tr>
-                              ))}
+                              )) || (
+                                <tr>
+                                  <td colSpan="2" className="no-data">No cash receipt sources</td>
+                                </tr>
+                              )}
                             </tbody>
                           </table>
                         </div>
@@ -231,105 +302,195 @@ const ReviewModal = ({ isOpen, onClose, report, onReviewComplete }) => {
                       <div className="form-section">
                         <h4 className="section-title">Cash Outflows</h4>
                         
-                        {/* Organization Allocations */}
-                        <div className="form-subsection">
-                          <h5>Organization Allocations:</h5>
-                          {report.formData.cashOutflows.organizationAllocations.length > 0 ? (
-                            <table className="form-table">
-                              <thead>
-                                <tr>
-                                  <th>Date</th>
-                                  <th>Details</th>
-                                  <th>Invoice/OR No.</th>
-                                  <th>Amount</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {report.formData.cashOutflows.organizationAllocations.map((item, index) => (
-                                  <tr key={index}>
-                                    <td>{item.date}</td>
-                                    <td>{item.details}</td>
-                                    <td>{item.invoiceNumber}</td>
-                                    <td>{item.amount}</td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          ) : (
-                            <p className="no-data">No entries</p>
-                          )}
-                          <div className="subsection-total">
-                            <strong>Subtotal: {formatAsPeso(totals.organizationAllocations)}</strong>
-                          </div>
-                        </div>
+                        {/* Check if this is new structure (activities-based) or old structure */}
+                        {totals.activities && totals.activities.length > 0 ? (
+                          // New Structure - Activities Based
+                          <>
+                            {totals.activities.map((activity, activityIndex) => (
+                              <div key={activityIndex} className="form-subsection">
+                                <h5>Activity: {activity.name || `Activity ${activityIndex + 1}`}</h5>
+                                {activity.items && activity.items.length > 0 ? (
+                                  <table className="form-table">
+                                    <thead>
+                                      <tr>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {activity.items.map((item, itemIndex) => (
+                                        <tr key={itemIndex}>
+                                          <td>{item.description || '-'}</td>
+                                          <td>{item.amount || '₱0.00'}</td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                ) : (
+                                  <p className="no-data">No items in this activity</p>
+                                )}
+                                <div className="subsection-total">
+                                  <strong>Activity Total: {formatAsPeso(activity.items?.reduce((sum, item) => sum + parseFloat(item.amount?.replace(/[₱,]/g, '') || 0), 0) || 0)}</strong>
+                                </div>
+                              </div>
+                            ))}
+                            
+                            {/* Contingency Fund for new structure */}
+                            <div className="form-subsection">
+                              <h5>1% Contingency Fund:</h5>
+                              <div className="form-row">
+                                <label>Amount:</label>
+                                <span>{formatAsPeso(totals.contingencyFund)}</span>
+                              </div>
+                            </div>
+                            
+                            <div className="form-total">
+                              <strong>Total Activities: {formatAsPeso(totals.activitiesTotal)}</strong>
+                            </div>
+                          </>
+                        ) : (
+                          // Old Structure - Legacy Format
+                          <>
+                            {/* Organization Allocations */}
+                            <div className="form-subsection">
+                              <h5>Organization Allocations:</h5>
+                              {report.formData.cashOutflows?.organizationAllocations && report.formData.cashOutflows.organizationAllocations.length > 0 ? (
+                                <table className="form-table">
+                                  <thead>
+                                    <tr>
+                                      <th>Date</th>
+                                      <th>Details</th>
+                                      <th>Invoice/OR No.</th>
+                                      <th>Amount</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {report.formData.cashOutflows.organizationAllocations.map((item, index) => (
+                                      <tr key={index}>
+                                        <td>{item.date || '-'}</td>
+                                        <td>{item.details || '-'}</td>
+                                        <td>{item.invoiceNumber || '-'}</td>
+                                        <td>{item.amount || '₱0.00'}</td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              ) : (
+                                <p className="no-data">No entries</p>
+                              )}
+                              <div className="subsection-total">
+                                <strong>Subtotal: {formatAsPeso(totals.organizationAllocations)}</strong>
+                              </div>
+                            </div>
 
-                        {/* Other Disbursements */}
-                        <div className="form-subsection">
-                          <h5>Other Disbursements:</h5>
-                          {report.formData.cashOutflows.otherDisbursements.length > 0 ? (
-                            <table className="form-table">
-                              <thead>
-                                <tr>
-                                  <th>Date</th>
-                                  <th>Details</th>
-                                  <th>Invoice/OR No.</th>
-                                  <th>Amount</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {report.formData.cashOutflows.otherDisbursements.map((item, index) => (
-                                  <tr key={index}>
-                                    <td>{item.date}</td>
-                                    <td>{item.details}</td>
-                                    <td>{item.invoiceNumber}</td>
-                                    <td>{item.amount}</td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          ) : (
-                            <p className="no-data">No entries</p>
-                          )}
-                          <div className="subsection-total">
-                            <strong>Subtotal: {formatAsPeso(totals.otherDisbursements)}</strong>
-                          </div>
-                        </div>
+                            {/* Other Disbursements */}
+                            <div className="form-subsection">
+                              <h5>Other Disbursements:</h5>
+                              {report.formData.cashOutflows?.otherDisbursements && report.formData.cashOutflows.otherDisbursements.length > 0 ? (
+                                <table className="form-table">
+                                  <thead>
+                                    <tr>
+                                      <th>Date</th>
+                                      <th>Details</th>
+                                      <th>Invoice/OR No.</th>
+                                      <th>Amount</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {report.formData.cashOutflows.otherDisbursements.map((item, index) => (
+                                      <tr key={index}>
+                                        <td>{item.date || '-'}</td>
+                                        <td>{item.details || '-'}</td>
+                                        <td>{item.invoiceNumber || '-'}</td>
+                                        <td>{item.amount || '₱0.00'}</td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              ) : (
+                                <p className="no-data">No entries</p>
+                              )}
+                              <div className="subsection-total">
+                                <strong>Subtotal: {formatAsPeso(totals.otherDisbursements)}</strong>
+                              </div>
+                            </div>
 
-                        {/* Contingency Fund */}
-                        <div className="form-subsection">
-                          <h5>1% Contingency Fund:</h5>
-                          {report.formData.cashOutflows.contingencyFund.length > 0 ? (
-                            <table className="form-table">
-                              <thead>
-                                <tr>
-                                  <th>Date</th>
-                                  <th>Details</th>
-                                  <th>Invoice/OR No.</th>
-                                  <th>Amount</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {report.formData.cashOutflows.contingencyFund.map((item, index) => (
-                                  <tr key={index}>
-                                    <td>{item.date}</td>
-                                    <td>{item.details}</td>
-                                    <td>{item.invoiceNumber}</td>
-                                    <td>{item.amount}</td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          ) : (
-                            <p className="no-data">No entries</p>
-                          )}
-                          <div className="subsection-total">
-                            <strong>Subtotal: {formatAsPeso(totals.contingencyFund)}</strong>
-                          </div>
-                        </div>
+                            {/* Contingency Fund */}
+                            <div className="form-subsection">
+                              <h5>1% Contingency Fund:</h5>
+                              {report.formData.cashOutflows?.contingencyFund && Array.isArray(report.formData.cashOutflows.contingencyFund) && report.formData.cashOutflows.contingencyFund.length > 0 ? (
+                                <table className="form-table">
+                                  <thead>
+                                    <tr>
+                                      <th>Date</th>
+                                      <th>Details</th>
+                                      <th>Invoice/OR No.</th>
+                                      <th>Amount</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {report.formData.cashOutflows.contingencyFund.map((item, index) => (
+                                      <tr key={index}>
+                                        <td>{item.date || '-'}</td>
+                                        <td>{item.details || '-'}</td>
+                                        <td>{item.invoiceNumber || '-'}</td>
+                                        <td>{item.amount || '₱0.00'}</td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              ) : (
+                                <p className="no-data">No entries</p>
+                              )}
+                              <div className="subsection-total">
+                                <strong>Subtotal: {formatAsPeso(totals.contingencyFund)}</strong>
+                              </div>
+                            </div>
+                          </>
+                        )}
                         
                         <div className="form-total">
                           <strong>Total Cash Outflows: {formatAsPeso(totals.totalCashOutflows)}</strong>
                         </div>
+                        
+                        {/* Display Notes Section if available */}
+                        {totals.notes && totals.notes.length > 0 && (
+                          <div className="form-subsection">
+                            <h5>Notes (Expense Details):</h5>
+                            {totals.notes.map((note, noteIndex) => (
+                              <div key={noteIndex} className="note-details">
+                                <h6>Note {noteIndex + 1}: {note.name}</h6>
+                                {note.items && note.items.length > 0 ? (
+                                  <table className="form-table">
+                                    <thead>
+                                      <tr>
+                                        <th>Date</th>
+                                        <th>Details</th>
+                                        <th>Invoice/OR No.</th>
+                                        <th>Amount</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {note.items.map((item, itemIndex) => (
+                                        <tr key={itemIndex}>
+                                          <td>{item.date || '-'}</td>
+                                          <td>{item.details || '-'}</td>
+                                          <td>{item.invoiceNumber || '-'}</td>
+                                          <td>{item.amount || '₱0.00'}</td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                ) : (
+                                  <p className="no-data">No entries in this note</p>
+                                )}
+                                <div className="subsection-total">
+                                  <strong>Note Total: {formatAsPeso(note.items?.reduce((sum, item) => sum + parseFloat(item.amount?.replace(/[₱,]/g, '') || 0), 0) || 0)}</strong>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
 
                       {/* Ending Cash Balance Section */}
@@ -338,18 +499,20 @@ const ReviewModal = ({ isOpen, onClose, report, onReviewComplete }) => {
                         
                         <div className="form-row">
                           <label>Cash in Bank:</label>
-                          <span>{report.formData.endingCashBalance.cashInBank}</span>
+                          <span>{report.formData.endingCashBalance?.cashInBank || '₱0.00'}</span>
                         </div>
                         
                         <div className="form-row">
                           <label>Cash on Hand:</label>
-                          <span>{report.formData.endingCashBalance.cashOnHand}</span>
+                          <span>{report.formData.endingCashBalance?.cashOnHand || '₱0.00'}</span>
                         </div>
                         
                         <div className="form-total">
                           <strong>Total Ending Cash Balance: {formatAsPeso(totals.totalEndingCashBalance)}</strong>
                         </div>
                       </div>
+                        </>
+                      )}
                     </div>
                   )}
 

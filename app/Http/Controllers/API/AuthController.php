@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\UserOrganization;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,7 @@ class AuthController extends Controller
             'last_name' => 'required|string|max:255',
             'suffix' => 'nullable|string|max:255',
             'role_id' => 'nullable|exists:roles,role_id',
+            'organization_id' => 'nullable|exists:organizations,organization_id',
         ]);
 
         if ($validator->fails()) {
@@ -54,8 +56,19 @@ class AuthController extends Controller
             'suffix' => $request->suffix,
         ]);
 
+        // Create user organization relationship if organization_id is provided
+        if ($request->has('organization_id') && $request->organization_id) {
+            UserOrganization::create([
+                'user_id' => $user->user_id,
+                'organization_id' => $request->organization_id,
+            ]);
+        }
+
         // Create token
         $token = $user->createToken('auth_token')->accessToken;
+
+        // Load organizations relationship for the user
+        $user->load('organizations');
 
         return response()->json([
             'success' => true,
@@ -67,6 +80,73 @@ class AuthController extends Controller
                 'token_type' => 'Bearer',
             ]
         ], 201);
+    }
+
+    /**
+     * Update user information
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $userId
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUser(Request $request, $userId)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|max:255|unique:users,email,' . $userId . ',user_id',
+            'password' => 'nullable|string|min:8|confirmed',
+            'role_id' => 'required|exists:roles,role_id',
+            'organization_id' => 'required|exists:organizations,organization_id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        try {
+            $user = User::findOrFail($userId);
+
+            // Update user data
+            $userData = [
+                'email' => $request->email,
+                'role_id' => $request->role_id,
+            ];
+
+            // Only update password if provided
+            if ($request->has('password') && $request->password) {
+                $userData['password'] = Hash::make($request->password);
+            }
+
+            $user->update($userData);
+
+            // Update user organization relationship
+            // First remove existing organization relationships
+            $user->organizations()->detach();
+
+            // Add new organization relationship
+            $user->organizations()->attach($request->organization_id);
+
+            // Load organizations relationship for the user
+            $user->load('organizations');
+
+            return response()->json([
+                'success' => true,
+                'message' => 'User updated successfully',
+                'data' => [
+                    'user' => $user,
+                ]
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update user',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -99,7 +179,7 @@ class AuthController extends Controller
         }
 
         $user = User::where('email', $request->email)->first();
-        $user->load('profile', 'role'); // Eager load relationships
+        $user->load('profile', 'role', 'organizations'); // Eager load relationships
         $token = $user->createToken('auth_token')->accessToken;
 
         return response()->json([

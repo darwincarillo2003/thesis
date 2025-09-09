@@ -3,6 +3,7 @@ import {
   Home,
   FilePlus,
   FileText,
+  Calendar,
   User,
   Settings,
   LogOut
@@ -69,12 +70,21 @@ const OrgSidebar = ({ isOpen, toggleSidebar, onNavigate, onLogout, activeSection
             </div>
           </li>
           <li className="org-sidebar__item">
-            <div 
-              className={`org-sidebar__link ${activeItem === 'my-reports' ? 'active' : ''}`} 
+            <div
+              className={`org-sidebar__link ${activeItem === 'my-reports' ? 'active' : ''}`}
               onClick={() => handleItemClick('my-reports')}
             >
               <FileText size={20} className="org-sidebar__icon" />
               <span className="org-sidebar__label">My Reports</span>
+            </div>
+          </li>
+          <li className="org-sidebar__item">
+            <div
+              className={`org-sidebar__link ${activeItem === 'calendar' ? 'active' : ''}`}
+              onClick={() => handleItemClick('calendar')}
+            >
+              <Calendar size={20} className="org-sidebar__icon" />
+              <span className="org-sidebar__label">Calendar</span>
             </div>
           </li>
           <li className="org-sidebar__item">

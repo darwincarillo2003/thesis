@@ -185,7 +185,7 @@ const Login = ({ onLogin }) => {
                 <div className="login-form-container">
                     <div className="logo-section">
                         <img 
-                            src="/images/logourios.svg" 
+                            src="/images/urios.png" 
                             alt="FSUU Logo" 
                             className={`university-logo ${logoLoaded ? 'logo-loaded' : ''}`}
                             onLoad={() => setLogoLoaded(true)}

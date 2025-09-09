@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { X, Camera, Trash2, User, Mail, Phone, MapPin, Upload } from 'lucide-react';
+import { X, Camera, Trash2, User, Mail, Lock, UserCheck, Building } from 'lucide-react';
 import '../../../sass/AdminAreas/EditUserModal.scss';
 
 const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) => {
@@ -10,12 +10,68 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
     last_name: '',
     suffix: '',
     email: '',
+    password: '',
+    password_confirmation: '',
+    role_id: '',
+    organization_id: '',
     profile_pic: null
   });
   const [profilePicPreview, setProfilePicPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState({});
+  const [organizations, setOrganizations] = useState([]);
+  const [organizationsLoading, setOrganizationsLoading] = useState(true);
+
+  // Role options - you may want to fetch these from an API
+  const roleOptions = [
+    { value: '4', label: 'Admin' },
+    { value: '1', label: 'COA' },
+    { value: '2', label: 'Treasurer' },
+    { value: '3', label: 'Auditor' }
+  ];
+
+  // Fetch organizations from API
+  const fetchOrganizations = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const tokenType = localStorage.getItem('token_type');
+
+      const response = await fetch('/api/organizations', {
+        method: 'GET',
+        headers: {
+          'Authorization': `${tokenType} ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.success && data.data) {
+        setOrganizations(data.data);
+      } else {
+        console.error('Failed to fetch organizations:', data.message);
+        setOrganizations([]);
+      }
+    } catch (error) {
+      console.error('Error fetching organizations:', error);
+      setOrganizations([]);
+    } finally {
+      setOrganizationsLoading(false);
+    }
+  };
+
+  // Fetch organizations when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setOrganizationsLoading(true);
+      fetchOrganizations();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (user && isOpen) {
@@ -25,6 +81,10 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
         last_name: user.last_name || '',
         suffix: user.suffix || '',
         email: user.user?.email || '',
+        password: '',
+        password_confirmation: '',
+        role_id: user.user?.role_id || '',
+        organization_id: user.user?.organizations?.[0]?.organization_id || '',
         profile_pic: null
       });
       
@@ -47,6 +107,10 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
       last_name: '',
       suffix: '',
       email: '',
+      password: '',
+      password_confirmation: '',
+      role_id: '',
+      organization_id: '',
       profile_pic: null
     });
     setProfilePicPreview(null);
@@ -137,13 +201,68 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
     }
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.first_name.trim()) {
+      newErrors.first_name = 'First name is required';
+    }
+
+    if (!formData.last_name.trim()) {
+      newErrors.last_name = 'Last name is required';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+
+    if (formData.password && formData.password.length < 8) {
+      newErrors.password = 'Password must be at least 8 characters';
+    }
+
+    if (formData.password !== formData.password_confirmation) {
+      newErrors.password_confirmation = 'Passwords do not match';
+    }
+
+    if (!formData.role_id) {
+      newErrors.role_id = 'Role is required';
+    }
+
+    if (!formData.organization_id) {
+      newErrors.organization_id = 'Organization is required';
+    }
+
+    setFieldErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
     setIsLoading(true);
     setError('');
     setFieldErrors({});
 
     try {
+      // Prepare user data for update
+      const userData = {
+        email: formData.email,
+        role_id: formData.role_id,
+        organization_id: formData.organization_id
+      };
+
+      // Only include password if it's provided
+      if (formData.password) {
+        userData.password = formData.password;
+        userData.password_confirmation = formData.password_confirmation;
+      }
+
       // Update profile information
       const profileData = {
         first_name: formData.first_name,
@@ -152,9 +271,21 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
         suffix: formData.suffix
       };
 
-      // For now, we'll just update the profile info
-      // You can extend this to include email update if needed
+      // Update user information (email, role, organization, password)
+      console.log('Updating user:', userData);
+      const userResponse = await axios.put(`/api/users/${user.user?.user_id}`, userData);
+
+      if (!userResponse.data.success) {
+        throw new Error(userResponse.data.message || 'Failed to update user');
+      }
+
+      // Update profile information (name fields)
       console.log('Updating profile:', profileData);
+      const profileResponse = await axios.put(`/api/profiles/${user.profile_id}`, profileData);
+
+      if (!profileResponse.data.success) {
+        throw new Error(profileResponse.data.message || 'Failed to update profile');
+      }
 
       // Upload profile picture if selected
       if (formData.profile_pic) {
@@ -162,7 +293,7 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
         formDataFile.append('profile_picture', formData.profile_pic);
 
         const uploadResponse = await axios.post(
-          `/api/profiles/${user.profile_id}/upload-picture`, 
+          `/api/profiles/${user.profile_id}/upload-picture`,
           formDataFile,
           {
             headers: {
@@ -203,7 +334,7 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
         <div className="edit-user-modal__header">
           <h2 className="edit-user-modal__title">
             <User size={20} />
-            Edit User Profile
+            Edit User Account
           </h2>
           <button
             onClick={handleClose}
@@ -216,57 +347,62 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
 
         <form onSubmit={handleSubmit} className="edit-user-modal__form">
           {error && (
-            <div className="edit-user-modal__error">
+            <div className="edit-user-modal__error-banner">
               {error}
             </div>
           )}
 
           {/* Profile Picture Section */}
           <div className="edit-user-modal__section">
-            <h3 className="edit-user-modal__section-title">Profile Picture</h3>
+            <h3 className="edit-user-modal__section-title">Profile Picture (Optional)</h3>
             <div className="edit-user-modal__profile-pic-container">
               <div className="edit-user-modal__profile-pic-preview">
                 <img
                   src={profilePicPreview || '/images/csp.png'}
                   alt="Profile preview"
                   className="edit-user-modal__profile-pic"
+                  onClick={() => document.getElementById('profile-pic-input').click()}
+                  onError={(e) => {
+                    console.log('Image failed to load:', e.target.src);
+                    e.target.src = '/images/background.png'; // Fallback image
+                  }}
+                />
+                <label className="edit-user-modal__profile-pic-icon" htmlFor="profile-pic-input">
+                  <Camera size={16} />
+                </label>
+                <input
+                  id="profile-pic-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className="edit-user-modal__file-input"
+                  disabled={isLoading}
                 />
               </div>
-              <div className="edit-user-modal__profile-pic-actions">
-                <label className="edit-user-modal__file-label">
-                  <Camera size={16} />
-                  Choose New Picture
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="edit-user-modal__file-input"
-                    disabled={isLoading}
-                  />
-                </label>
-                {formData.profile_pic && (
-                  <button
-                    type="button"
-                    onClick={handleRemoveImage}
-                    className="edit-user-modal__btn edit-user-modal__btn--secondary"
-                    disabled={isLoading}
-                  >
-                    <X size={16} />
-                    Remove New
-                  </button>
-                )}
-                {user.profile_pic && (
-                  <button
-                    type="button"
-                    onClick={handleDeleteProfilePicture}
-                    className="edit-user-modal__btn edit-user-modal__btn--danger"
-                    disabled={isLoading}
-                  >
-                    <Trash2 size={16} />
-                    Delete Current
-                  </button>
-                )}
-              </div>
+              {formData.profile_pic && (
+                <button
+                  type="button"
+                  onClick={handleRemoveImage}
+                  className="edit-user-modal__btn edit-user-modal__btn--secondary edit-user-modal__btn--small"
+                  disabled={isLoading}
+                  style={{ marginTop: '12px', width: 'fit-content', marginLeft: 'auto', marginRight: 'auto' }}
+                >
+                  <X size={16} />
+                  Remove
+                </button>
+              )}
+              {user.profile_pic && (
+                <button
+                  type="button"
+                  onClick={handleDeleteProfilePicture}
+                  className="edit-user-modal__btn edit-user-modal__btn--danger edit-user-modal__btn--small"
+                  disabled={isLoading}
+                  style={{ marginTop: '8px', width: 'fit-content', marginLeft: 'auto', marginRight: 'auto' }}
+                >
+                  <Trash2 size={16} />
+                  Delete Current
+                </button>
+              )}
             </div>
           </div>
 
@@ -276,7 +412,7 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
             <div className="edit-user-modal__form-grid">
               <div className="edit-user-modal__form-group">
                 <label className="edit-user-modal__label">
-                  First Name *
+                  First Name <span className="required">*</span>
                 </label>
                 <input
                   type="text"
@@ -288,7 +424,7 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
                   disabled={isLoading}
                 />
                 {fieldErrors.first_name && (
-                  <span className="edit-user-modal__field-error">{fieldErrors.first_name[0]}</span>
+                  <span className="edit-user-modal__error">{fieldErrors.first_name[0]}</span>
                 )}
               </div>
 
@@ -305,13 +441,13 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
                   disabled={isLoading}
                 />
                 {fieldErrors.middle_name && (
-                  <span className="edit-user-modal__field-error">{fieldErrors.middle_name[0]}</span>
+                  <span className="edit-user-modal__error">{fieldErrors.middle_name[0]}</span>
                 )}
               </div>
 
               <div className="edit-user-modal__form-group">
                 <label className="edit-user-modal__label">
-                  Last Name *
+                  Last Name <span className="required">*</span>
                 </label>
                 <input
                   type="text"
@@ -323,7 +459,7 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
                   disabled={isLoading}
                 />
                 {fieldErrors.last_name && (
-                  <span className="edit-user-modal__field-error">{fieldErrors.last_name[0]}</span>
+                  <span className="edit-user-modal__error">{fieldErrors.last_name[0]}</span>
                 )}
               </div>
 
@@ -341,27 +477,115 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
                   disabled={isLoading}
                 />
                 {fieldErrors.suffix && (
-                  <span className="edit-user-modal__field-error">{fieldErrors.suffix[0]}</span>
+                  <span className="edit-user-modal__error">{fieldErrors.suffix[0]}</span>
                 )}
               </div>
 
               <div className="edit-user-modal__form-group edit-user-modal__form-group--full">
                 <label className="edit-user-modal__label">
                   <Mail size={16} />
-                  Email Address
+                  Email Address <span className="required">*</span>
                 </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="edit-user-modal__input"
-                  disabled={true} // Email editing disabled for security
-                  placeholder="Email cannot be changed"
+                  className={`edit-user-modal__input ${fieldErrors.email ? 'edit-user-modal__input--error' : ''}`}
+                  disabled={isLoading}
+                  required
                 />
-                <span className="edit-user-modal__helper-text">
-                  Email address cannot be changed for security reasons
-                </span>
+                {fieldErrors.email && (
+                  <span className="edit-user-modal__error">{fieldErrors.email}</span>
+                )}
+              </div>
+
+              <div className="edit-user-modal__form-group">
+                <label className="edit-user-modal__label">
+                  <Lock size={16} />
+                  New Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className={`edit-user-modal__input ${fieldErrors.password ? 'edit-user-modal__input--error' : ''}`}
+                  disabled={isLoading}
+                  placeholder="Leave blank to keep current password"
+                />
+                {fieldErrors.password && (
+                  <span className="edit-user-modal__error">{fieldErrors.password}</span>
+                )}
+              </div>
+
+              <div className="edit-user-modal__form-group">
+                <label className="edit-user-modal__label">
+                  <Lock size={16} />
+                  Confirm New Password
+                </label>
+                <input
+                  type="password"
+                  name="password_confirmation"
+                  value={formData.password_confirmation}
+                  onChange={handleInputChange}
+                  className={`edit-user-modal__input ${fieldErrors.password_confirmation ? 'edit-user-modal__input--error' : ''}`}
+                  disabled={isLoading}
+                  placeholder="Confirm new password"
+                />
+                {fieldErrors.password_confirmation && (
+                  <span className="edit-user-modal__error">{fieldErrors.password_confirmation}</span>
+                )}
+              </div>
+
+              <div className="edit-user-modal__form-group edit-user-modal__form-group--full">
+                <label className="edit-user-modal__label">
+                  <UserCheck size={16} />
+                  Role <span className="required">*</span>
+                </label>
+                <select
+                  name="role_id"
+                  value={formData.role_id}
+                  onChange={handleInputChange}
+                  className={`edit-user-modal__input ${fieldErrors.role_id ? 'edit-user-modal__input--error' : ''}`}
+                  disabled={isLoading}
+                >
+                  <option value="">Select a role...</option>
+                  {roleOptions.map(role => (
+                    <option key={role.value} value={role.value}>
+                      {role.label}
+                    </option>
+                  ))}
+                </select>
+                {fieldErrors.role_id && (
+                  <span className="edit-user-modal__error">{fieldErrors.role_id}</span>
+                )}
+              </div>
+
+              <div className="edit-user-modal__form-group edit-user-modal__form-group--full">
+                <label className="edit-user-modal__label">
+                  <Building size={16} />
+                  Organization <span className="required">*</span>
+                </label>
+                <select
+                  name="organization_id"
+                  value={formData.organization_id}
+                  onChange={handleInputChange}
+                  className={`edit-user-modal__input ${fieldErrors.organization_id ? 'edit-user-modal__input--error' : ''}`}
+                  disabled={isLoading || organizationsLoading}
+                >
+                  <option value="">
+                    {organizationsLoading ? 'Loading organizations...' : 'Select an organization...'}
+                  </option>
+                  {organizations.map(org => (
+                    <option key={org.organization_id} value={org.organization_id}>
+                      {org.organization_name}
+                    </option>
+                  ))}
+                </select>
+                {fieldErrors.organization_id && (
+                  <span className="edit-user-modal__error">{fieldErrors.organization_id}</span>
+                )}
               </div>
             </div>
           </div>
@@ -380,7 +604,7 @@ const EditUserModal = ({ isOpen, onClose, user, onUserUpdated, onShowSuccess }) 
               className="edit-user-modal__btn edit-user-modal__btn--primary"
               disabled={isLoading}
             >
-              {isLoading ? 'Updating...' : 'Update Profile'}
+              {isLoading ? 'Updating...' : 'Update User'}
             </button>
           </div>
         </form>

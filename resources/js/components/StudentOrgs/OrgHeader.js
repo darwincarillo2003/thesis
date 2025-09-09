@@ -1,7 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, Bell, ChevronDown, LogOut, User, Settings } from 'lucide-react';
+import { Menu, ChevronDown, LogOut, User, Settings } from 'lucide-react';
+import OrgNotif from './OrgNotif';
 
-const OrgHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
+const OrgHeader = ({
+  toggleSidebar,
+  onLogout,
+  userData,
+  onNavigate,
+  notifications = [],
+  onMarkNotificationAsRead,
+  unreadNotificationsCount = 0
+}) => {
+  // Debug logging for notification issues
+  console.log('OrgHeader: Notifications count:', notifications?.length || 0, 'Unread:', unreadNotificationsCount);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -48,9 +60,11 @@ const OrgHeader = ({ toggleSidebar, onLogout, userData, onNavigate }) => {
       </div>
 
       <div className="org-header__actions">
-        <div className="org-header__notification">
-          <Bell />
-        </div>
+        <OrgNotif
+          notifications={notifications}
+          onMarkNotificationAsRead={onMarkNotificationAsRead}
+          unreadNotificationsCount={unreadNotificationsCount}
+        />
 
         <div className="org-header__profile" onClick={toggleDropdown} ref={dropdownRef}>
           <img

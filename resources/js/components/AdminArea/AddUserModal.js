@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, User, Mail, Lock, UserCheck, Camera } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, User, Mail, Lock, UserCheck, Camera, Building } from 'lucide-react';
 import '../../../sass/AdminAreas/AddUserModal.scss';
 
 const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
@@ -12,20 +12,65 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
     password: '',
     password_confirmation: '',
     role_id: '',
+    organization_id: '',
     profile_pic: null
   });
 
   const [profilePicPreview, setProfilePicPreview] = useState(null);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [organizations, setOrganizations] = useState([]);
+  const [organizationsLoading, setOrganizationsLoading] = useState(true);
 
   // Role options - you may want to fetch these from an API
   const roleOptions = [
-    { value: '1', label: 'Admin' },
-    { value: '2', label: 'COA' },
-    { value: '3', label: 'Treasurer' },
-    { value: '4', label: 'Auditor' }
+    { value: '4', label: 'Admin' },
+    { value: '1', label: 'COA' },
+    { value: '2', label: 'Treasurer' },
+    { value: '3', label: 'Auditor' }
   ];
+
+  // Fetch organizations from API
+  const fetchOrganizations = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const tokenType = localStorage.getItem('token_type');
+
+      const response = await fetch('/api/organizations', {
+        method: 'GET',
+        headers: {
+          'Authorization': `${tokenType} ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.success && data.data) {
+        setOrganizations(data.data);
+      } else {
+        console.error('Failed to fetch organizations:', data.message);
+        setOrganizations([]);
+      }
+    } catch (error) {
+      console.error('Error fetching organizations:', error);
+      setOrganizations([]);
+    } finally {
+      setOrganizationsLoading(false);
+    }
+  };
+
+  // Fetch organizations when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setOrganizationsLoading(true);
+      fetchOrganizations();
+    }
+  }, [isOpen]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -123,6 +168,10 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
       newErrors.role_id = 'Role is required';
     }
 
+    if (!formData.organization_id) {
+      newErrors.organization_id = 'Organization is required';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -152,7 +201,8 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
           email: formData.email,
           password: formData.password,
           password_confirmation: formData.password_confirmation,
-          role_id: formData.role_id
+          role_id: formData.role_id,
+          organization_id: formData.organization_id
         }),
       });
 
@@ -192,6 +242,7 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
           password: '',
           password_confirmation: '',
           role_id: '',
+          organization_id: '',
           profile_pic: null
         });
         setProfilePicPreview(null);
@@ -237,6 +288,7 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
         password: '',
         password_confirmation: '',
         role_id: '',
+        organization_id: '',
         profile_pic: null
       });
       setProfilePicPreview(null);
@@ -247,11 +299,20 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
 
 
 
+
+
   if (!isOpen) return null;
 
   return (
-    <div className="add-user-modal-overlay" onClick={handleClose}>
-      <div className="add-user-modal" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="add-user-modal-overlay"
+      onClick={handleClose}
+    >
+      <div
+        className="add-user-modal"
+        onClick={(e) => e.stopPropagation()}
+      >
+
         <div className="add-user-modal__header">
           <h2 className="add-user-modal__title">
             <User size={24} />
@@ -282,35 +343,41 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
                   src={profilePicPreview || '/images/csp.png'}
                   alt="Profile preview"
                   className="add-user-modal__profile-pic"
+                  onClick={() => document.getElementById('profile-pic-input').click()}
+                  onError={(e) => {
+                    console.log('Image failed to load:', e.target.src);
+                    e.target.src = '/images/background.png'; // Fallback image
+                  }}
+                />
+                <label className="add-user-modal__profile-pic-icon" htmlFor="profile-pic-input">
+                  <Camera size={16} />
+                </label>
+                <input
+                  id="profile-pic-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className="add-user-modal__file-input"
+                  disabled={isSubmitting}
                 />
               </div>
-              <div className="add-user-modal__profile-pic-actions">
-                <label className="add-user-modal__file-label">
-                  <Camera size={16} />
-                  Choose Profile Picture
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="add-user-modal__file-input"
-                    disabled={isSubmitting}
-                  />
-                </label>
-                {formData.profile_pic && (
-                  <button
-                    type="button"
-                    onClick={handleRemoveImage}
-                    className="add-user-modal__button add-user-modal__button--secondary add-user-modal__button--small"
-                    disabled={isSubmitting}
-                  >
-                    <X size={16} />
-                    Remove
-                  </button>
-                )}
-                {errors.profile_pic && (
-                  <span className="add-user-modal__error">{errors.profile_pic}</span>
-                )}
-              </div>
+              {formData.profile_pic && (
+                <button
+                  type="button"
+                  onClick={handleRemoveImage}
+                  className="add-user-modal__button add-user-modal__button--secondary add-user-modal__button--small"
+                  disabled={isSubmitting}
+                  style={{ marginTop: '12px', width: 'fit-content', marginLeft: 'auto', marginRight: 'auto' }}
+                >
+                  <X size={16} />
+                  Remove
+                </button>
+              )}
+              {errors.profile_pic && (
+                <span className="add-user-modal__error" style={{ textAlign: 'center', display: 'block' }}>
+                  {errors.profile_pic}
+                </span>
+              )}
             </div>
           </div>
 
@@ -449,6 +516,32 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded, onShowSuccess }) => {
               </select>
               {errors.role_id && (
                 <span className="add-user-modal__error">{errors.role_id}</span>
+              )}
+            </div>
+
+            <div className="add-user-modal__form-group add-user-modal__form-group--full">
+              <label className="add-user-modal__label">
+                <Building size={16} />
+                Organization <span className="required">*</span>
+              </label>
+              <select
+                name="organization_id"
+                value={formData.organization_id}
+                onChange={handleInputChange}
+                className={`add-user-modal__select ${errors.organization_id ? 'error' : ''}`}
+                disabled={isSubmitting || organizationsLoading}
+              >
+                <option value="">
+                  {organizationsLoading ? 'Loading organizations...' : 'Select an organization...'}
+                </option>
+                {organizations.map(org => (
+                  <option key={org.organization_id} value={org.organization_id}>
+                    {org.organization_name}
+                  </option>
+                ))}
+              </select>
+              {errors.organization_id && (
+                <span className="add-user-modal__error">{errors.organization_id}</span>
               )}
             </div>
           </div>

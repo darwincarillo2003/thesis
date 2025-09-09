@@ -4,6 +4,7 @@ import CoaSidebar from './CoaSidebar';
 import CoaHeader from './CoaHeader';
 import CoaDashboardMain from './CoaDashboardMain';
 import ReviewReports from './ReviewReports';
+import Events from './Events';
 import Settings from './Settings';
 import '../../../sass/StudentCoaMain/CoaDashboard.scss';
 import '../../../sass/StudentCoaMain/CoaSidebar.scss';
@@ -11,6 +12,7 @@ import '../../../sass/StudentCoaMain/CoaHeader.scss';
 import '../../../sass/StudentCoaMain/CoaDashboardMain.scss';
 import '../../../sass/StudentCoaMain/Settings.scss';
 import '../../../sass/StudentCoaMain/ReviewReports.scss';
+import '../../../sass/StudentCoaMain/Events.scss';
 
 const CoaDashboard = ({ onLogout }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -133,6 +135,8 @@ const CoaDashboard = ({ onLogout }) => {
         return <CoaDashboardMain onLogout={onLogout} role="coa" />;
       case 'review-reports':
         return <ReviewReports />;
+      case 'events':
+        return <Events />;
       case 'settings':
         return <Settings userData={userData} onProfileUpdate={handleProfileUpdate} />;
       default:

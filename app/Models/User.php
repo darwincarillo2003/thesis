@@ -64,4 +64,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'role_id', 'role_id');
     }
+
+    /**
+     * Get the organizations that the user belongs to.
+     */
+    public function organizations()
+    {
+        return $this->belongsToMany(Organization::class, 'user_organizations', 'user_id', 'organization_id');
+    }
 }

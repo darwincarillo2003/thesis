@@ -35,8 +35,18 @@
   }
 }
 
-// Print styles
+// Print styles - Receipt Design
 @media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    margin: 15mm !important;
+    size: A4 !important;
+  }
+
   .org-sidebar, .org-header, .submit-form__header-actions, .form-actions, .btn-add, .btn-remove, .submit-form__sidebar, .submit-form__actions {
     display: none !important;
   }
@@ -53,6 +63,9 @@
   
   .submit-form {
     padding: 0 !important;
+    width: 100% !important;
+    max-width: 210mm !important;
+    margin: 0 auto !important;
   }
 
   .submit-form__layout {
@@ -67,19 +80,491 @@
   .cash-flow-form {
     box-shadow: none !important;
     border: none !important;
+    background: white !important;
+    padding: 20px !important;
+    font-family: 'Arial', sans-serif !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    color: #000 !important;
   }
-  
-  input, select {
+
+  // Professional header design
+  .form-header {
+    text-align: center !important;
+    margin-bottom: 40px !important;
+    padding-bottom: 25px !important;
+
+    &__logos {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: flex-start !important;
+      margin-bottom: 20px !important;
+      position: relative !important;
+    }
+
+    &__logo {
+      width: 80px !important;
+      height: auto !important;
+      
+      &-left {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+      }
+      
+      &-right {
+        position: absolute !important;
+        right: 0 !important;
+        top: 0 !important;
+      }
+    }
+
+    &__text {
+      flex: 1 !important;
+      padding: 0 100px !important; // Space for logos
+      text-align: center !important;
+    }
+
+    &__university {
+      font-size: 20px !important;
+      font-weight: bold !important;
+      margin: 0 0 8px 0 !important;
+      color: #000 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+    }
+
+    &__address {
+      font-size: 12px !important;
+      margin: 0 0 8px 0 !important;
+      color: #000 !important;
+      font-style: italic !important;
+    }
+
+    &__office {
+      font-size: 16px !important;
+      font-weight: bold !important;
+      margin: 8px 0 15px 0 !important;
+      color: #000 !important;
+    }
+
+    &__academic-year {
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      margin: 15px 0 0 0 !important;
+      color: #000 !important;
+    }
+
+    &__details {
+      display: none !important; // Hide form details in print
+    }
+  }
+
+  // Title section
+  .form-title-section {
+    text-align: center !important;
+    margin-bottom: 35px !important;
+    border-bottom: 2px solid #000 !important;
+    padding-bottom: 20px !important;
+
+    .statement-title {
+      font-size: 22px !important;
+      font-weight: bold !important;
+      margin: 0 0 10px 0 !important;
+      color: #000 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 2px !important;
+    }
+
+    .statement-month {
+      font-size: 16px !important;
+      margin: 0 0 8px 0 !important;
+      color: #000 !important;
+      font-weight: 500 !important;
+    }
+
+    .statement-semester {
+      font-size: 14px !important;
+      margin: 0 !important;
+      color: #000 !important;
+      font-weight: 500 !important;
+    }
+  }
+
+  // Receipt-style sections
+  .form-section {
+    margin-bottom: 25px !important;
+    page-break-inside: avoid !important;
+
+    .section-title {
+      font-size: 14px !important;
+      font-weight: bold !important;
+      color: #000 !important;
+      margin-bottom: 10px !important;
+      padding: 8px 0 !important;
+      border-bottom: 1px solid #000 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+    }
+  }
+
+  // Professional cash inflows design
+  .cash-inflows-print {
+    margin-bottom: 25px !important;
+
+    .section-header {
+      font-size: 14px !important;
+      font-weight: bold !important;
+      margin-bottom: 12px !important;
+      color: #000 !important;
+      text-transform: uppercase !important;
+    }
+
+    .inflow-item {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 3px 0 !important;
+      min-height: 20px !important;
+
+      &.level-0 {
+        margin-left: 0px !important;
+        font-weight: 600 !important;
+        font-size: 12px !important;
+      }
+
+      &.level-1 {
+        margin-left: 20px !important;
+        font-size: 11px !important;
+      }
+
+      &.level-2 {
+        margin-left: 40px !important;
+        font-size: 10px !important;
+        font-style: italic !important;
+      }
+
+      .item-description {
+        flex: 1 !important;
+        line-height: 1.3 !important;
+      }
+
+      .item-amount {
+        font-weight: 500 !important;
+        min-width: 100px !important;
+        text-align: right !important;
+        font-family: 'Courier New', monospace !important;
+      }
+    }
+
+    .subtotal {
+      display: flex !important;
+      justify-content: space-between !important;
+      padding: 8px 0 !important;
+      margin-top: 15px !important;
+      border-top: 2px solid #000 !important;
+      border-bottom: 1px solid #000 !important;
+      font-weight: bold !important;
+      font-size: 13px !important;
+      background-color: #f5f5f5 !important;
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+
+      .subtotal-amount {
+        font-family: 'Courier New', monospace !important;
+        font-weight: bold !important;
+      }
+    }
+  }
+
+  // Professional cash outflows design
+  .cash-outflows-print {
+    margin-bottom: 25px !important;
+
+    .outflow-label {
+      font-size: 14px !important;
+      font-weight: bold !important;
+      margin-bottom: 12px !important;
+      color: #000 !important;
+      text-transform: uppercase !important;
+    }
+
+    .outflow-category {
+      margin-bottom: 15px !important;
+
+      .category-header {
+        font-weight: 600 !important;
+        color: #000 !important;
+        margin-bottom: 8px !important;
+        font-size: 12px !important;
+        margin-left: 20px !important;
+      }
+
+      .outflow-item {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 2px 0 !important;
+        min-height: 18px !important;
+
+        &.level-0 {
+          margin-left: 0px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
+        }
+
+        &.level-1 {
+          margin-left: 20px !important;
+          font-size: 11px !important;
+          font-weight: 500 !important;
+        }
+
+        &.level-2 {
+          margin-left: 40px !important;
+          font-size: 10px !important;
+        }
+
+        &.level-3 {
+          margin-left: 60px !important;
+          font-size: 10px !important;
+          font-style: italic !important;
+        }
+
+        .item-description {
+          flex: 1 !important;
+          line-height: 1.3 !important;
+        }
+
+        .item-amount {
+          font-weight: 500 !important;
+          min-width: 100px !important;
+          text-align: right !important;
+          font-family: 'Courier New', monospace !important;
+        }
+      }
+    }
+
+    .contingency-section {
+      margin-top: 15px !important;
+      
+      .contingency-item {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 2px 0 !important;
+        margin-left: 20px !important;
+        font-size: 11px !important;
+
+        .item-description {
+          flex: 1 !important;
+        }
+
+        .item-amount {
+          font-weight: 500 !important;
+          min-width: 100px !important;
+          text-align: right !important;
+          font-family: 'Courier New', monospace !important;
+        }
+      }
+    }
+
+    .subtotal {
+      display: flex !important;
+      justify-content: space-between !important;
+      padding: 8px 0 !important;
+      margin-top: 15px !important;
+      border-top: 2px solid #000 !important;
+      border-bottom: 1px solid #000 !important;
+      font-weight: bold !important;
+      font-size: 13px !important;
+      background-color: #f5f5f5 !important;
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+
+      .subtotal-amount {
+        font-family: 'Courier New', monospace !important;
+        font-weight: bold !important;
+      }
+    }
+  }
+
+  // Professional ending balance design
+  .ending-balance-print {
+    margin: 30px 0 !important;
+    
+    .section-header {
+      font-size: 14px !important;
+      font-weight: bold !important;
+      margin-bottom: 12px !important;
+      color: #000 !important;
+      text-transform: uppercase !important;
+    }
+
+    .balance-item {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 3px 0 !important;
+      min-height: 20px !important;
+
+      &.level-1 {
+        margin-left: 20px !important;
+        font-size: 11px !important;
+      }
+
+      .item-description {
+        flex: 1 !important;
+        line-height: 1.3 !important;
+      }
+
+      .item-amount {
+        font-weight: 500 !important;
+        min-width: 100px !important;
+        text-align: right !important;
+        font-family: 'Courier New', monospace !important;
+      }
+
+      &.total-balance {
+        border-top: 2px solid #000 !important;
+        border-bottom: 2px double #000 !important;
+        margin-top: 10px !important;
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+        font-weight: bold !important;
+        font-size: 13px !important;
+        background-color: #f9f9f9 !important;
+        margin-left: 0px !important;
+
+        .item-amount {
+          font-weight: bold !important;
+          font-size: 14px !important;
+        }
+      }
+    }
+  }
+
+  // Receipt-style notes table
+  .notes-print {
+    page-break-inside: avoid !important;
+
+    .note-section {
+      margin-bottom: 20px !important;
+      border: 1px solid #000 !important;
+
+      .note-title {
+        background-color: #f0f0f0 !important;
+        padding: 8px !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        border-bottom: 1px solid #000 !important;
+        font-size: 12px !important;
+      }
+
+      .note-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+
+        th {
+          background-color: #e0e0e0 !important;
+          padding: 6px 8px !important;
+          border: 1px solid #000 !important;
+          font-size: 10px !important;
+          font-weight: bold !important;
+          text-align: center !important;
+        }
+
+        td {
+          padding: 4px 8px !important;
+          border: 1px solid #000 !important;
+          font-size: 10px !important;
+          text-align: left !important;
+
+          &.amount {
+            text-align: right !important;
+            font-weight: bold !important;
+          }
+
+          &.total {
+            background-color: #f5f5f5 !important;
+            font-weight: bold !important;
+            text-align: right !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Receipt-style signatories
+  .signatories-print {
+    margin-top: 40px !important;
+    page-break-inside: avoid !important;
+
+    .signatory-row {
+      display: flex !important;
+      justify-content: space-between !important;
+      margin-bottom: 40px !important;
+
+      .signatory {
+        width: 45% !important;
+        text-align: center !important;
+
+        .signatory-name {
+          border-bottom: 1px solid #000 !important;
+          padding-bottom: 2px !important;
+          margin-bottom: 5px !important;
+          min-height: 20px !important;
+          font-weight: bold !important;
+        }
+
+        .signatory-title {
+          font-size: 10px !important;
+          text-transform: uppercase !important;
+          letter-spacing: 0.5px !important;
+        }
+      }
+    }
+  }
+
+  // Hide form elements
+  input, select, textarea {
     border: none !important;
     background: transparent !important;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
+    color: #000 !important;
+    font-weight: inherit !important;
   }
-  
-  .signatory-line {
-    border-bottom: 1px solid #000 !important;
+
+  // Hide interactive elements and show print elements
+  .activity-group, .note-header, .activity-header, .activity-items, .notes-actions,
+  .btn-add, .btn-remove, .form-header__org-input, .form-header__year-input,
+  .data-table, .contingency-fund-group, .activity-name-group, .note-title-group,
+  .notes-section, .signatories {
+    display: none !important;
   }
+
+  // Show print-specific elements
+  .cash-inflows-print, .cash-outflows-print, .ending-balance-print, 
+  .notes-print, .signatories-print, .form-title-section {
+    display: block !important;
+  }
+
+  // Show print values in header details
+  .print-value {
+    display: inline !important;
+    font-weight: bold !important;
+  }
+
+  input, select, textarea {
+    display: none !important;
+  }
+}
+
+// Hide print-specific elements during normal viewing
+.cash-inflows-print, .cash-outflows-print, .ending-balance-print, 
+.notes-print, .signatories-print, .print-value, .form-title-section {
+  display: none;
 }
 
 .submit-form {
@@ -1034,6 +1519,365 @@
     .form-group {
       label {
         font-size: 14px;
+      }
+    }
+  }
+}
+
+// Cash Outflows Activity Styles
+.activity-group {
+  margin-bottom: 24px;
+  border: 1px solid #e0e6ed;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f8f9fa;
+
+  .activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    
+    .activity-name-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+
+      label {
+        font-weight: 600;
+        color: #333;
+        min-width: 120px;
+      }
+
+      .activity-name-input {
+        flex: 1;
+        max-width: 300px;
+        padding: 8px 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 14px;
+        background-color: white;
+
+        &:focus {
+          outline: none;
+          border-color: #0036AF;
+          box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);
+        }
+      }
+
+      .btn-add-item {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #218838;
+        }
+      }
+    }
+
+    .btn-remove-activity {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #c82333;
+      }
+    }
+  }
+
+  .activity-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .activity-item {
+      .activity-item-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background-color: white;
+        border: 1px solid #e0e6ed;
+        border-radius: 6px;
+
+        label {
+          font-weight: 500;
+          color: #555;
+          min-width: 80px;
+        }
+
+        .activity-item-description {
+          flex: 1;
+          padding: 6px 10px;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          font-size: 14px;
+
+          &:focus {
+            outline: none;
+            border-color: #0036AF;
+            box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);
+          }
+        }
+
+        .activity-item-amount {
+          width: 120px;
+          padding: 6px 10px;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          font-size: 14px;
+          text-align: right;
+
+          &:focus {
+            outline: none;
+            border-color: #0036AF;
+            box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);
+          }
+        }
+
+        .btn-remove-item {
+          background-color: #dc3545;
+          color: white;
+          border: none;
+          padding: 6px 10px;
+          border-radius: 4px;
+          font-size: 12px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: #c82333;
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-add-activity {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 16px;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.contingency-fund-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 6px;
+  margin: 16px 0;
+
+  label {
+    font-weight: 600;
+    color: #856404;
+    min-width: 140px;
+  }
+
+  .contingency-fund-input {
+    width: 150px;
+    padding: 8px 12px;
+    border: 1px solid #d39e00;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: right;
+    background-color: white;
+
+    &:focus {
+      outline: none;
+      border-color: #b8860b;
+      box-shadow: 0 0 0 2px rgba(184, 134, 11, 0.1);
+    }
+  }
+}
+
+// Notes Section Styles
+.notes-section {
+  .note-table {
+    margin-bottom: 24px;
+    
+    .note-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 12px 16px;
+      background-color: #e9ecef;
+      border-radius: 6px 6px 0 0;
+      border: 1px solid #dee2e6;
+      border-bottom: none;
+
+      .note-title-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+
+        label {
+          font-weight: 600;
+          color: #333;
+          min-width: 60px;
+        }
+
+        .note-name-input {
+          flex: 1;
+          max-width: 300px;
+          padding: 6px 10px;
+          border: 1px solid #ced4da;
+          border-radius: 4px;
+          font-size: 14px;
+          background-color: white;
+
+          &:focus {
+            outline: none;
+            border-color: #0036AF;
+            box-shadow: 0 0 0 2px rgba(0, 54, 175, 0.1);
+          }
+        }
+      }
+
+      .btn-remove-note {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #c82333;
+        }
+      }
+    }
+  }
+
+  .notes-actions {
+    text-align: center;
+    margin-top: 20px;
+
+    .btn-add-note {
+      background-color: #6f42c1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #5a32a3;
+      }
+    }
+  }
+}
+
+// Responsive styles for new components
+@media (max-width: 768px) {
+  .activity-group {
+    padding: 16px 12px;
+
+    .activity-header {
+      flex-direction: column;
+      gap: 12px;
+
+      .activity-name-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+
+        label {
+          min-width: auto;
+        }
+
+        .activity-name-input {
+          max-width: none;
+        }
+      }
+    }
+
+    .activity-items {
+      .activity-item {
+        .activity-item-group {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 8px;
+
+          label {
+            min-width: auto;
+          }
+
+          .activity-item-amount {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .contingency-fund-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+
+    label {
+      min-width: auto;
+    }
+
+    .contingency-fund-input {
+      width: 100%;
+    }
+  }
+
+  .notes-section {
+    .note-table {
+      .note-header {
+        flex-direction: column;
+        gap: 12px;
+
+        .note-title-group {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 8px;
+
+          label {
+            min-width: auto;
+          }
+
+          .note-name-input {
+            max-width: none;
+          }
+        }
       }
     }
   }

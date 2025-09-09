@@ -5,6 +5,8 @@ import AdminHeader from './AdminHeader';
 import AdminDashboardMain from './AdminDashboardMain';
 import UserMng from './UserMng';
 import FormMng from './FormMng';
+import RoleMng from './RoleMng';
+import OrgMng from './OrgMng';
 import Settings from './Settings';
 import '../../../sass/AdminAreas/AdminDashboard.scss';
 import '../../../sass/AdminAreas/AdminSidebar.scss';
@@ -106,6 +108,10 @@ const AdminDashboard = ({ onLogout }) => {
         return <UserMng />;
       case 'form-management':
         return <FormMng />;
+      case 'role-management':
+        return <RoleMng />;
+      case 'organization-management':
+        return <OrgMng />;
       case 'settings':
         return <Settings />;
       default:

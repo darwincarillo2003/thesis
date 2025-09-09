@@ -11,7 +11,21 @@ const CashFlowStatement = ({
   handleSubmit,
   months,
   academicYear,
-  setAcademicYear
+  setAcademicYear,
+  // New activity functions
+  addActivity,
+  removeActivity,
+  addActivityItem,
+  removeActivityItem,
+  updateActivityName,
+  updateActivityItem,
+  // New note functions
+  addNote,
+  removeNote,
+  updateNoteName,
+  addNoteItem,
+  removeNoteItem,
+  updateNoteItem
 }) => {
   const totals = calculateTotals();
 
@@ -24,7 +38,7 @@ const CashFlowStatement = ({
           <div className="form-header__text">
             <h2 className="form-header__university">Father Saturnino Urios University</h2>
             <p className="form-header__address">San Francisco Street, Butuan City, Caraga, Philippines, 8600</p>
-            <h3 className="form-header__office">Office of the Supreme Student Government</h3>
+            <h3 className="form-header__office">Office of the Supreme Student Government Computer Studies Program</h3>
             <div className="form-header__org-input">
               <input
                 type="text"
@@ -44,6 +58,7 @@ const CashFlowStatement = ({
                 className="form-header__year-field"
               />
             </div>
+            <div className="form-header__academic-year">A.Y. {academicYear}</div>
           </div>
           <img src="/images/coalogo.svg" alt="COA Logo" className="form-header__logo form-header__logo-right" />
         </div>
@@ -51,6 +66,7 @@ const CashFlowStatement = ({
         <div className="form-header__details">
           <div className="form-group">
             <label htmlFor="organizationName">Organization Name:</label>
+            <span className="print-value">{formData.organizationName || '____________________'}</span>
             <input
               type="text"
               id="organizationName"
@@ -63,6 +79,7 @@ const CashFlowStatement = ({
           
           <div className="form-group">
             <label htmlFor="academicYearField">Academic Year:</label>
+            <span className="print-value">{academicYear || '____________________'}</span>
             <input
               type="text"
               id="academicYearField"
@@ -74,6 +91,7 @@ const CashFlowStatement = ({
           
           <div className="form-group">
             <label htmlFor="month">For the Month of:</label>
+            <span className="print-value">{formData.month || '____________________'}</span>
             <select
               id="month"
               value={formData.month}
@@ -89,10 +107,62 @@ const CashFlowStatement = ({
         </div>
       </div>
 
+      {/* Title Section for Print */}
+      <div className="form-title-section">
+        <h1 className="statement-title">Statement of Cash Flows</h1>
+        <div className="statement-month">For the Month of {formData.month}</div>
+        <div className="statement-semester">First Semester A.Y. {academicYear}</div>
+      </div>
+
       {/* Section 1: Cash Inflows */}
       <section className="form-section">
         <h3 className="section-title">Cash Inflows</h3>
         
+        {/* Professional Cash Inflows for Print */}
+        <div className="cash-inflows-print">
+          <div className="section-header">Cash Inflows</div>
+          
+          {/* Cash Balance Beginning */}
+          <div className="inflow-item level-0">
+            <span className="item-description">Cash Balance, Beginning - {formData.cashInflows.beginningCashInBank.month || 'Previous Month'}</span>
+            <span className="item-amount">{formatAsPeso(formData.cashInflows.beginningCashInBank.amount)}</span>
+          </div>
+          
+          {/* Total Cash in Bank Inflow */}
+          <div className="inflow-item level-1">
+            <span className="item-description">Total Cash in Bank Inflow</span>
+            <span className="item-amount">{formatAsPeso(formData.cashInflows.beginningCashInBank.amount)}</span>
+          </div>
+          
+          {/* ADD: Cash on Hand */}
+          <div className="inflow-item level-0">
+            <span className="item-description">ADD: Cash on Hand, Beginning Balance</span>
+            <span className="item-amount">{formatAsPeso(formData.cashInflows.beginningCashOnHand.amount)}</span>
+          </div>
+          
+          {/* Total Cash on Hand Inflows */}
+          <div className="inflow-item level-1">
+            <span className="item-description">Total Cash on Hand Inflows</span>
+            <span className="item-amount">{formatAsPeso(formData.cashInflows.beginningCashOnHand.amount)}</span>
+          </div>
+          
+          {/* Additional Cash Receipt Sources */}
+          {formData.cashInflows.cashReceiptSources.map((source, index) => (
+            source.description && (
+              <div key={index} className="inflow-item level-1">
+                <span className="item-description">{source.description}</span>
+                <span className="item-amount">{formatAsPeso(source.amount)}</span>
+              </div>
+            )
+          ))}
+          
+          <div className="subtotal">
+            <span>Total Cash Inflows</span>
+            <span className="subtotal-amount">{formatAsPeso(totals.totalCashInflows)}</span>
+          </div>
+        </div>
+        
+        {/* Form inputs for editing */}
         <div className="form-group">
           <label htmlFor="beginningCashInBank">Cash in Bank, Beginning:</label>
           <div className="input-group">
@@ -206,19 +276,167 @@ const CashFlowStatement = ({
       <section className="form-section">
         <h3 className="section-title">Cash Outflows</h3>
         
-        <div className="form-group">
-          <label>Organization Allocations (Note 1):</label>
-          <div className="total-value">{formatAsPeso(totals.organizationAllocations)}</div>
+        {/* Professional Cash Outflows for Print */}
+        <div className="cash-outflows-print">
+          <div className="outflow-label">Less: Cash Outflows</div>
+          
+          {formData.cashOutflows.activities.map((activity, activityIndex) => (
+            activity.name && (
+              <div key={activityIndex} className="outflow-category">
+                <div className="outflow-item level-1">
+                  <span className="item-description">{activity.name}</span>
+                  <span className="item-amount"></span>
+                </div>
+                {activity.items.map((item, itemIndex) => (
+                  item.description && (
+                    <div key={itemIndex} className="outflow-item level-2">
+                      <span className="item-description">{item.description}</span>
+                      <span className="item-amount">{formatAsPeso(item.amount)}</span>
+                    </div>
+                  )
+                ))}
+              </div>
+            )
+          ))}
+          
+          {/* Example specific items for University Days */}
+          {formData.cashOutflows.activities.length > 0 && formData.cashOutflows.activities[0].name && (
+            <div className="outflow-category">
+              <div className="outflow-item level-1">
+                <span className="item-description">SSG SHIRT</span>
+                <span className="item-amount"></span>
+              </div>
+              <div className="outflow-item level-2">
+                <span className="item-description">Indoor Jersey</span>
+                <span className="item-amount"></span>
+              </div>
+              <div className="outflow-item level-3">
+                <span className="item-description">(E-Games, Badminton, Chess, Dart, Table Tennis)</span>
+                <span className="item-amount"></span>
+              </div>
+              <div className="outflow-item level-2">
+                <span className="item-description">Futsal Jersey (Men & Women)</span>
+                <span className="item-amount"></span>
+              </div>
+              
+              <div className="outflow-item level-1">
+                <span className="item-description">Court (Volleyball, Basketball)</span>
+                <span className="item-amount"></span>
+              </div>
+            </div>
+          )}
+          
+          {formData.cashOutflows.contingencyFund.amount && (
+            <div className="contingency-section">
+              <div className="contingency-item">
+                <span className="item-description">1% Contingency Fund</span>
+                <span className="item-amount">{formatAsPeso(formData.cashOutflows.contingencyFund.amount)}</span>
+              </div>
+            </div>
+          )}
+          
+          <div className="subtotal">
+            <span>Total Cash Outflows</span>
+            <span className="subtotal-amount">{formatAsPeso(totals.totalCashOutflows)}</span>
+          </div>
         </div>
         
+        {/* Form inputs for editing */}
         <div className="form-group">
-          <label>Other Disbursements (Note 2):</label>
-          <div className="total-value">{formatAsPeso(totals.otherDisbursements)}</div>
+          <label>Less:</label>
         </div>
         
+        {/* Activities */}
+        {formData.cashOutflows.activities.map((activity, activityIndex) => (
+          <div key={activityIndex} className="activity-group">
+            <div className="activity-header">
+              <div className="activity-name-group">
+                <label>Name of activity:</label>
+                <input
+                  type="text"
+                  value={activity.name}
+                  onChange={(e) => updateActivityName(activityIndex, e.target.value)}
+                  placeholder="Enter activity name"
+                  className="activity-name-input"
+                />
+                <button
+                  type="button"
+                  className="btn-add btn-add-item"
+                  onClick={() => addActivityItem(activityIndex)}
+                >
+                  Add Item
+                </button>
+              </div>
+              {formData.cashOutflows.activities.length > 1 && (
+                <button
+                  type="button"
+                  className="btn-remove btn-remove-activity"
+                  onClick={() => removeActivity(activityIndex)}
+                >
+                  Remove Activity
+                </button>
+              )}
+            </div>
+            
+            {/* Activity Items */}
+            <div className="activity-items">
+              {activity.items.map((item, itemIndex) => (
+                <div key={itemIndex} className="activity-item">
+                  <div className="activity-item-group">
+                    <label>Description:</label>
+                    <input
+                      type="text"
+                      value={item.description}
+                      onChange={(e) => updateActivityItem(activityIndex, itemIndex, 'description', e.target.value)}
+                      placeholder="Enter description"
+                      className="activity-item-description"
+                    />
+                    <input
+                      type="text"
+                      value={item.amount}
+                      onChange={(e) => updateActivityItem(activityIndex, itemIndex, 'amount', e.target.value)}
+                      onBlur={(e) => updateActivityItem(activityIndex, itemIndex, 'amount', formatAsPeso(e.target.value))}
+                      placeholder="₱0.00"
+                      className="activity-item-amount"
+                    />
+                    {activity.items.length > 1 && (
+                      <button
+                        type="button"
+                        className="btn-remove btn-remove-item"
+                        onClick={() => removeActivityItem(activityIndex, itemIndex)}
+                      >
+                        Remove
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+        
+        {/* Add Activity Button */}
         <div className="form-group">
-          <label>1% Contingency Fund (Note 3):</label>
-          <div className="total-value">{formatAsPeso(totals.contingencyFund)}</div>
+          <button
+            type="button"
+            className="btn-add btn-add-activity"
+            onClick={addActivity}
+          >
+            Add Activity
+          </button>
+        </div>
+        
+        {/* 1% Contingency Fund */}
+        <div className="form-group contingency-fund-group">
+          <label>1% contingency fund:</label>
+          <input
+            type="text"
+            value={formData.cashOutflows.contingencyFund.amount}
+            onChange={(e) => handleInputChange('cashOutflows', 'contingencyFund', { amount: e.target.value })}
+            onBlur={(e) => handleInputChange('cashOutflows', 'contingencyFund', { amount: formatAsPeso(e.target.value) })}
+            placeholder="₱0.00"
+            className="contingency-fund-input"
+          />
         </div>
         
         <div className="form-group total-group">
@@ -231,6 +449,24 @@ const CashFlowStatement = ({
       <section className="form-section">
         <h3 className="section-title">Ending Cash Balance</h3>
         
+        {/* Professional Ending Balance for Print */}
+        <div className="ending-balance-print">
+          <div className="section-header">Ending Cash Balance</div>
+          <div className="balance-item level-1">
+            <span className="item-description">Cash in Bank</span>
+            <span className="item-amount">{formatAsPeso(formData.endingCashBalance.cashInBank)}</span>
+          </div>
+          <div className="balance-item level-1">
+            <span className="item-description">Cash on Hand</span>
+            <span className="item-amount">{formatAsPeso(formData.endingCashBalance.cashOnHand)}</span>
+          </div>
+          <div className="balance-item total-balance">
+            <span className="item-description">Total Ending Cash Balance</span>
+            <span className="item-amount">{formatAsPeso(totals.totalEndingCashBalance)}</span>
+          </div>
+        </div>
+        
+        {/* Form inputs for editing */}
         <div className="form-group">
           <label htmlFor="endingCashInBank">Cash in Bank:</label>
           <input
@@ -265,263 +501,167 @@ const CashFlowStatement = ({
       <section className="form-section">
         <h3 className="section-title">Notes (Expense Details)</h3>
         
+        {/* Receipt-style Notes for Print */}
+        <div className="notes-print">
+          {formData.notes.map((note, noteIndex) => (
+            note.name && note.items.length > 0 && (
+              <div key={noteIndex} className="note-section">
+                <div className="note-title">Note {noteIndex + 1} - {note.name}</div>
+                <table className="note-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Details</th>
+                      <th>Sales Invoice/OR/Form No.</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {note.items.map((item, itemIndex) => (
+                      item.details && (
+                        <tr key={itemIndex}>
+                          <td>{item.date || ''}</td>
+                          <td>{item.details || ''}</td>
+                          <td>{item.invoiceNumber || ''}</td>
+                          <td className="amount">{formatAsPeso(item.amount)}</td>
+                        </tr>
+                      )
+                    ))}
+                    <tr>
+                      <td colSpan="3" className="total">TOTAL</td>
+                      <td className="total amount">
+                        {formatAsPeso(note.items.reduce((sum, item) => sum + (parseFloat(item.amount?.replace(/[^\d.-]/g, '')) || 0), 0))}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )
+          ))}
+        </div>
+        
+        {/* Form inputs for editing */}
         <div className="notes-section">
-          <div className="note-table">
-            <h4>Note 1: Organization Allocations</h4>
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Details</th>
-                  <th>Sales Invoice / OR / Form No.</th>
-                  <th>Amount</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {formData.cashOutflows.organizationAllocations.length === 0 ? (
-                  <tr>
-                    <td colSpan="5" className="no-data">No entries yet</td>
-                  </tr>
-                ) : (
-                  formData.cashOutflows.organizationAllocations.map((item, index) => (
-                    <tr key={index}>
-                      <td>
-                        <input
-                          type="date"
-                          value={item.date || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'organizationAllocations', { date: e.target.value }, index)}
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          value={item.details || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'organizationAllocations', { details: e.target.value }, index)}
-                          placeholder="Enter details"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          value={item.invoiceNumber || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'organizationAllocations', { invoiceNumber: e.target.value }, index)}
-                          placeholder="Enter invoice number"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          value={item.amount || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'organizationAllocations', { amount: e.target.value }, index)}
-                          onBlur={(e) => handleInputChange('cashOutflows', 'organizationAllocations', { amount: formatAsPeso(e.target.value) }, index)}
-                          placeholder="₱0.00"
-                        />
-                      </td>
-                      <td>
-                        <button
-                          type="button"
-                          className="btn-remove"
-                          onClick={() => removeTableRow('cashOutflows', 'organizationAllocations', index)}
-                        >
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
-                  ))
+          {formData.notes.map((note, noteIndex) => (
+            <div key={noteIndex} className="note-table">
+              <div className="note-header">
+                <div className="note-title-group">
+                  <label>Note {noteIndex + 1}:</label>
+                  <input
+                    type="text"
+                    value={note.name}
+                    onChange={(e) => updateNoteName(noteIndex, e.target.value)}
+                    placeholder="Enter note name"
+                    className="note-name-input"
+                  />
+                </div>
+                {formData.notes.length > 1 && (
+                  <button
+                    type="button"
+                    className="btn-remove btn-remove-note"
+                    onClick={() => removeNote(noteIndex)}
+                  >
+                    Remove Note
+                  </button>
                 )}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colSpan="3" className="total-label">TOTAL</td>
-                  <td className="total-amount">{formatAsPeso(totals.organizationAllocations)}</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td colSpan="5">
-                    <button
-                      type="button"
-                      className="btn-add"
-                      onClick={() => addTableRow('cashOutflows', 'organizationAllocations')}
-                    >
-                      Add Row
-                    </button>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
+              </div>
+              
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Details</th>
+                    <th>Sales Invoice / OR / Form No.</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {note.items.length === 0 ? (
+                    <tr>
+                      <td colSpan="5" className="no-data">No entries yet</td>
+                    </tr>
+                  ) : (
+                    note.items.map((item, itemIndex) => (
+                      <tr key={itemIndex}>
+                        <td>
+                          <input
+                            type="date"
+                            value={item.date || ''}
+                            onChange={(e) => updateNoteItem(noteIndex, itemIndex, 'date', e.target.value)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            value={item.details || ''}
+                            onChange={(e) => updateNoteItem(noteIndex, itemIndex, 'details', e.target.value)}
+                            placeholder="Enter details"
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            value={item.invoiceNumber || ''}
+                            onChange={(e) => updateNoteItem(noteIndex, itemIndex, 'invoiceNumber', e.target.value)}
+                            placeholder="Enter invoice number"
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            value={item.amount || ''}
+                            onChange={(e) => updateNoteItem(noteIndex, itemIndex, 'amount', e.target.value)}
+                            onBlur={(e) => updateNoteItem(noteIndex, itemIndex, 'amount', formatAsPeso(e.target.value))}
+                            placeholder="₱0.00"
+                          />
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            className="btn-remove"
+                            onClick={() => removeNoteItem(noteIndex, itemIndex)}
+                          >
+                            Remove
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colSpan="3" className="total-label">TOTAL</td>
+                    <td className="total-amount">
+                      {formatAsPeso(note.items.reduce((sum, item) => sum + (parseFloat(item.amount?.replace(/[^\d.-]/g, '')) || 0), 0))}
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td colSpan="5">
+                      <button
+                        type="button"
+                        className="btn-add"
+                        onClick={() => addNoteItem(noteIndex)}
+                      >
+                        Add Row
+                      </button>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          ))}
           
-          <div className="note-table">
-            <h4>Note 2: Other Disbursements</h4>
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Details</th>
-                  <th>Sales Invoice / OR / Form No.</th>
-                  <th>Amount</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {formData.cashOutflows.otherDisbursements.length === 0 ? (
-                  <tr>
-                    <td colSpan="5" className="no-data">No entries yet</td>
-                  </tr>
-                ) : (
-                  formData.cashOutflows.otherDisbursements.map((item, index) => (
-                    <tr key={index}>
-                      <td>
-                        <input
-                          type="date"
-                          value={item.date || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'otherDisbursements', { date: e.target.value }, index)}
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          value={item.details || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'otherDisbursements', { details: e.target.value }, index)}
-                          placeholder="Enter details"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          value={item.invoiceNumber || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'otherDisbursements', { invoiceNumber: e.target.value }, index)}
-                          placeholder="Enter invoice number"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          value={item.amount || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'otherDisbursements', { amount: e.target.value }, index)}
-                          onBlur={(e) => handleInputChange('cashOutflows', 'otherDisbursements', { amount: formatAsPeso(e.target.value) }, index)}
-                          placeholder="₱0.00"
-                        />
-                      </td>
-                      <td>
-                        <button
-                          type="button"
-                          className="btn-remove"
-                          onClick={() => removeTableRow('cashOutflows', 'otherDisbursements', index)}
-                        >
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colSpan="3" className="total-label">TOTAL</td>
-                  <td className="total-amount">{formatAsPeso(totals.otherDisbursements)}</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td colSpan="5">
-                    <button
-                      type="button"
-                      className="btn-add"
-                      onClick={() => addTableRow('cashOutflows', 'otherDisbursements')}
-                    >
-                      Add Row
-                    </button>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-          
-          <div className="note-table">
-            <h4>Note 3: 1% Contingency Fund</h4>
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Details</th>
-                  <th>Sales Invoice / OR / Form No.</th>
-                  <th>Amount</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {formData.cashOutflows.contingencyFund.length === 0 ? (
-                  <tr>
-                    <td colSpan="5" className="no-data">No entries yet</td>
-                  </tr>
-                ) : (
-                  formData.cashOutflows.contingencyFund.map((item, index) => (
-                    <tr key={index}>
-                      <td>
-                        <input
-                          type="date"
-                          value={item.date || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'contingencyFund', { date: e.target.value }, index)}
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          value={item.details || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'contingencyFund', { details: e.target.value }, index)}
-                          placeholder="Enter details"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          value={item.invoiceNumber || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'contingencyFund', { invoiceNumber: e.target.value }, index)}
-                          placeholder="Enter invoice number"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          value={item.amount || ''}
-                          onChange={(e) => handleInputChange('cashOutflows', 'contingencyFund', { amount: e.target.value }, index)}
-                          onBlur={(e) => handleInputChange('cashOutflows', 'contingencyFund', { amount: formatAsPeso(e.target.value) }, index)}
-                          placeholder="₱0.00"
-                        />
-                      </td>
-                      <td>
-                        <button
-                          type="button"
-                          className="btn-remove"
-                          onClick={() => removeTableRow('cashOutflows', 'contingencyFund', index)}
-                        >
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colSpan="3" className="total-label">TOTAL</td>
-                  <td className="total-amount">{formatAsPeso(totals.contingencyFund)}</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td colSpan="5">
-                    <button
-                      type="button"
-                      className="btn-add"
-                      onClick={() => addTableRow('cashOutflows', 'contingencyFund')}
-                    >
-                      Add Row
-                    </button>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
+          {/* Add Note Button */}
+          <div className="notes-actions">
+            <button
+              type="button"
+              className="btn-add btn-add-note"
+              onClick={addNote}
+            >
+              Add Note
+            </button>
           </div>
         </div>
       </section>
@@ -530,6 +670,31 @@ const CashFlowStatement = ({
       <section className="form-section">
         <h3 className="section-title">Signatories</h3>
         
+        {/* Receipt-style Signatories for Print */}
+        <div className="signatories-print">
+          <div className="signatory-row">
+            <div className="signatory">
+              <div className="signatory-name"></div>
+              <div className="signatory-title">Treasurer</div>
+            </div>
+            <div className="signatory">
+              <div className="signatory-name"></div>
+              <div className="signatory-title">Auditor</div>
+            </div>
+          </div>
+          <div className="signatory-row">
+            <div className="signatory">
+              <div className="signatory-name"></div>
+              <div className="signatory-title">President / Governor / Chairperson</div>
+            </div>
+            <div className="signatory">
+              <div className="signatory-name"></div>
+              <div className="signatory-title">Assigned Auditor</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Form inputs for editing */}
         <div className="signatories">
           <div className="signatory-group">
             <div className="signatory">

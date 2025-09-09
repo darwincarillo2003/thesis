@@ -25,14 +25,27 @@ const SubmitForm = () => {
       cashReceiptSources: [{ description: '', amount: '' }],
     },
     cashOutflows: {
-      organizationAllocations: [],
-      otherDisbursements: [],
-      contingencyFund: [],
+      activities: [{ name: '', items: [{ description: '', amount: '' }] }],
+      contingencyFund: { amount: '' },
     },
     endingCashBalance: {
       cashInBank: '',
       cashOnHand: '',
-    }
+    },
+    notes: [
+      { 
+        name: 'Organization Allocations', 
+        items: [] 
+      },
+      { 
+        name: 'Other Disbursements', 
+        items: [] 
+      },
+      { 
+        name: '1% Contingency Fund', 
+        items: [] 
+      }
+    ]
   });
 
   // Modal state
@@ -127,6 +140,122 @@ const SubmitForm = () => {
     });
   };
 
+  // Add new activity
+  const addActivity = () => {
+    setFormData(prevState => ({
+      ...prevState,
+      cashOutflows: {
+        ...prevState.cashOutflows,
+        activities: [
+          ...prevState.cashOutflows.activities,
+          { name: '', items: [{ description: '', amount: '' }] }
+        ]
+      }
+    }));
+  };
+
+  // Remove activity
+  const removeActivity = (activityIndex) => {
+    setFormData(prevState => ({
+      ...prevState,
+      cashOutflows: {
+        ...prevState.cashOutflows,
+        activities: prevState.cashOutflows.activities.filter((_, index) => index !== activityIndex)
+      }
+    }));
+  };
+
+  // Add item to activity
+  const addActivityItem = (activityIndex) => {
+    setFormData(prevState => {
+      const newState = { ...prevState };
+      newState.cashOutflows.activities[activityIndex].items.push({ description: '', amount: '' });
+      return newState;
+    });
+  };
+
+  // Remove item from activity
+  const removeActivityItem = (activityIndex, itemIndex) => {
+    setFormData(prevState => {
+      const newState = { ...prevState };
+      newState.cashOutflows.activities[activityIndex].items.splice(itemIndex, 1);
+      return newState;
+    });
+  };
+
+  // Update activity name
+  const updateActivityName = (activityIndex, name) => {
+    setFormData(prevState => {
+      const newState = { ...prevState };
+      newState.cashOutflows.activities[activityIndex].name = name;
+      return newState;
+    });
+  };
+
+  // Update activity item
+  const updateActivityItem = (activityIndex, itemIndex, field, value) => {
+    setFormData(prevState => {
+      const newState = { ...prevState };
+      newState.cashOutflows.activities[activityIndex].items[itemIndex][field] = value;
+      return newState;
+    });
+  };
+
+  // Add note
+  const addNote = () => {
+    setFormData(prevState => ({
+      ...prevState,
+      notes: [
+        ...prevState.notes,
+        { name: '', items: [] }
+      ]
+    }));
+  };
+
+  // Remove note
+  const removeNote = (noteIndex) => {
+    setFormData(prevState => ({
+      ...prevState,
+      notes: prevState.notes.filter((_, index) => index !== noteIndex)
+    }));
+  };
+
+  // Update note name
+  const updateNoteName = (noteIndex, name) => {
+    setFormData(prevState => {
+      const newState = { ...prevState };
+      newState.notes[noteIndex].name = name;
+      return newState;
+    });
+  };
+
+  // Add item to note
+  const addNoteItem = (noteIndex) => {
+    setFormData(prevState => {
+      const newState = { ...prevState };
+      newState.notes[noteIndex].items.push({ date: '', details: '', invoiceNumber: '', amount: '' });
+      return newState;
+    });
+  };
+
+  // Remove item from note
+  const removeNoteItem = (noteIndex, itemIndex) => {
+    setFormData(prevState => {
+      const newState = { ...prevState };
+      newState.notes[noteIndex].items.splice(itemIndex, 1);
+      return newState;
+    });
+  };
+
+  // Update note item
+  const updateNoteItem = (noteIndex, itemIndex, field, value) => {
+    setFormData(prevState => {
+      const newState = { ...prevState };
+      newState.notes[noteIndex].items[itemIndex][field] = value;
+      return newState;
+    });
+  };
+
   // Calculate totals
   const calculateTotals = () => {
     // Calculate total cash inflows
@@ -137,17 +266,25 @@ const SubmitForm = () => {
     );
     const totalCashInflows = beginningCashInBank + beginningCashOnHand + receiptSources;
 
-    // Calculate total cash outflows
-    const organizationAllocations = formData.cashOutflows.organizationAllocations.reduce(
-      (sum, item) => sum + parseFromPeso(item.amount), 0
-    );
-    const otherDisbursements = formData.cashOutflows.otherDisbursements.reduce(
-      (sum, item) => sum + parseFromPeso(item.amount), 0
-    );
-    const contingencyFund = formData.cashOutflows.contingencyFund.reduce(
-      (sum, item) => sum + parseFromPeso(item.amount), 0
-    );
-    const totalCashOutflows = organizationAllocations + otherDisbursements + contingencyFund;
+    // Calculate total cash outflows from activities
+    const activitiesTotal = formData.cashOutflows.activities.reduce((activitySum, activity) => {
+      const activityTotal = activity.items.reduce((itemSum, item) => {
+        return itemSum + parseFromPeso(item.amount);
+      }, 0);
+      return activitySum + activityTotal;
+    }, 0);
+
+    // Calculate contingency fund
+    const contingencyFund = parseFromPeso(formData.cashOutflows.contingencyFund.amount);
+    
+    // Calculate totals from notes for backward compatibility
+    const notesTotals = formData.notes.reduce((noteAcc, note) => {
+      const noteTotal = note.items.reduce((sum, item) => sum + parseFromPeso(item.amount), 0);
+      noteAcc[note.name.toLowerCase().replace(/[^a-z]/g, '')] = noteTotal;
+      return noteAcc;
+    }, {});
+
+    const totalCashOutflows = activitiesTotal + contingencyFund;
 
     // Calculate ending cash balance
     const cashInBank = parseFromPeso(formData.endingCashBalance.cashInBank);
@@ -158,9 +295,12 @@ const SubmitForm = () => {
       totalCashInflows,
       totalCashOutflows,
       totalEndingCashBalance,
-      organizationAllocations,
-      otherDisbursements,
-      contingencyFund
+      activitiesTotal,
+      contingencyFund,
+      // For backward compatibility with notes
+      organizationAllocations: notesTotals.organizationallocations || 0,
+      otherDisbursements: notesTotals.otherdisbursements || 0,
+      contingencyFundNotes: notesTotals.contingencyfund || 0
     };
   };
 
@@ -295,11 +435,12 @@ const SubmitForm = () => {
       if (result.success) {
         const submissionId = result.data.submission.submission_id;
         setSubmissionId(submissionId);
-        setSuccessMessage(isDraft ? 'Cash flow statement saved as draft successfully!' : 'Cash flow statement submitted successfully!');
+        setSuccessMessage(isDraft 
+          ? `Cash flow statement saved as draft successfully! Submission ID: ${submissionId}` 
+          : `Cash flow statement submitted successfully! Submission ID: ${submissionId}`);
         setShowSuccess(true);
         
-        // Show an alert for immediate feedback
-        alert(`Success! Cash flow statement ${isDraft ? 'saved as draft' : 'submitted'} with ID: ${submissionId}`);
+        // Success notification will be shown via SuccessNotif component
         
         console.log('Success! Submission ID:', submissionId);
         console.log('Full response:', result);
@@ -364,6 +505,10 @@ const SubmitForm = () => {
       return;
     }
     
+    // Clear any previous errors or success messages
+    setError('');
+    setShowSuccess(false);
+    
     if (!formData.organizationName || !formData.month) {
       setError('Please fill in organization name and month before submitting.');
       return;
@@ -393,6 +538,10 @@ const SubmitForm = () => {
 
   // Handle draft save
   const handleDraft = async () => {
+    // Clear any previous errors or success messages
+    setError('');
+    setShowSuccess(false);
+    
     if (!formData.organizationName || !formData.month) {
       setError('Please fill in organization name and month before saving.');
       return;
@@ -487,6 +636,20 @@ const SubmitForm = () => {
             months={months}
             academicYear={academicYear}
             setAcademicYear={setAcademicYear}
+            // New activity functions
+            addActivity={addActivity}
+            removeActivity={removeActivity}
+            addActivityItem={addActivityItem}
+            removeActivityItem={removeActivityItem}
+            updateActivityName={updateActivityName}
+            updateActivityItem={updateActivityItem}
+            // New note functions
+            addNote={addNote}
+            removeNote={removeNote}
+            updateNoteName={updateNoteName}
+            addNoteItem={addNoteItem}
+            removeNoteItem={removeNoteItem}
+            updateNoteItem={updateNoteItem}
               />
             </div>
             
@@ -529,12 +692,12 @@ const SubmitForm = () => {
       />
       
       {/* Success Notification */}
-      {showSuccess && (
-        <SuccessNotif
-          message={successMessage}
-          onClose={() => setShowSuccess(false)}
-        />
-      )}
+      <SuccessNotif
+        isVisible={showSuccess}
+        message={successMessage}
+        duration={5000}
+        onClose={() => setShowSuccess(false)}
+      />
     </div>
   );
 };

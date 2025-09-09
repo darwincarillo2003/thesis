@@ -1,0 +1,209 @@
+// All Events Styles
+.all-events {
+  height: 100%; // Fill the grid cell height
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; // Prevent expansion beyond container
+
+  &__container {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; // Prevent container from expanding
+    min-height: 850px; // Match updated calendar height for consistency
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0 0 16px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  &__list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+
+    // Custom scrollbar styling
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #cbd5e0;
+      border-radius: 3px;
+
+      &:hover {
+        background: #a0aec0;
+      }
+    }
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+    color: #718096;
+
+    svg {
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    p {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+    }
+
+    &-subtitle {
+      margin: 0 0 24px 0;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  }
+}
+
+// Event Card Styles (shared with main Events component)
+.event-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__info {
+    flex: 1;
+  }
+
+  &__date-time {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  &__detail {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #718096;
+
+    svg {
+      flex-shrink: 0;
+      color: #a0aec0;
+    }
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+    margin-left: 16px;
+  }
+
+  &__action-btn {
+    background: none;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #718096;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #f7fafc;
+      border-color: #cbd5e0;
+      color: #4a5568;
+    }
+
+    &--delete {
+      &:hover {
+        background: #fed7d7;
+        border-color: #fc8181;
+        color: #c53030;
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .all-events {
+    &__container {
+      padding: 16px;
+    }
+
+    &__title {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .all-events {
+    &__container {
+      padding: 12px;
+    }
+
+    &__title {
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .event-card {
+      padding: 12px;
+      margin-bottom: 8px;
+
+      &__date-time {
+        gap: 12px;
+      }
+
+      &__actions {
+        margin-left: 12px;
+      }
+
+      &__action-btn {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+}

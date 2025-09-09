@@ -23,6 +23,7 @@ Route::post('/login', [AuthController::class, 'login']);
 // Protected routes
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
+    Route::put('/users/{id}', [AuthController::class, 'updateUser']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/change-password', [AuthController::class, 'changePassword']);
     Route::get('/profiles', [ProfileController::class, 'index']);
@@ -66,4 +67,38 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/{id}/reject', [App\Http\Controllers\API\CashFlowController::class, 'reject']);
         Route::post('/{id}/return', [App\Http\Controllers\API\CashFlowController::class, 'returnForRevision']);
     });
+
+    // Event Management Routes
+    Route::prefix('events')->group(function () {
+        Route::get('/', [App\Http\Controllers\API\EventController::class, 'index']);
+        Route::post('/', [App\Http\Controllers\API\EventController::class, 'store']);
+        Route::get('/{id}', [App\Http\Controllers\API\EventController::class, 'show']);
+        Route::put('/{id}', [App\Http\Controllers\API\EventController::class, 'update']);
+        Route::delete('/{id}', [App\Http\Controllers\API\EventController::class, 'destroy']);
+        Route::get('/organizations/list', [App\Http\Controllers\API\EventController::class, 'getOrganizations']);
+    });
+
+    // Role Management Routes
+    Route::prefix('roles')->group(function () {
+        Route::get('/', [App\Http\Controllers\API\RoleController::class, 'index']);
+        Route::post('/', [App\Http\Controllers\API\RoleController::class, 'store']);
+        Route::get('/{id}', [App\Http\Controllers\API\RoleController::class, 'show']);
+        Route::put('/{id}', [App\Http\Controllers\API\RoleController::class, 'update']);
+        Route::delete('/{id}', [App\Http\Controllers\API\RoleController::class, 'destroy']);
+    });
+
+    // Organization Management Routes
+    Route::prefix('organizations')->group(function () {
+        Route::get('/', [App\Http\Controllers\API\OrganizationController::class, 'index']);
+        Route::post('/', [App\Http\Controllers\API\OrganizationController::class, 'store']);
+        Route::get('/{id}', [App\Http\Controllers\API\OrganizationController::class, 'show']);
+        Route::put('/{id}', [App\Http\Controllers\API\OrganizationController::class, 'update']);
+        Route::delete('/{id}', [App\Http\Controllers\API\OrganizationController::class, 'destroy']);
+    });
+
+    // Dashboard Statistics Routes
+    Route::get('/dashboard/stats', [App\Http\Controllers\API\DashboardController::class, 'getStats']);
+    Route::get('/dashboard/student-org/stats', [App\Http\Controllers\API\DashboardController::class, 'getStudentOrgStats']);
+    Route::get('/dashboard/student-org/submissions', [App\Http\Controllers\API\DashboardController::class, 'getStudentOrgSubmissions']);
+    Route::delete('/dashboard/student-org/submissions/{id}', [App\Http\Controllers\API\DashboardController::class, 'deleteSubmission']);
 });

@@ -45,8 +45,11 @@ const SuccessNotif = ({
         <div className="success-notif__icon">
           <CheckCircle size={24} />
         </div>
-        <div className="success-notif__message">
-          {message}
+        <div className="success-notif__text">
+          <div className="success-notif__title">SUCCESS!</div>
+          <div className="success-notif__message">
+            {message}
+          </div>
         </div>
         <button 
           className="success-notif__close"

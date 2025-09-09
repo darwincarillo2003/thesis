@@ -41,36 +41,15 @@
   }
 
   &__actions { display: flex; align-items: center; gap: 6px; }
+  
+  // Import notification styles
+  @import 'OrgNotif';
   &__profile { position: relative; display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: background-color 0.2s ease; }
   &__profile:hover { background-color: #f8f9fa; }
   &__profile-picture { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0; transition: border-color 0.2s ease; }
   &__profile:hover &__profile-picture { border-color: #0036AF; }
   &__user-name { font-size: 16px; font-weight: 500; color: #333; }
-  
-  &__notification {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    border-radius: 8px;
-    transition: background-color 0.2s ease;
-    
-    svg {
-      width: 24px;
-      height: 24px;
-      color: #666;
-      transition: color 0.2s ease;
-    }
-    
-    &:hover {
-      background-color: #f8f9fa;
-      
-      svg {
-        color: #0036AF;
-      }
-    }
-  }
+
 
   &__dropdown-arrow {
     color: #666;
@@ -189,14 +168,6 @@
     &__profile-picture { width: 40px; height: 40px; }
     &__user-name { font-size: 14px; }
     
-    &__notification {
-      padding: 6px;
-      
-      svg {
-        width: 20px;
-        height: 20px;
-      }
-    }
 
     &__dropdown-menu {
       min-width: 140px;
@@ -227,14 +198,6 @@
     &__profile-picture { width: 36px; height: 36px; }
     &__user-name { font-size: 13px; }
     
-    &__notification {
-      padding: 5px;
-      
-      svg {
-        width: 18px;
-        height: 18px;
-      }
-    }
 
     &__dropdown-menu {
       min-width: 130px;

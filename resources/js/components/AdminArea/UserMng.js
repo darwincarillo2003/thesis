@@ -61,10 +61,11 @@ const UserMng = () => {
         if (debouncedSearchTerm.trim()) {
           params.append('search', debouncedSearchTerm.trim());
         }
-        
+
         const response = await axios.get(`/api/profiles?${params}`);
         const profilesData = response?.data?.data?.profiles;
         const rows = profilesData?.data || [];
+
         setProfiles(rows);
         setTotalPages(profilesData?.last_page || 1);
       } catch (err) {
@@ -205,14 +206,34 @@ const UserMng = () => {
 
   const getRoleClass = (roleName) => {
     if (!roleName || roleName === 'No Role') return 'user-mng__role-badge--default';
-    
+
     const role = roleName.toLowerCase();
     if (role.includes('admin')) return 'user-mng__role-badge--admin';
     if (role.includes('student')) return 'user-mng__role-badge--student';
     if (role.includes('coa')) return 'user-mng__role-badge--coa';
     if (role.includes('faculty')) return 'user-mng__role-badge--faculty';
-    
+
     return 'user-mng__role-badge--default';
+  };
+
+  const renderOrganizationBadge = (profile) => {
+    // Try different possible paths for organization data
+    let organizationName = '';
+
+    // Check if organization data is available through user relationships
+    if (profile.user?.organizations && profile.user.organizations.length > 0) {
+      organizationName = profile.user.organizations[0].organization_name || '';
+    } else if (profile.organization?.organization_name) {
+      organizationName = profile.organization.organization_name;
+    } else if (profile.user?.organization?.organization_name) {
+      organizationName = profile.user.organization.organization_name;
+    }
+
+    if (!organizationName) {
+      return <span className="user-mng__organization-badge user-mng__organization-badge--none">No Organization</span>;
+    }
+
+    return <span className="user-mng__organization-badge">{organizationName}</span>;
   };
 
   const handleSearchChange = (e) => {
@@ -577,6 +598,7 @@ const UserMng = () => {
                     {renderSortIcon('suffix')}
                   </th>
                   <th>Role</th>
+                  <th>Organization</th>
                 </tr>
               </thead>
               <tbody>
@@ -611,11 +633,12 @@ const UserMng = () => {
                     <td>{p.last_name || ''}</td>
                     <td>{p.suffix || ''}</td>
                     <td>{renderRoleBadge(p)}</td>
+                    <td>{renderOrganizationBadge(p)}</td>
                   </tr>
                 ))}
                 {!profiles.length && (
                   <tr>
-                    <td colSpan={8} className="user-mng__no-results">No entries found</td>
+                    <td colSpan={9} className="user-mng__no-results">No entries found</td>
                   </tr>
                 )}
               </tbody>
